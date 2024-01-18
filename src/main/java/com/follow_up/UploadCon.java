@@ -7,7 +7,7 @@ public class UploadCon {
     public static synchronized String getUploadDir() {
         String path = "";
         if (File.separator.equals("\\")) {
-            path = "D:/fullstack/ksnu/depoly/contents/storage/";
+            path = "C:\\ksnu\\deploy\\contents\\storage";
             System.out.println("Windows 10: " + path);
             
         } else {
