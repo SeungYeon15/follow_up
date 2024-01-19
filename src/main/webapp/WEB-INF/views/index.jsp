@@ -28,7 +28,7 @@
 		<nav class="overlay-menu">
 			<ul>
 				<li><a href="/">ABOUT DUA LIPA</a></li>
-				<li><a href="#">NOTICE</a></li>
+				<li><a href="/board/list">NOTICE</a></li>
 				<li><a href="#">ALBUM/VIDEO</a></li>
 				<li><a href="#">SCHEDULE</a></li>
 				<li><a href="#">GALLERY</a></li>
