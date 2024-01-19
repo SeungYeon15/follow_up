@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<taglib xmlns="http://www.springframework.org/schema/beans" version="2.0">
+
+	<description>EL에서 함수실행</description>
+	<tlib-version>1.0</tlib-version>
+	<uri>/ELFunctions</uri>
+
+	<function>
+		<description>new 이미지 출력</description>
+		<name>newImg</name>
+		<function-class>
+			com.follow_up.utility.Utility
+		</function-class>
+		<function-signature>
+			boolean compareDay ( java.lang.String )
+		</function-signature>
+	</function>
+	
+	<!-- <function>
+		<description>댓글 갯수</description>
+		<name>rcount</name>
+		<function-class>
+			com.follow_up.utility.Utility
+		</function-class>
+		<function-signature>
+			int rcount ( int, com.model.ReplyMapper )
+		</function-signature>
+	</function> -->
+
+</taglib> 

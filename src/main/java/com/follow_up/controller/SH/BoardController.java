@@ -4,9 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class CompanyController {
-	@GetMapping("/company/company")
-	public String company() {
-		return  "/company/company";
+public class BoardController {
+	@GetMapping("/board/list")
+	public String board() {
+		return  "/board/list";
 	}
 }
