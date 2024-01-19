@@ -8,7 +8,7 @@ public class UploadCon {
         String path = "";
         if (File.separator.equals("\\")) {
             path = "C:\\ksnu\\deploy\\contents\\storage";
-//            path = "D:/fullstack/web/deploy/contents/storage/";
+//          path = "D:/fullstack/web/deploy/contents/storage/";
             System.out.println("Windows 10: " + path);
             
         } else {
