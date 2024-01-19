@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Warner Music Group Homepage</title>
-    <link rel="stylesheet" href="company.css">
+    <link rel="stylesheet" href="/css/company.css">
 </head>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -31,7 +31,7 @@
     </header>
 
     <div class="wmg-section">
-        <img src="../images/www.jpg" alt="Concert crowd">
+        <img src="../images/warner-music.jpg" alt="Concert crowd">
         <div class="wmg-content">
             <h2>WARNER MUSIC GROUP</h2>
             <h3>A GLOBAL COLLECTIVE OF MUSIC MAKERS AND MUSIC LOVERS</h3>
