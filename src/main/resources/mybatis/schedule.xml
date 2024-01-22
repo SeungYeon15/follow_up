@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+ 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper
+	namespace="com.follow_up.model.SY.schedule.ScheduleMapper">
+
+	<select id="getSchedule" resultType="java.util.Map">
+		select s.scheduleTitle as title, s.scheduleContent as content,
+		date_format(s.scheduleStartTime,"%Y-%m-%dT%H:%i:%s") as	start,
+		date_format(s.scheduleEndTime,"%Y-%m-%dT%H:%i:%s") as end ,
+		s.tagName, t.tagColor
+		from schedule s inner join scheduleTag t 
+		on s.tagName = t.tagName;
+	</select>
+
+
+</mapper>
