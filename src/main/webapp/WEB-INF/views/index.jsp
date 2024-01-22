@@ -4,12 +4,11 @@
 <html>
 
 <head>
-<title>main</title>
+<title>follow up</title>
 <script src="https://unpkg.com/ionicons@7.0.0/dist/ionicons.js"></script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<link rel="stylesheet" href="/css/mainStyles.css" >
-<link href='https://fonts.googleapis.com/css?family=Cinzel'
-	rel='stylesheet'>
+
+<link rel="stylesheet" href="/css/mainStyles.css">
 <link rel="stylesheet" href="/css/menu.css">
 </head>
 
@@ -19,26 +18,7 @@
 	<input type="radio" name="item" id="section3" />
 	<input type="radio" name="item" id="section4" />
 
-
-	<div class="button_container" id="toggle">
-		<span class="top"></span><span class="middle"></span><span
-			class="bottom"></span>
-	</div>
-	<div class="overlay" id="overlay">
-		<nav class="overlay-menu">
-			<ul>
-				<li><a href="/">ABOUT DUA LIPA</a></li>
-				<li><a href="/board/list">NOTICE</a></li>
-				<li><a href="#">ALBUM/VIDEO</a></li>
-				<li><a href="#">SCHEDULE</a></li>
-				<li><a href="#">GALLERY</a></li>
-			</ul>
-		</nav>
-	</div>
-
-
 	<section>
-		<div class="logo">follow up</div>
 		<h2>
 			<div class="container-left">
 				<div class="social-media">
@@ -60,18 +40,7 @@
 	</section>
 	<script
 		src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-	<script>
-		$('#toggle').click(function() {
-			$(this).toggleClass('active');
-			$('#overlay').toggleClass('open');
-		});
-	</script>
-	<script>
-	
-		$('.logo').click(function() {
-			location.href = "/";
-		});
-	</script>
+
 	<script src="script.js"></script>
 </body>
 
