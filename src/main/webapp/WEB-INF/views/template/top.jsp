@@ -11,7 +11,7 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <link href='https://fonts.googleapis.com/css?family=Cinzel'
 	rel='stylesheet'>
-<link rel="stylesheet" href="menu.css">
+<link rel="stylesheet" href="/css/menu.css">
 </head>
 <body>
 	<div class="button_container" id="toggle">
@@ -23,7 +23,7 @@
 			<ul>
 				<li><a href="/">ABOUT DUA LIPA</a></li>
 				<li><a href="#">ALBUM/VIDEO</a></li>
-				<li><a href="#">SCHEDULE</a></li>
+				<li><a href="/schedule">SCHEDULE</a></li>
 				<li><a href="#">CONCERT</a></li>
 				<li><a href="#">GALLERY</a></li>
 				<li><a href="#">AGENCY</a></li>
