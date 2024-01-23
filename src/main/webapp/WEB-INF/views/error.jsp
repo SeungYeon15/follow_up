@@ -15,7 +15,7 @@
   <div class="toast show">
     <div class="toast-header">
       <strong class="me-auto">오류 메세지 !</strong>
-      <button type="button" class="btn-close" data-bs-dismiss="toast" onclick="location.href='/'"></button>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" onclick="history.back()"></button>
     </div>
     <div class="toast-body">
       <p>에러가 발생했습니다.</p>

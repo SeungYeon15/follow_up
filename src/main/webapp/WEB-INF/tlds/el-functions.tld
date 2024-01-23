@@ -15,16 +15,5 @@
 			boolean compareDay ( java.lang.String )
 		</function-signature>
 	</function>
-	
-	<!-- <function>
-		<description>댓글 갯수</description>
-		<name>rcount</name>
-		<function-class>
-			com.follow_up.utility.Utility
-		</function-class>
-		<function-signature>
-			int rcount ( int, com.model.ReplyMapper )
-		</function-signature>
-	</function> -->
 
-</taglib> 
+</taglib>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.follow_up.model.SH.Board.BoardMapper">
+	<!-- 게시판 목록 -->
+	<select id="list" parameterType="Map"
+		resultType="com.follow_up.model.SH.Board.BoardDTO">
+		SELECT bnum, btitle, bcontent, userId, bpasswd, bview, bdate
+		FROM board
+		<where>
+			<choose>
+				<when test="col=='userId'">
+					userId like CONCAT('%',#{word},'%')
+				</when>
+				<when test="col=='btitle'">
+					btitle like CONCAT('%',#{word},'%')
+				</when>
+				<when test="col=='bcontent'">
+					bcontent like CONCAT('%',#{word},'%')
+				</when>
+				<when test="col=='btitle_bcontent'">
+					btitle like CONCAT('%',#{word},'%')
+					or
+					bcontent like
+					CONCAT('%',#{word},'%')
+				</when>
+			</choose>
+		</where>
+		ORDER BY bnum DESC
+		limit #{sno} , #{cnt}
+	</select>
+
+	<!--total -->
+	<select id="total" resultType="int" parameterType="Map">
+		select count(*) from board
+		<where>
+			<choose>
+				<when test="col=='userId'">
+					userId like CONCAT('%',#{word},'%')
+				</when>
+				<when test="col=='btitle'">
+					btitle like CONCAT('%',#{word},'%')
+				</when>
+				<when test="col=='bcontent'">
+					bcontent like CONCAT('%',#{word},'%')
+				</when>
+				<when test="col=='btitle_bcontent'">
+					btitle like CONCAT('%',#{word},'%')
+					or
+					bcontent like
+					CONCAT('%',#{word},'%')
+				</when>
+			</choose>
+		</where>
+	</select>
+
+	<!-- 조회 -->
+	<select id="read" parameterType="int"
+		resultType="com.follow_up.model.SH.Board.BoardDTO">
+		SELECT bnum, btitle, bcontent, userId, bpasswd, bview,
+		bdate
+		FROM board
+		WHERE bnum = #{bnum}
+	</select>
+
+	<!-- 조회수 증가 -->
+	<update id="upViewcnt" parameterType="int">
+		UPDATE board
+		SET bview = bview + 1
+		WHERE bnum = #{bnum}
+	</update>
+
+	<!-- 공지사항 등록 -->
+	<!-- <insert id="create" parameterType="com.model.notice.NoticeDTO"> INSERT 
+		INTO notice(title, content, wname, passwd, cnt, rdate, filename, filesize) 
+		VALUES(#{title}, #{content}, #{wname}, #{passwd}, 0, NOW(), #{filename}, 
+		#{filesize}) </insert> -->
+
+	<!-- 패스워드 확인 -->
+	<!-- <select id="passCheck" parameterType="Map" resultType="int"> SELECT 
+		COUNT(noticeno) as cnt FROM notice WHERE noticeno=#{noticeno} AND passwd=#{passwd} 
+		</select> -->
+
+	<!-- 공지 수정 -->
+	<!-- <update id="update" parameterType="com.model.notice.NoticeDTO"> UPDATE 
+		notice <set> title = #{title} , content = #{content}, <if test="filesize 
+		> 0"> filename = #{filename}, filesize = #{filesize} </if> </set> WHERE noticeno 
+		= #{noticeno} </update> -->
+
+	<!-- 공지 삭제 -->
+	<!-- <delete id="delete" parameterType="int"> DELETE FROM notice WHERE noticeno=#{noticeno} 
+		</delete> -->
+
+	<!-- <select id="refnumCheck" parameterType="int" resultType="int"> select 
+		count(*) from notice where refnum = #{noticeno} </select> -->
+
+</mapper>
