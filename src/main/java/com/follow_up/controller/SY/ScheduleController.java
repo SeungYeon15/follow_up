@@ -30,4 +30,11 @@ public class ScheduleController {
 		List<Map> list = service.getSchedule();
 		return list;
 	}
+	
+	@GetMapping(value="/schedule/getTagList", produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public List<Map> getTagList(HttpServletRequest request){
+		List<Map> list = service.getTagList();
+		return list;
+	}
 }

@@ -18,4 +18,10 @@ public class ScheduleServiceImpl implements ScheduleService{
 		return mapper.getSchedule();
 	}
 
+	@Override
+	public List<Map> getTagList() {
+		// TODO Auto-generated method stub
+		return mapper.getTagList();
+	}
+
 }
