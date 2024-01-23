@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +16,11 @@
 <!-- fullcalendar 언어 CDN -->
 <script
 	src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/locales-all.min.js'></script>
+
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
 <link href='https://fonts.googleapis.com/css?family=Cinzel'
 	rel='stylesheet' />
 <style>
@@ -29,7 +35,7 @@
 }
 
 :root {
-	--fc-border-color: rgb(255, 255, 255);
+	--fc-border-color: #e7e7e76e;
 	--fc-daygrid-event-dot-width: 10px;
 }
 
@@ -49,6 +55,10 @@ html, body {
 	padding-left: 4.5em;
 	padding-right: 4.5em;
 }
+
+.fc-daygrid-day-number {
+	color: black;
+}
 </style>
 </head>
 
@@ -57,8 +67,95 @@ html, body {
 	<div id='calendar-container'>
 		<div id='calendar'></div>
 	</div>
+
+	<div class="modal" id="scheduleModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">스케줄 추가</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form id="scheduleForm">
+						<div class="form-group">
+							<label for="title">일정 제목:</label> <input type="text"
+								class="form-control" id="title" required>
+						</div>
+						<div class="form-group">
+							<label for="content">일정 소개:</label> <input type="text"
+								class="form-control" id="content" required>
+						</div>
+						<div class="form-group">
+							<label for="tag">일정 태그:</label> <select id="tag" name="tag"
+								style="width: 100%;">
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="startTime">시작 시간:</label> <input
+								type="datetime-local" class="form-control" id="startTime"
+								required>
+						</div>
+						<div class="form-group">
+							<label for="endTime">종료 시간:</label> <input type="datetime-local"
+								class="form-control" id="endTime" required>
+						</div>
+						<button type="submit" class="btn btn-primary">추가</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 	<script>
-		(function() {
+	 function convertToDatetime(LocalValue) {
+		  const localDate = new Date(LocalValue);
+		  
+		  const Datetime = localDate.toISOString().slice(0, 19).replace('T', ' ');
+
+		  return Datetime;
+		}
+    function getSchedule(){
+        return fetch("/schedule/getSchedule")
+                        .then(response => response.json());
+    }
+    function getTagList() {
+    	  return fetch("/schedule/getTagList")
+    	    .then(response => response.json());
+    	}
+	var Taglist = getTagList(); 
+    function setTagList(){
+  	  let selectEl = document.querySelector("select");
+  	Taglist.then(data => {
+  	      data.forEach(item => {
+  	        $(selectEl).append("<option value='" + item.tagName + "' style='color:#"+item.tagColor+"'>" + item.tagName + "</option>");
+  	      });
+  	    });
+    }
+    console.log(Taglist);
+   	function modalOn(){
+   		var list;
+    	  $("#scheduleModal").modal("show");
+    	  $("#scheduleForm").submit(function (e) {
+    	      e.preventDefault();
+
+    	      // 시작시간과 종료시간 가져오기
+    	      var startTime = $("#startTime").val();
+    	      var endTime = $("#endTime").val();
+    	      var Stitle = $("#title").val();
+    	      var Scontent = $("#content").val();
+				list = {start:convertToDatetime(startTime),end:convertToDatetime(endTime),title:Stitle,content:Scontent,display:"list-item"}
+    	      console.log(list);
+    	      // 팝업 닫기
+    	      $("#scheduleModal").modal("hide");
+    	    });
+    	  
+    	  return list;
+    	}
+    
+
+    		(function() {
 			$(function() {
 				// calendar element 취득
 				var calendarEl = $('#calendar')[0];
@@ -90,91 +187,54 @@ html, body {
 					eventRemove : function(obj) { // 이벤트가 삭제되면 발생하는 이벤트
 						console.log(obj);
 					},
-					select : function(arg) { // 캘린더에서 드래그로 이벤트를 생성할 수 있다.
-						var title = prompt('Event Title:');
-						if (title) {
-							calendar.addEvent({
-								title : title,
-								start : arg.start,
-								end : arg.end,
-								allDay : arg.allDay
-							})
-						}
+					select : function(arg) {
+						
+						calendar.addEvent(modalOn())
+						// 캘린더에서 드래그로 이벤트를 생성할 수 있다.
+						
 						calendar.unselect()
 					},
 					// 이벤트 
-					events : [ {
-						title : 'All Day Event',
-						start : '2024-01-10',
-						display : 'auto'
-					}, {
-						title : 'Long Event',
-						start : '2024-01-01',
-						end : '2024-01-10'
-					}, {
-						groupId : 999,
-						title : 'Repeating Event',
-						start : '2021-07-09T16:00:00'
-					}, {
-						groupId : 999,
-						title : 'Repeating Event',
-						start : '2021-07-16T16:00:00'
-					}, {
-						title : 'Conference',
-						start : '2021-07-11',
-						end : '2021-07-13'
-					}, {
-						title : 'Meeting',
-						start : '2024-01-12T10:30:00',
-						end : '2024-01-13T12:30:00'
-					}, {
-						title : 'Lunch',
-						start : '2021-07-12T12:00:00'
-					}, {
-						title : 'Meeting',
-						start : '2021-07-12T14:30:00'
-					}, {
-						title : 'Happy Hour',
-						start : '2024-01-12T17:30:00'
-					}, {
-						title : 'Dinner',
-						start : '2021-07-12T20:00:00'
-					}, {
-						title : 'Birthday Party',
-						start : '2021-07-13T07:00:00'
-					}, {
-						title : 'Click for Google',
-						url : 'http://google.com/', // 클릭시 해당 url로 이동
-						start : '2024-01-28'
-					} ]
-				});
+// 					events :schedule
+				});    
 				// 캘린더 랜더링
 				calendar.render();
+				
+				setTagList();
+				
+				document.getElementsByClassName('fc-timeGridWeek-button')[0].addEventListener('click', function () {
+				      var date = calendar.getDate();
+				      alert("The current date of the calendar is " + date.toISOString());
+				    });
+				getSchedule()
+			    .then(data => {
+			        // data를 이용하여 FullCalendar 이벤트 배열 생성
+			        var calendarEvents = data.map(item => {
+			            return {
+			                title: item.title,
+			                start: item.start,
+			                end: item.end,
+			                color: "#" + item.tagColor,
+			                display: "list-item"
+			            };
+			        });
+
+			        // FullCalendar에 이벤트 배열 추가
+			        calendar.addEventSource( calendarEvents);
+			    });
 			});
 		})();
-		document.getElementsByClassName('fc-timeGridWeek-button')[0]
-				.addEventListener('click', function() {
-					var date = calendar.getDate();
-					alert("The current date of the calendar is "
-							+ date.toISOString());
-				});
+    		
+    		
 	</script>
 	<script
 		src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-  <script type="text/javascript">
-    function getSchedule(){
-        return fetch("/schedule/getSchedule")
-                        .then(response => response.json());
-    }
-    window.onload=function(){
-    	getSchedule()
-                .then(data => {  
-                   console.log(data);
-                }).catch(console.log);
-    };//페이지로딩
-        
-  </script>
+
 </body>
 
 </html>

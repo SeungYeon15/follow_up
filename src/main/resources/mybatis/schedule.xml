@@ -15,6 +15,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from schedule s inner join scheduleTag t 
 		on s.tagName = t.tagName;
 	</select>
+	
+	<select id="getTagList" resultType="java.util.Map">
+		SELECT tagName, tagColor FROM scheduleTag;
+	</select>
 
 
 </mapper>
