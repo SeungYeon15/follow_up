@@ -6,8 +6,6 @@ import java.util.*;
 
 import org.springframework.web.multipart.MultipartFile;
 
-//import com.follow_up.model.SH.Board.ReplyMapper;
-
 public class Utility {
 	/**
 	 * 날짜 비교 (오늘, 어제, 그제)
@@ -216,11 +214,6 @@ public class Utility {
 
 		return str.toString();
 	}
-	
-//	public static int rcount(int bbsno, ReplyMapper rmapper) {
-//
-//		return rmapper.total(bbsno);
-//	}
 
 	
 } //class end

@@ -1,17 +1,12 @@
 package com.follow_up.model.SH.Board;
  
-import lombok.*;
+import lombok.Data;
  
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
-@ToString
-@Builder
+@Data
 public class BoardDTO {
- 
-	private int bno;
-	private String bname;
+
+	private int bnum;
+	private String userId;
 	private String btitle;
 	private String bcontent;
 	private String bpasswd;
@@ -21,4 +16,6 @@ public class BoardDTO {
 //	private String filename;
 //	private int filesize;
 //	private MultipartFile filenameMF;
+
+//	private List<MemberDTO> list;
 }

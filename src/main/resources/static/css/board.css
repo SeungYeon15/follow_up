@@ -1,15 +1,15 @@
 body {
-    font-family: 'Segoe UI', Arial, sans-serif; /* 글씨체 변경 */
-    background-color: #ffffff; /* 배경색 설정 */
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #ffffff;
   }
 
 .header {
-    background-image: url('../images/endk.jpeg'); /* 이미지 경로를 웹 서버에 업로드된 이미지 경로로 변경해야 합니다. */
+    background-image: url('../images/board.jpeg');
     background-position: center center;
     background-size: cover;
-    height: 500px; /* 헤더 높이 조정 */
-    position: relative; /* 상대적 위치 설정 */
-    z-index: 1; /* 헤더가 컨테이너 뒤에 오도록 z-index 설정 */
+    height: 500px;
+    position: relative;
+    z-index: 1;
 }
 
 .header h1 {
@@ -23,96 +23,36 @@ body {
     padding: 10px 20px;
 }
 
-.header .social-links {
-    position: absolute;
-    z-index: 3;
-    top: 380px;
-    right: 0;
-}
-
-.social-links a {
-    color: black;
-    margin-right: 30px;
-    text-decoration: none;
-    font-size: 16px;
-}
-
-.social-links i {
-    margin-right: 8px; /* Space between the icon and the text */
-}
-
 .container {
-    padding-top: 50px; /* 컨테이너 내부 상단에 공간 추가 */
-    /* border-radius: 5px; 모서리 둥글게 설정 */
-    /* box-shadow: 0 4px 8px rgba(0,0,0,0.1); 그림자 효과 추가 */
-    background-color: #ffd1d8;
-    position: relative; /* z-index 적용을 위해 필요 */
-    margin-top: -80px; /* 컨테이너를 위로 당김 */
-    z-index: 2; /* 컨테이너가 헤더 위에 오도록 z-index 설정 */
+    padding-top: 50px;
+    padding-bottom: 30px;
+    background-color: #fff;
+    position: relative;
+    margin-top: -60px;
+    z-index: 2;
 }
 
 .container h2{
-    color: #fff;
+    color: black;
     font-size: 38px;
     text-align: center;
 }
 
-/* 검색 및 새 글 작성 버튼 스타일 */
-.search-bar {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px 0;
-    border-radius: 0.5rem;
-}
-
-.search-bar .input-group .form-control {
-    padding-right: 50px; /* 아이콘을 위한 공간 확보 */
-}
-
-.search-bar .input-group .input-group-append {
-    position: absolute;
-    right: 0;
-    margin-right: 10px; /* 적절한 위치 조정 */
-    height: 100%;
-}
-
-.search-bar .input-group-append button {
-    border: none; /* 버튼 테두리 제거 */
-    background: none; /* 버튼 배경 제거 */
-}
-  
-.search-bar .form-control {
-    flex-grow: 1; /* 검색창을 유연하게 크기 조정 */
-    margin-right: 10px; /* 버튼과의 간격 */
-}
-  
-.search-bar button {
-    white-space: nowrap; /* 버튼 텍스트 줄바꿈 방지 */
-}
-
-.table-custom {
-    text-align: center;
+.row {
+    padding: 30px 0 20px 0;
     width: 100%;
-    margin-bottom: 20px;
 }
 
-.table-custom thead th {
-    background-color: #e2e2ff;
+.btn-outline-secondary {
+  height: calc(1.5em + 0.75rem + 2px); /* 입력 필드와 동일한 높이로 설정 */
+  vertical-align: top; /* 상단 정렬 */
+}
+
+.table-hover {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table-hover thead th {
     border-bottom: 2px solid #dee2e6;
-}
-
-.table-custom tbody td {
-    border-bottom: 1px solid #dee2e6;
-    background-color: #d3f5ff;
-}
-
-/* 페이지네이션 스타일 */
-.pagination-custom {
-    justify-content: center; /* 페이지네이션 가운데 정렬 */
-    padding: 20px 0;
-}
-  
-.pagination-custom .page-link {
-    background-color: #e2e2ff;
-    color: #ff8395; /* 링크 색상 */
 }

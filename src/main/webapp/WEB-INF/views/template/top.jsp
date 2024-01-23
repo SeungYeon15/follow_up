@@ -1,7 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- <c:set var="root" value="${pageContext.request.contextPath }"/> --%>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,8 +26,8 @@
 				<li><a href="#">CONCERT</a></li>
 				<li><a href="#">GALLERY</a></li>
 				<li><a href="#">AGENCY</a></li>
-				<li><a href="#">COMMUNITY</a></li>
-				<li><a href="/board/list">NOTICE</a></li>
+				<li><a href="/board/list">COMMUNITY</a></li>
+				<li><a href="#">NOTICE</a></li>
 			</ul>
 		</nav>
 	</div>
@@ -44,3 +43,5 @@
 			location.href = "/";
 		});
 	</script>
+</body>
+</html>
