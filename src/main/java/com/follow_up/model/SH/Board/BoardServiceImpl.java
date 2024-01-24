@@ -35,4 +35,28 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.read(bnum);
 	}
 
+	@Override
+	public int create(BoardDTO dto) {
+		// TODO Auto-generated method stub
+		return mapper.create(dto);
+	}
+
+	@Override
+	public int passCheck(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return mapper.passCheck(map);
+	}
+
+	@Override
+	public int delete(int bnum) {
+		// TODO Auto-generated method stub
+		return mapper.delete(bnum);
+	}
+
+	@Override
+	public int update(BoardDTO dto) {
+		// TODO Auto-generated method stub
+		return mapper.update(dto);
+	}
+
 }

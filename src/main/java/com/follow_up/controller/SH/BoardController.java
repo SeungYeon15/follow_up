@@ -12,7 +12,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.follow_up.model.SH.Board.BoardDTO;
 import com.follow_up.model.SH.Board.BoardService;
@@ -24,6 +27,10 @@ public class BoardController {
 	@Autowired
 	@Qualifier("com.follow_up.model.SH.Board.BoardServiceImpl")
 	private BoardService service;
+
+	/*
+	 * @Autowired private ReplyMapper rmapper;
+	 */
 
 	// 게시판 목록
 	@RequestMapping("/board/list")
@@ -97,119 +104,117 @@ public class BoardController {
 
 		model.addAllAttributes(map);
 
-		return "/notice/read";
+		return "/board/read";
 	}
 
-	/*
-	 * @Autowired private ReplyMapper rmapper;
-	 */
+	// 게시판 등록
+	@GetMapping("/board/create")
+	public String create() {
 
-	// 상품 등록
-	/*
-	 * @GetMapping("/board/create") public String create() {
-	 * 
-	 * return "/board/create"; }
-	 * 
-	 * @PostMapping("/board/create") public String create(BoardDTO dto) { // 업로드 처리
-	 * 
-	 * if (dto.getFilenameMF().getSize() > 0) {
-	 * dto.setFilename(Utility.saveFileSpring(dto.getFilenameMF(),
-	 * UploadNot.getUploadDir())); dto.setFilesize((int)
-	 * dto.getFilenameMF().getSize()); }
-	 * 
-	 * // 데이터베이스 저장
-	 * 
-	 * Boolean flag = false;
-	 * 
-	 * int cnt = service.create(dto);
-	 * 
-	 * if (cnt > 0) flag = true;
-	 * 
-	 * if (flag service.create(dto) == 1 ) { return "redirect:/board/list"; } else {
-	 * return "error"; }
-	 * 
-	 * }
-	 */
+		return "/board/create";
+	}
 
-	/**
-	 * @GetMapping("/board/update") public String update(int boardno, Model model) {
-	 * 
-	 * model.addAttribute("dto", service.read(boardno));
-	 * 
-	 * return "/board/update"; }
-	 * 
-	 * @PostMapping("/board/update") public String update(BoardDTO dto, String
-	 * nowPage, String col, String word, RedirectAttributes redirect, String
-	 * oldfile) { // 패스워드 확인 Boolean pflag = false; Map map = new HashMap();
-	 * map.put("boardno", dto.getBoardno()); map.put("passwd", dto.getPasswd());
-	 * 
-	 * int pass = service.passCheck(map);
-	 * 
-	 * if (pass > 0) { pflag = true; }
-	 * 
-	 * // 데이터베이스 수정 Boolean flag = false;
-	 * 
-	 * if (pflag) { // 파일 업로드 if (dto.getFilenameMF().getSize() > 0) { if (oldfile
-	 * != null) Utility.deleteFile(UploadNot.getUploadDir(), oldfile);
-	 * dto.setFilename(Utility.saveFileSpring(dto.getFilenameMF(),
-	 * UploadNot.getUploadDir())); dto.setFilesize((int)
-	 * dto.getFilenameMF().getSize()); }
-	 * 
-	 * int cnt = service.update(dto);
-	 * 
-	 * if (cnt > 0) { flag = true; } }
-	 * 
-	 * // 목록 이동 if (!pflag) { return "passwdError"; } else if (flag) {
-	 * redirect.addAttribute("nowPage", nowPage); redirect.addAttribute("col", col);
-	 * redirect.addAttribute("word", word); return "redirect:/board/list"; } else {
-	 * return "error"; } }
-	 * 
-	 * 
-	 * @GetMapping("/board/delete") public String delete(Model model) { boolean flag
-	 * = true;
-	 * 
-	 * model.addAttribute("flag", flag);
-	 * 
-	 * return "/board/delete"; }
-	 * 
-	 * @PostMapping("/board/delete") public String delete(@RequestParam Map<String,
-	 * String> map, RedirectAttributes redirect) {
-	 * 
-	 * boolean pflag = false; int cnt = service.passCheck(map); if (cnt > 0) { pflag
-	 * = true; }
-	 * 
-	 * boolean flag = false;
-	 * 
-	 * if (pflag) { int boardno = Integer.parseInt(map.get("boardno")); int cnt2 =
-	 * service.delete(boardno);
-	 * 
-	 * if (cnt2 > 0) { flag = true; } }
-	 * 
-	 * if (!pflag) { return "passwdError"; } else if (flag) {
-	 * redirect.addAttribute("nowPage", map.get("nowPage"));
-	 * redirect.addAttribute("col", map.get("col")); redirect.addAttribute("word",
-	 * map.get("word"));
-	 * 
-	 * return "redirect:/board/list"; } else { return "error"; }
-	 * 
-	 * }
-	 * 
-	 * // 파일 다운로드
-	 * 
-	 * @GetMapping("/board/fileDown") public void fileDown(String filename,
-	 * HttpServletResponse response) throws IOException { String dir =
-	 * UploadNot.getUploadDir(); byte[] files = FileUtils.readFileToByteArray(new
-	 * File(dir, filename)); response.setHeader("Content-disposition", "attachment;
-	 * fileName=\"" + URLEncoder.encode(filename, "UTF-8") + "\";"); //
-	 * Content-Transfer-Encoding : 전송 데이타의 body를 인코딩한 방법을 표시함.
-	 * response.setHeader("Content-Transfer-Encoding", "binary");
-	 *//**
-		 * Content-Disposition가 attachment와 함게 설정되었다면 'Save As'로 파일을 제안하는지 여부에 따라 브라우저가
-		 * 실행한다.
-		 *//*
-			 * response.setContentType("application/octet-stream");
-			 * response.setContentLength(files.length);
-			 * response.getOutputStream().write(files); response.getOutputStream().flush();
-			 * response.getOutputStream().close(); }
-			 */
+	@PostMapping("/board/create")
+	public String create(BoardDTO dto) {
+		Boolean flag = false;
+
+		int cnt = service.create(dto);
+
+		if (cnt > 0)
+			flag = true;
+
+		if (flag) {
+			return "redirect:/board/list";
+		} else {
+			return "error";
+		}
+	}
+
+	// 게시판 삭제
+	@GetMapping("/board/delete")
+	public String delete(Model model) {
+		boolean flag = true;
+
+		model.addAttribute("flag", flag);
+
+		return "/board/delete";
+	}
+
+	@PostMapping("/board/delete")
+	public String delete(@RequestParam Map<String, String> map, RedirectAttributes redirect) {
+		boolean pflag = false;
+		int cnt = service.passCheck(map);
+		if (cnt > 0) {
+			pflag = true;
+		}
+
+		boolean flag = false;
+
+		if (pflag) {
+			int bnum = Integer.parseInt(map.get("bnum"));
+			int cnt2 = service.delete(bnum);
+
+			if (cnt2 > 0) {
+				flag = true;
+			}
+		}
+
+		if (!pflag) {
+			return "passwdError";
+		} else if (flag) {
+			redirect.addAttribute("nowPage", map.get("nowPage"));
+			redirect.addAttribute("col", map.get("col"));
+			redirect.addAttribute("word", map.get("word"));
+
+			return "redirect:/board/list";
+		} else {
+			return "error";
+		}
+	}
+
+	// 게시판 수정
+	@GetMapping("/board/update")
+	public String update(int bnum, Model model) {
+
+		model.addAttribute("dto", service.read(bnum));
+
+		return "/board/update";
+	}
+
+	@PostMapping("/board/update")
+	public String update(BoardDTO dto, String nowPage, String col, String word, RedirectAttributes redirect) {
+		// 패스워드 확인
+		Boolean pflag = false;
+		Map map = new HashMap();
+		map.put("bnum", dto.getBnum());
+		map.put("bpasswd", dto.getBpasswd());
+
+		int pass = service.passCheck(map);
+		
+		if (pass > 0) {
+			pflag = true;
+		}
+
+		// 데이터베이스 수정
+		Boolean flag = false;
+
+		if (pflag) {
+			int cnt = service.update(dto);
+			if (cnt > 0) {
+				flag = true;
+			}
+		}
+
+		// 목록 이동
+		if (!pflag) {
+			return "passwdError";
+		} else if (flag) {
+			redirect.addAttribute("nowPage", nowPage);
+			redirect.addAttribute("col", col);
+			redirect.addAttribute("word", word);
+			return "redirect:/board/list";
+		} else {
+			return "error";
+		}
+	}
 }

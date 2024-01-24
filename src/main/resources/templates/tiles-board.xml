@@ -16,10 +16,16 @@
 			value="/WEB-INF/views/board/read.jsp" />
 	</definition>
 	
-	<!-- <definition name="/board/create" extends="main">
+	<definition name="/board/create" extends="main">
 		<put-attribute name="title" value="게시판 등록"></put-attribute>
 		<put-attribute name="body"
 			value="/WEB-INF/views/board/createForm.jsp" />
+	</definition>
+		
+	<definition name="/board/delete" extends="main">
+		<put-attribute name="title" value="게시판 삭제"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/board/deleteForm.jsp" />
 	</definition>
 	
 	<definition name="/board/update" extends="main">
@@ -27,11 +33,5 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/board/updateForm.jsp" />
 	</definition>
-	
-	<definition name="/board/delete" extends="main">
-		<put-attribute name="title" value="게시판 삭제"></put-attribute>
-		<put-attribute name="body"
-			value="/WEB-INF/views/board/deleteForm.jsp" />
-	</definition>
- -->
+
 </tiles-definitions>

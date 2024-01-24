@@ -38,23 +38,21 @@
 	<div class="container">
 		<h2>COMMUNITY</h2>
 		<form action="./list">
+			<input type="hidden" name='userId' value="">
+			<!--value="${sessionScope.id}"-->
 			<div class="row">
 				<div class='col-3'>
 					<select class="form-select" name="col">
 						<option value="userId"
-							<c:if test="${col=='userId'}">selected</c:if>>성명
-						</option>
+							<c:if test="${col=='userId'}">selected</c:if>>성명</option>
 						<option value="btitle"
-							<c:if test="${col=='btitle'}">selected</c:if>>제목
-						</option>
+							<c:if test="${col=='btitle'}">selected</c:if>>제목</option>
 						<option value="bcontent"
-							<c:if test="${col=='bcontent'}">selected</c:if>>내용
-						</option>
+							<c:if test="${col=='bcontent'}">selected</c:if>>내용</option>
 						<option value="btitle_bcontent"
 							<c:if test="${col=='btitle_bcontent'}">selected</c:if>>제목+내용
 						</option>
-						<option value="total"
-							<c:if test="${col=='total'}">selected</c:if>>전체출력
+						<option value="total" <c:if test="${col=='total'}">selected</c:if>>전체출력
 						</option>
 					</select>
 				</div>
@@ -66,13 +64,17 @@
 							aria-label="검색">
 							<i class="fa fa-search"></i>
 						</button>
-						</span>
 					</div>
 				</div>
-				<div class='col'>
-					<button type="button" class="btn btn-dark"
-						onclick="location.href='./create'">등록</button>
-				</div>
+				<%-- <c:if
+							test="${not empty sessionScope.id && sessionScope.grade == 'A'}"> --%>
+				<c:if
+					test="${requestScope.userId == 'admin' || not empty requestScope.userId}">
+					<div class='col'>
+						<button type="button" class="btn btn-dark"
+							onclick="location.href='./create'">등록</button>
+					</div>
+				</c:if>
 			</div>
 		</form>
 		<table class="table table-hover">
@@ -97,11 +99,10 @@
 						<c:forEach var="dto" items="${list}">
 							<tr onclick="read('${dto.bnum}')">
 								<td>${dto.bnum}</td>
-								<td>${dto.btitle}
-									<c:if test="${util:newImg(fn:substring(dto.bdate,0,10)) }">
+								<td>${dto.btitle}<c:if
+										test="${util:newImg(fn:substring(dto.bdate,0,10)) }">
 										<img src="../images/new.gif">
-									</c:if>
-									<%-- <c:set var="rcount" value="${util:rcount(dto.noticeno,rmapper)}"></c:set> --%>
+									</c:if> <%-- <c:set var="rcount" value="${util:rcount(dto.noticeno,rmapper)}"></c:set> --%>
 									<%-- <c:if test="${rcount >0 }">
 										<span class="badge rounded-pill bg-secondary">${rcount}</span>
 									</c:if> --%></td>

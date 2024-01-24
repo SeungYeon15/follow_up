@@ -14,4 +14,13 @@ public interface BoardMapper {
 	int upViewcnt(int bnum);
 
 	BoardDTO read(int bnum);
+
+	int create(BoardDTO dto);
+	
+	int passCheck(Map<String, String> map);
+
+	int delete(int bnum);
+
+	int update(BoardDTO dto);
+	
 }

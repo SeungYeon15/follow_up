@@ -54,7 +54,7 @@
 		</where>
 	</select>
 
-	<!-- 조회 -->
+	<!-- 게시판 조회 -->
 	<select id="read" parameterType="int"
 		resultType="com.follow_up.model.SH.Board.BoardDTO">
 		SELECT bnum, btitle, bcontent, userId, bpasswd, bview,
@@ -66,32 +66,45 @@
 	<!-- 조회수 증가 -->
 	<update id="upViewcnt" parameterType="int">
 		UPDATE board
-		SET bview = bview + 1
+		SET bview =
+		bview + 1
 		WHERE bnum = #{bnum}
 	</update>
 
-	<!-- 공지사항 등록 -->
-	<!-- <insert id="create" parameterType="com.model.notice.NoticeDTO"> INSERT 
-		INTO notice(title, content, wname, passwd, cnt, rdate, filename, filesize) 
-		VALUES(#{title}, #{content}, #{wname}, #{passwd}, 0, NOW(), #{filename}, 
-		#{filesize}) </insert> -->
+	<!-- 게시판 등록 -->
+	<insert id="create"
+		parameterType="com.follow_up.model.SH.Board.BoardDTO">
+		INSERT INTO board(btitle, bcontent, userId, bpasswd,
+		bview, bdate)
+		VALUES(#{btitle}, #{bcontent}, #{userId}, #{bpasswd}, 0,
+		NOW())
+	</insert>
 
 	<!-- 패스워드 확인 -->
-	<!-- <select id="passCheck" parameterType="Map" resultType="int"> SELECT 
-		COUNT(noticeno) as cnt FROM notice WHERE noticeno=#{noticeno} AND passwd=#{passwd} 
-		</select> -->
+	<select id="passCheck" parameterType="Map" resultType="int">
+		SELECT
+		COUNT(bnum) as cnt
+		FROM board
+		WHERE bnum=#{bnum}
+		AND bpasswd=#{bpasswd}
+	</select>
 
-	<!-- 공지 수정 -->
-	<!-- <update id="update" parameterType="com.model.notice.NoticeDTO"> UPDATE 
-		notice <set> title = #{title} , content = #{content}, <if test="filesize 
-		> 0"> filename = #{filename}, filesize = #{filesize} </if> </set> WHERE noticeno 
-		= #{noticeno} </update> -->
+	<!-- 게시판 삭제 -->
+	<delete id="delete" parameterType="int">
+		DELETE
+		FROM board
+		WHERE
+		bnum=#{bnum}
+	</delete>
 
-	<!-- 공지 삭제 -->
-	<!-- <delete id="delete" parameterType="int"> DELETE FROM notice WHERE noticeno=#{noticeno} 
-		</delete> -->
-
-	<!-- <select id="refnumCheck" parameterType="int" resultType="int"> select 
-		count(*) from notice where refnum = #{noticeno} </select> -->
+	<!-- 게시판 수정 -->
+	<update id="update"
+		parameterType="com.follow_up.model.SH.Board.BoardDTO">
+		UPDATE board
+		<set>
+			btitle = #{btitle} , bcontent = #{bcontent},
+		</set>
+		WHERE bnum=#{bnum}
+	</update>
 
 </mapper>
