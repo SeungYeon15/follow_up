@@ -6,6 +6,7 @@
 <title>follow up</title>
 <script src="https://unpkg.com/ionicons@7.0.0/dist/ionicons.js"></script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
+
 <link rel="stylesheet" href="/css/mainStyles.css">
 <link rel="stylesheet" href="/css/menu.css">
 </link>
@@ -40,5 +41,4 @@
 		src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 	<script src="script.js"></script>
 </body>
-
 </html>
