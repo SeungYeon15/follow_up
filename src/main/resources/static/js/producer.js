@@ -1,10 +1,10 @@
 console.log("***** Reply Module *****");
 function getList(param) {
-	let bbsno = param.bbsno;
+	let bnum = param.bnum;
 	let sno = param.sno;
 	let eno = param.eno;
 
-	return fetch(`./reply/list/${bbsno}/${sno}/${eno}`, { method: 'get' })
+	return fetch(`./reply/list/${bnum}/${sno}/${eno}`, { method: 'get' })
 		.then(response => response.json())
 		.catch(console.log)
 }

@@ -4,8 +4,8 @@ body {
   }
 
 .header {
-    background-image: url('../images/board.jpeg');
-    background-position: top center;
+    background-image: url('../images/board.gif');
+    background-position: center center;
     background-size: cover;
     height: 500px;
     position: relative;

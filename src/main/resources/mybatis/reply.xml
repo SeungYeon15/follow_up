@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+ 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.follow_up.model.SH.Board.ReplyMapper">
+
+	<select id="list" parameterType="Map"
+		resultType="com.follow_up.model.SH.Board.ReplyDTO">
+		select rnum, rcontent, rdate, id, bnum
+		from reply
+		where bnum = #{bnum}
+		order by rnum desc
+		limit #{sno}, #{eno}
+	</select>
+
+	<select id="total" parameterType="int" resultType="int">
+		select
+		count(*) from reply
+		where bnum = #{bnum}
+	</select>
+
+	<select id="read" parameterType="int"
+		resultType="com.follow_up.model.SH.Board.ReplyDTO">
+		select * from reply
+		where rnum = #{rnum}
+	</select>
+
+	<insert id="create" parameterType="com.follow_up.model.SH.Board.ReplyDTO">
+		insert into reply(rcontent, rdate, id, bnum)
+		values(#{rcontent}, sysdate(), #{id}, #{bnum});
+	</insert>
+
+	<update id="update" parameterType="com.follow_up.model.SH.Board.ReplyDTO">
+		update reply
+		set rcontent = #{rcontent}
+		where rnum = #{rnum}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		delete from reply
+		where rnum = #{rnum}
+	</delete>
+
+<!-- 	<delete id="delete_fk" parameterType="int">
+		delete from reply
+		where noticeno = #{noticeno}
+	</delete> -->
+
+</mapper>

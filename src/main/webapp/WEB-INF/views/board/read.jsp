@@ -7,6 +7,9 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
 	rel="stylesheet" />
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <link rel="stylesheet" href="/css/board.css">
 
 <meta charset="UTF-8">
@@ -60,7 +63,7 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td style="text-align: right;">${dto.userId} | ${dto.bdate} |
+					<td style="text-align: right;">${dto.userId}| ${dto.bdate} |
 						${dto.bview}</td>
 				</tr>
 			</tbody>
@@ -87,24 +90,23 @@
 			</tbody>
 		</table>
 		<div class="button-style">
-			<c:choose>
-				<%-- <c:if
+			<%-- <c:choose> --%>
+			<%-- <c:if
 							test="${not empty sessionScope.id && sessionScope.grade == 'A'}"> --%>
-				<c:when
-					test="${requestScope.userId == 'admin' || not empty requestScope.userId}">
+			<%-- <c:when
+					test="${user.userId == 'admin' || not empty user.userId}"> --%>
 
-					<button class="btn btn-outline-dark btn-sm"
-						onclick="location='create'">Post</button>
-					<button class="btn btn-outline-dark btn-sm"
-						onclick="board_update()">Edit</button>
-					<button class="btn btn-outline-dark btn-sm" onclick="del()">Delete</button>
-
-				</c:when>
+			<button class="btn btn-outline-dark btn-sm"
+				onclick="location='create'">Post</button>
+			<button class="btn btn-outline-dark btn-sm" onclick="board_update()">Edit</button>
+			<button class="btn btn-outline-dark btn-sm" onclick="del()">Delete</button>
+			<button class="btn btn-outline-dark btn-sm" onclick="list()">Back</button>
+			<%-- </c:when>
 				<c:otherwise>
 					<button class="btn btn-outline-dark btn-sm"
-						onclick="history.back()">Back</button>
+						onclick="list()">Back</button>
 				</c:otherwise>
-			</c:choose>
+			</c:choose> --%>
 		</div>
 		<table class="table">
 			<thead>
@@ -120,7 +122,8 @@
 					<td>
 						<div class="card-body chat">
 							<strong class="float-start">u1</strong> <small class="float-end">2023-08-12</small>
-							<br> Good job!
+							<br>
+							<p>Good job!</p>
 						</div>
 					</td>
 				</tr>
@@ -141,7 +144,7 @@
 		let nowPage = "${param.nowPage}";
 		let colx = "${param.col}";
 		let wordx = "${param.word}";
-		let id = "${sessionScope.id}";
+		let id = "user1"/* "${sessionScope.id}" */;
 		console.log("id: " + id);
 	</script>
 
@@ -152,21 +155,21 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title">REPLY MODAL</h4>
+					<h4 class="modal-title">New Reply</h4>
 					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 				</div>
 
 				<!-- Modal body -->
 				<div class="modal-body">
-					<label>내용</label>
-					<textarea cols="10" rows="3" class="form-control" name='content'>New Reply!!!!</textarea>
+					<label>Content</label>
+					<textarea cols="10" rows="5" class="form-control" name='rcontent'>New Reply!!!!</textarea>
 				</div>
 
 				<!-- Modal footer -->
 				<div class="modal-footer">
-					<button id='modalModBtn' type="button" class="btn btn-warning">Modify</button>
-					<button id='modalRemoveBtn' type="button" class="btn btn-success">Remove</button>
+					<button id='modalModBtn' type="button" class="btn btn-warning">Edit</button>
 					<button id='modalRegisterBtn' type="button" class="btn btn-primary">Register</button>
+					<button id='modalRemoveBtn' type="button" class="btn btn-success">Delete</button>
 					<button id='modalCloseBtn' type="button" class="btn btn-danger"
 						data-bs-dismiss="modal">Close</button>
 				</div>

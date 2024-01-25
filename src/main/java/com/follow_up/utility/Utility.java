@@ -6,6 +6,8 @@ import java.util.*;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.follow_up.model.SH.Board.ReplyMapper;
+
 public class Utility {
 	/**
 	 * 날짜 비교 (오늘, 어제, 그제)
@@ -174,7 +176,7 @@ public class Utility {
 	}
 
 	public static String paging(int total, int nowPage, int recordPerPage, String col, String word, String url,
-			int nPage, int bbsno) {
+			int nPage, int bnum) {
 		// TODO Auto-generated method stub
 		int pagePerBlock = 5; // 블럭당 페이지 수
 		int totalPage = (int) (Math.ceil((double) total / recordPerPage)); // 전체 페이지
@@ -188,7 +190,7 @@ public class Utility {
 		int _nowPage = (nowGrp - 1) * pagePerBlock; // 10개 이전 페이지로 이동
 		if (nowGrp >= 2) {
 			str.append("<li class='page-item'><a class='page-link' href='" + url + "?col=" + col + "&word=" + word
-					+ "&nowPage=" + nowPage + "&nPage=" + _nowPage + "&bbsno=" + bbsno + "'>이전</A></li>");
+					+ "&nowPage=" + nowPage + "&nPage=" + _nowPage + "&bnum=" + bnum + "'>prev</A></li>");
 		}
 
 		for (int i = startPage; i <= endPage; i++) {
@@ -200,14 +202,14 @@ public class Utility {
 				str.append("<li class='page-item active'><a class='page-link' href='#section1'>" + i + "</a></li>");
 			} else {
 				str.append("<li class='page-item'><a class='page-link' href='" + url + "?col=" + col + "&word=" + word
-						+ "&nowPage=" + nowPage + "&nPage=" + i + "&bbsno=" + bbsno + "'>" + i + "</A></li>");
+						+ "&nowPage=" + nowPage + "&nPage=" + i + "&bnum=" + bnum + "'>" + i + "</A></li>");
 			}
 		}
 
 		_nowPage = (nowGrp * pagePerBlock) + 1; // 10개 다음 페이지로 이동
 		if (nowGrp < totalGrp) {
 			str.append("<li class='page-item'><a class='page-link' href='" + url + "?col=" + col + "&word=" + word
-					+ "&nowPage=" + nowPage + "&nPage=" + _nowPage + "&bbsno=" + bbsno + "'>다음</A></li>");
+					+ "&nowPage=" + nowPage + "&nPage=" + _nowPage + "&bnum=" + bnum + "'>next</A></li>");
 		}
 		str.append("</ul>");
 		str.append("</div>");
@@ -215,5 +217,8 @@ public class Utility {
 		return str.toString();
 	}
 
+	public static int rcount(int bnum,ReplyMapper rmapper){
+        return rmapper.total(bnum);
+  }
 	
 } //class end

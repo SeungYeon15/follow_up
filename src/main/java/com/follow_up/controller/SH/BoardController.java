@@ -6,7 +6,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -19,18 +18,17 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.follow_up.model.SH.Board.BoardDTO;
 import com.follow_up.model.SH.Board.BoardService;
+import com.follow_up.model.SH.Board.ReplyMapper;
 import com.follow_up.utility.Utility;
 
 @Controller
-@MapperScan(basePackages = "com.follow_up.model.SH.Board")
 public class BoardController {
 	@Autowired
 	@Qualifier("com.follow_up.model.SH.Board.BoardServiceImpl")
 	private BoardService service;
 
-	/*
-	 * @Autowired private ReplyMapper rmapper;
-	 */
+	@Autowired
+	private ReplyMapper rmapper;
 
 	// 게시판 목록
 	@RequestMapping("/board/list")
@@ -73,7 +71,7 @@ public class BoardController {
 		request.setAttribute("col", col);
 		request.setAttribute("word", word);
 		request.setAttribute("paging", paging);
-		// request.setAttribute("rmapper", rmapper);
+		request.setAttribute("rmapper", rmapper);
 
 		return "/board/list";
 	}
@@ -190,7 +188,7 @@ public class BoardController {
 		map.put("bpasswd", dto.getBpasswd());
 
 		int pass = service.passCheck(map);
-		
+
 		if (pass > 0) {
 			pflag = true;
 		}
