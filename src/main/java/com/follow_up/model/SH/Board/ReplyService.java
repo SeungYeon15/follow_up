@@ -6,7 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface ReplyMapper {
+public interface ReplyService {
 	List<ReplyDTO> list(Map map);
 
 	int total(int bnum);

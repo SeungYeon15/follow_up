@@ -1,4 +1,4 @@
-$(function() {
+$(function() { //페이지 로딩
 	showList();
 	showPage();
 })
@@ -8,7 +8,7 @@ let replyPageFooter = $(".card-footer");
 
 function showList() {
 	/*댓글 목록 비동기 통신 요청*/
-	getList({ bbsno: bbsno, sno: sno, eno: eno })
+	getList({ bnum: bnum, sno: sno, eno: eno })
 		.then(list => {
 			let str = "";
 
@@ -16,8 +16,8 @@ function showList() {
 				str += "<ul class='list-group'>";
 				str += "<li class='list-group-item' data-rnum='" + list[i].rnum + "'>";
 				str += "<strong class='float-start'>" + list[i].id + "</strong>";
-				str += "<small class='float-end'>" + list[i].regdate + "</small><br><p>";
-				str += replaceAll(list[i].content, '\n', '<br>') + "</p></li></ul>";
+				str += "<small class='float-end'>" + list[i].rdate + "</small><br><p>";
+				str += replaceAll(list[i].rcontent, '\n', '<br>') + "</p></li></ul>";
 			}
 
 			replyUL.html(str);
@@ -32,7 +32,7 @@ function replaceAll(str, searchStr, replaceStr) {
 let param = '';
 param = "nPage=" + nPage;
 param += "&nowPage=" + nowPage;
-param += "&bbsno=" + bbsno;
+param += "&bnum=" + bnum;
 param += "&col=" + colx;
 param += "&word=" + wordx;
 
@@ -45,7 +45,7 @@ function showPage() {
 }
 
 let modal = $(".modal");
-let modalInputContent = modal.find("textarea[name='content']");
+let modalInputContent = modal.find("textarea[name='rcontent']");
 let modalModBtn = $("#modalModBtn");
 let modalRemoveBtn = $("#modalRemoveBtn");
 let modalRegisterBtn = $("#modalRegisterBtn");
@@ -55,20 +55,21 @@ $("#addReplyBtn").on('click', function(e) {
 	modal.find("button[id !='modalCloseBtn']").hide();
 	modalRegisterBtn.show();
 	modal.modal("show");
+	/*modal.show();*/
 });
 
 modalRegisterBtn.on('click', function(e) {
 	if (modalInputContent.val() == '') {
-		alert("댓글을 입력하세요")
+		alert("Write it down here")
 		modalInputContent.focus();
 
 		return;
 	}
 
 	let reply = {
-		content: modalInputContent.val(),
-		id: 'user1',
-		bbsno: bbsno
+		rcontent: modalInputContent.val(),
+		id: id,
+		bnum: bnum
 	};
 	add(reply)
 		.then(result => {
@@ -84,7 +85,7 @@ $(".chat").on("click", "li", function(e) {
 	let rnum = $(this).data("rnum");
 	get(rnum)
 		.then(reply => {
-			modalInputContent.val(reply.content);
+			modalInputContent.val(reply.rcontent);
 			modal.data("rnum", reply.rnum);
 			modal.find("button[id !='modalCloseBtn']").hide();
 			modalModBtn.show();
@@ -95,7 +96,7 @@ $(".chat").on("click", "li", function(e) {
 
 //댓글 수정
 modalModBtn.on("click", function(e) {
-	let reply = { rnum: modal.data("rnum"), content: modalInputContent.val() };
+	let reply = { rnum: modal.data("rnum"), rcontent: modalInputContent.val() };
 	update(reply)
 		.then(result => {
 			modal.modal("hide");

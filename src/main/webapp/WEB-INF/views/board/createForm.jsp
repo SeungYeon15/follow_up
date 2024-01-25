@@ -43,7 +43,7 @@
 			</div>
 			<div class="mb-3 mt-3">
 				<textarea class="form-control" rows="14" id="bcontent"
-					placeholder="write it down here" name="bcontent"></textarea>
+					placeholder="Write it down here" name="bcontent"></textarea>
 			</div>
 			<div class="mb-3 mt-3">
 				<input type="password" class="form-control" id="bpasswd"

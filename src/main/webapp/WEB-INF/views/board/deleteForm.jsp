@@ -14,8 +14,12 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
 	rel="stylesheet" />
+<link rel="stylesheet" href="/css/board.css">
 </head>
 <body>
+<header class="header">
+		<!-- <h1>Dua Lipa</h1> -->
+	</header>
 	<div class="container">
 		<h2>Delete</h2>
 		<p id='red'>삭제하면 복구할 수 없습니다</p>
@@ -25,7 +29,7 @@
 			<input type="hidden" name='col' value="${param.col}">
 			<input type="hidden" name='word' value="${param.word}">
 
-			<div class="row">
+			<div class="row ms-auto">
 				<div class="col">
 					<input type="password" name="bpasswd" placeholder="Enter password"
 						class="form-control" required>
