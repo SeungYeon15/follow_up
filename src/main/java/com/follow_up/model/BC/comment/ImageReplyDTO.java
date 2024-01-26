@@ -15,8 +15,7 @@ import lombok.ToString;
 @Builder
 public class ImageReplyDTO {
     private String replyId;
-    private int commentId;
+    private String comId;
     private int userId;
     private String contents;
-
 }
