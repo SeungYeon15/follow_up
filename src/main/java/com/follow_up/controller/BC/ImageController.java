@@ -31,13 +31,11 @@ public class ImageController {
 
     @GetMapping("/api/images/image/{imgId}")
     public ImageDTO getImageById(@PathVariable int imgId) {
-        System.out.println("imgId" +  imgId);
-        System.out.println(imageService.getImageById(imgId).toString());
-
-
+//        imageService.viewCount(imgId);
+//        System.out.println("imgId" +  imgId);
+//        System.out.println(imageService.getImageById(imgId).toString());
         return imageService.getImageById(imgId);
     }
-
 
 
 }

@@ -9,4 +9,6 @@ public interface ImageService {
 
 
     ImageDTO getImageById(int imgId);
+
+    void viewCount(int imgId);
 }

@@ -6,4 +6,5 @@ import java.util.Map;
 public interface ImageMapper {
     List<ImageDTO> searchImages(Map map);
     ImageDTO getImageById(int imgId);
+
 }
