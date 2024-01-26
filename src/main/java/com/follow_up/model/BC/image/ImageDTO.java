@@ -24,5 +24,9 @@ public class ImageDTO {
     private String imgUrl;
     private String imgType;
     private String registerDate;
+    private int viewCount;
+    private int likeCount;
+    private int downloadCount;
+
     private MultipartFile fnameMF;
 }

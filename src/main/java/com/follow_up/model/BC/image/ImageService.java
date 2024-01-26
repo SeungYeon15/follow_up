@@ -1,4 +1,12 @@
 package com.follow_up.model.BC.image;
 
-public class ImageService {
+
+import java.util.List;
+import java.util.Map;
+
+public interface ImageService {
+    List<ImageDTO> searchImages(Map map);
+
+
+    ImageDTO getImageById(int imgId);
 }
