@@ -1,4 +1,4 @@
-package com.follow_up.model.BC.image;
+package com.follow_up.model.BC.comment;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,10 +13,10 @@ import lombok.ToString;
 @Setter
 @ToString
 @Builder
+public class ImageReplyDTO {
+    private String replyId;
+    private int commentId;
+    private int userId;
+    private String contents;
 
-public class DetailDTO {
-    private int viewCount;
-    private int likeCount;
-    private int downloadCount;
-    private int imgId;
 }

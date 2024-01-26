@@ -1,6 +1,7 @@
 package com.follow_up.model.BC.comment;
 
 
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,9 +17,9 @@ import lombok.ToString;
 @Builder
 
 public class ImageCommentDTO {
+    private String contents;
     private int commentId;
     private int userId;
-    private String comId;
-    private String contents;
     private int imgId;
+
 }
