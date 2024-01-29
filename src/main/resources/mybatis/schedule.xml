@@ -19,6 +19,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getTagList" resultType="java.util.Map">
 		SELECT tagName, tagColor FROM scheduleTag;
 	</select>
+	
+	<insert id="addSchedule" parameterType="Map">
+		insert schedule(scheduleStartTime,scheduleEndTime,scheduleTitle,scheduleContent,tagName) values (#{start},#{end},#{Stitle},#{Scontent},#{tag});
+	</insert>
 
 
 </mapper>
