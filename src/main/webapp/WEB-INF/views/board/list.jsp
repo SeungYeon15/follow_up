@@ -37,6 +37,13 @@
 	</header>
 	<div class="container">
 		<h2>COMMUNITY</h2>
+		<div class="table-btn" role="group" aria-label="Button group"
+			style="text-align: left;">
+			<button type="button" class="btn btn-outline-dark btn-sm"
+				onclick="location.href='/notice/list';">Notice</button>
+			<button class="btn btn-dark btn-sm"
+				onclick="location.href='/board/list';">Community</button>
+		</div>
 		<form action="./list">
 			<input type="hidden" name='userId' value="admin">
 			<!--value="${sessionScope.id}"-->
@@ -68,10 +75,10 @@
 				</div>
 				<%-- <c:if
 							test="${not empty sessionScope.id && sessionScope.grade == 'A'}"> --%>
-					<div class='col'>
-						<button type="button" class="btn btn-dark"
-							onclick="location.href='./create'">Post</button>
-					</div>
+				<div class='col'>
+					<button type="button" class="btn btn-dark"
+						onclick="location.href='./create'">Post</button>
+				</div>
 				<%-- </c:if> --%>
 			</div>
 		</form>
@@ -100,13 +107,11 @@
 								<td><c:if
 										test="${util:newImg(fn:substring(dto.bdate,0,10)) }">
 										<img src="../images/new.gif">
-									</c:if>
-									${dto.btitle}
-									<c:set var="rcount" value="${util:rcount(dto.bnum,rmapper)}" />
-									<c:if test="${rcount >0 }">
+									</c:if> ${dto.btitle} <c:set var="rcount"
+										value="${util:rcount(dto.bnum,rmapper)}" /> <c:if
+										test="${rcount >0 }">
 										<span class="badge rounded-pill bg-secondary">${rcount}</span>
-									</c:if>
-								</td>
+									</c:if></td>
 								<td>${dto.userId}</td>
 								<td>${dto.bdate}</td>
 								<td>${dto.bview}</td>

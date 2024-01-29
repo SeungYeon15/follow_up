@@ -23,7 +23,7 @@
             com.follow_up.utility.Utility
         </function-class> 
         <function-signature>
-            int rcount(int, com.follow_up.model.SH.Board.ReplyMapper ) 
+            int rcount(int, com.follow_up.model.SH.board.ReplyMapper ) 
         </function-signature> 
     </function>
 

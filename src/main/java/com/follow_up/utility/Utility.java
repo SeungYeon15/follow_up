@@ -6,7 +6,7 @@ import java.util.*;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.follow_up.model.SH.Board.ReplyMapper;
+import com.follow_up.model.SH.board.ReplyMapper;
 
 public class Utility {
 	/**

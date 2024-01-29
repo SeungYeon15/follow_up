@@ -1,16 +1,15 @@
-package com.follow_up.model.SH.Board;
+package com.follow_up.model.SH.notice;
 
 import java.util.List;
 import java.util.Map;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service("com.follow_up.model.SH.Board.BoardServiceImpl")
-public class BoardServiceImpl implements BoardService {
+@Service("com.follow_up.model.SH.notice.NoticeServiceImpl")
+public class NoticeServiceImpl implements NoticeService {
 	@Autowired
-	private BoardMapper mapper;
+	private NoticeMapper mapper;
 
 	@Override
 	public int total(Map map) {
@@ -19,25 +18,25 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardDTO> list(Map map) {
+	public List<NoticeDTO> list(Map map) {
 		// TODO Auto-generated method stub
 		return mapper.list(map);
 	}
 
 	@Override
-	public int upViewcnt(int bnum) {
+	public int upViewcnt(int nnum) {
 		// TODO Auto-generated method stub
-		return mapper.upViewcnt(bnum);
+		return mapper.upViewcnt(nnum);
 	}
 
 	@Override
-	public BoardDTO read(int bnum) {
+	public NoticeDTO read(int nnum) {
 		// TODO Auto-generated method stub
-		return mapper.read(bnum);
+		return mapper.read(nnum);
 	}
 
 	@Override
-	public int create(BoardDTO dto) {
+	public int create(NoticeDTO dto) {
 		// TODO Auto-generated method stub
 		return mapper.create(dto);
 	}
@@ -49,15 +48,16 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public int delete(int bnum) {
+	public int delete(int nnum) {
 		// TODO Auto-generated method stub
-		return mapper.delete(bnum);
+		return mapper.delete(nnum);
 	}
 
 	@Override
-	public int update(BoardDTO dto) {
+	public int update(NoticeDTO dto) {
 		// TODO Auto-generated method stub
 		return mapper.update(dto);
 	}
 
+	
 }

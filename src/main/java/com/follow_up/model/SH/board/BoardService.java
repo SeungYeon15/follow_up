@@ -1,4 +1,4 @@
-package com.follow_up.model.SH.Board;
+package com.follow_up.model.SH.board;
 
 import java.util.List;
 import java.util.Map;
