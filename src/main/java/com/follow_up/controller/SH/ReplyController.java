@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.follow_up.model.SH.Board.ReplyDTO;
-import com.follow_up.model.SH.Board.ReplyService;
+import com.follow_up.model.SH.board.ReplyDTO;
+import com.follow_up.model.SH.board.ReplyService;
 import com.follow_up.utility.Utility;
 
 @RestController
@@ -27,7 +27,7 @@ public class ReplyController {
 	private static final Logger log = LoggerFactory.getLogger(ReplyController.class);
 
 	@Autowired
-	@Qualifier("com.follow_up.model.SH.Board.ReplyServiceImpl")
+	@Qualifier("com.follow_up.model.SH.board.ReplyServiceImpl")
 	private ReplyService service;
 
 	@GetMapping("/board/reply/list/{bnum}/{sno}/{eno}")

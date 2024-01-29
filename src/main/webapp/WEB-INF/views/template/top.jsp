@@ -20,14 +20,12 @@
 	<div class="overlay" id="overlay">
 		<nav class="overlay-menu">
 			<ul>
-				<li><a href="/">ABOUT DUA LIPA</a></li>
 				<li><a href="#">ALBUM/VIDEO</a></li>
 				<li><a href="/schedule">SCHEDULE</a></li>
 				<li><a href="#">CONCERT</a></li>
 				<li><a href="#">GALLERY</a></li>
-				<li><a href="#">AGENCY</a></li>
-				<li><a href="/board/list">COMMUNITY</a></li>
-				<li><a href="#">NOTICE</a></li>
+				<li><a href="/company">AGENCY</a></li>
+				<li><a href="/board/list">BOARD</a></li>
 			</ul>
 		</nav>
 	</div>

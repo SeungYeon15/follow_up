@@ -1,4 +1,4 @@
-package com.follow_up.model.SH.Board;
+package com.follow_up.model.SH.board;
 
 import java.util.List;
 import java.util.Map;
@@ -7,7 +7,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service("com.follow_up.model.SH.Board.ReplyServiceImpl")
+@Service("com.follow_up.model.SH.board.ReplyServiceImpl")
 public class ReplyServiceImpl implements ReplyService {
 	@Autowired
 	private ReplyMapper mapper;

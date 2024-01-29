@@ -16,22 +16,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.follow_up.model.SH.board.BoardDTO;
-import com.follow_up.model.SH.board.BoardService;
-import com.follow_up.model.SH.board.ReplyMapper;
+import com.follow_up.model.SH.notice.NoticeDTO;
+import com.follow_up.model.SH.notice.NoticeService;
 import com.follow_up.utility.Utility;
 
 @Controller
-public class BoardController {
+public class NoticeController {
 	@Autowired
-	@Qualifier("com.follow_up.model.SH.board.BoardServiceImpl")
-	private BoardService service;
-
-	@Autowired
-	private ReplyMapper rmapper;
-
-	// 게시판 목록
-	@RequestMapping("/board/list")
+	@Qualifier("com.follow_up.model.SH.notice.NoticeServiceImpl")
+	private NoticeService service;
+	
+	// 공지사항 목록
+	@RequestMapping("/notice/list")
 	public String list(HttpServletRequest request) {
 		// 검색
 		String col = Utility.checkNull(request.getParameter("col"));
@@ -60,9 +56,9 @@ public class BoardController {
 
 		int total = service.total(map);
 
-		List<BoardDTO> list = service.list(map);
+		List<NoticeDTO> list = service.list(map);
 
-		String url = "/board/list";
+		String url = "/notice/list";
 
 		String paging = Utility.paging(total, nowPage, recordPerPage, col, word, url);
 
@@ -71,49 +67,31 @@ public class BoardController {
 		request.setAttribute("col", col);
 		request.setAttribute("word", word);
 		request.setAttribute("paging", paging);
-		request.setAttribute("rmapper", rmapper);
 
-		return "/board/list";
+		return "/notice/list";
 	}
 
-	// 게시판 조회
-	@GetMapping("/board/read")
-	public String read(int bnum, Model model, HttpServletRequest request) {
-		service.upViewcnt(bnum); // 조회수 증가
-		BoardDTO dto = service.read(bnum);// 데이터 한건 조회
-		String bcontent = dto.getBcontent().replaceAll("\r\n", "<br>");
-		dto.setBcontent(bcontent);
+	// 공지사항 조회
+	@GetMapping("/notice/read")
+	public String read(int nnum, Model model, HttpServletRequest request) {
+		service.upViewcnt(nnum); // 조회수 증가
+		NoticeDTO dto = service.read(nnum);// 데이터 한건 조회
+		String content = dto.getNcontent().replaceAll("\r\n", "<br>");
+		dto.setNcontent(content);
 		model.addAttribute("dto", dto);
 
-		/* 댓글 */
-		int nPage = 1;
-		if (request.getParameter("nPage") != null) {
-			nPage = Integer.parseInt(request.getParameter("nPage"));
-		}
-		int recordPerPage = 5;
-
-		int sno = (nPage - 1) * recordPerPage;
-		int eno = recordPerPage;
-
-		Map map = new HashMap();
-		map.put("sno", sno);
-		map.put("eno", eno);
-		map.put("nPage", nPage);
-
-		model.addAllAttributes(map);
-
-		return "/board/read";
+		return "/notice/read";
 	}
 
-	// 게시판 등록
-	@GetMapping("/board/create")
+	// 공지사항 등록
+	@GetMapping("/notice/create")
 	public String create() {
 
-		return "/board/create";
+		return "/notice/create";
 	}
 
-	@PostMapping("/board/create")
-	public String create(BoardDTO dto) {
+	@PostMapping("/notice/create")
+	public String create(NoticeDTO dto) {
 		Boolean flag = false;
 
 		int cnt = service.create(dto);
@@ -122,23 +100,23 @@ public class BoardController {
 			flag = true;
 
 		if (flag) {
-			return "redirect:/board/list";
+			return "redirect:/notice/list";
 		} else {
 			return "error";
 		}
 	}
-
-	// 게시판 삭제
-	@GetMapping("/board/delete")
+	
+	// 공지사항 삭제
+	@GetMapping("/notice/delete")
 	public String delete(Model model) {
 		boolean flag = true;
 
 		model.addAttribute("flag", flag);
 
-		return "/board/delete";
+		return "/notice/delete";
 	}
 
-	@PostMapping("/board/delete")
+	@PostMapping("/notice/delete")
 	public String delete(@RequestParam Map<String, String> map, RedirectAttributes redirect) {
 		boolean pflag = false;
 		int cnt = service.passCheck(map);
@@ -149,8 +127,8 @@ public class BoardController {
 		boolean flag = false;
 
 		if (pflag) {
-			int bnum = Integer.parseInt(map.get("bnum"));
-			int cnt2 = service.delete(bnum);
+			int nnum = Integer.parseInt(map.get("nnum"));
+			int cnt2 = service.delete(nnum);
 
 			if (cnt2 > 0) {
 				flag = true;
@@ -164,29 +142,28 @@ public class BoardController {
 			redirect.addAttribute("col", map.get("col"));
 			redirect.addAttribute("word", map.get("word"));
 
-			return "redirect:/board/list";
+			return "redirect:/notice/list";
 		} else {
 			return "error";
 		}
 	}
 
-	// 게시판 수정
-	@GetMapping("/board/update")
-	public String update(int bnum, Model model) {
+	// 공지사항 수정
+	@GetMapping("/notice/update")
+	public String update(int nnum, Model model) {
 
-		model.addAttribute("dto", service.read(bnum));
+		model.addAttribute("dto", service.read(nnum));
 
-		return "/board/update";
+		return "/notice/update";
 	}
 
-	@PostMapping("/board/update")
-	public String update(BoardDTO dto, String nowPage, String col, String word, RedirectAttributes redirect) {
+	@PostMapping("/notice/update")
+	public String update(NoticeDTO dto, String nowPage, String col, String word, RedirectAttributes redirect) {
 		// 패스워드 확인
 		Boolean pflag = false;
 		Map map = new HashMap();
-		map.put("bnum", dto.getBnum());
-		map.put("bpasswd", dto.getBpasswd());
-
+		map.put("nnum", dto.getNnum());
+		map.put("npasswd", dto.getNpasswd());
 		int pass = service.passCheck(map);
 
 		if (pass > 0) {
@@ -210,7 +187,7 @@ public class BoardController {
 			redirect.addAttribute("nowPage", nowPage);
 			redirect.addAttribute("col", col);
 			redirect.addAttribute("word", word);
-			return "redirect:/board/list";
+			return "redirect:/notice/list";
 		} else {
 			return "error";
 		}

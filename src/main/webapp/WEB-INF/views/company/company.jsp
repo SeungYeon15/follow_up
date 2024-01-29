@@ -22,13 +22,6 @@
 </script>
 
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#home">Logo</a></li>
-            </ul>
-        </nav>
-    </header>
 
     <div class="wmg-section">
         <img src="../images/warner-music.jpg" alt="Concert crowd">
@@ -58,16 +51,13 @@
             최고의 음악 출판사 중 하나입니다.</p> -->
     </div>
 
-    <div class="location-section">
+    <div class="location-section" mb-3>
         <h2>Location</h2>
         <p>
             1633 Broadway, New York, NY 10019 United States
         </p>
         <img src="../images/map.jpg" alt="">
     </div>
-    <footer>
-        <p>a</p>
-    </footer>
 </body>
 
 </html>
