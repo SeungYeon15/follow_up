@@ -24,4 +24,12 @@ public class ImageServiceImpl implements ImageService {
     }
 
 
+
+	@Override
+	public void viewCount(int imgId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 }
