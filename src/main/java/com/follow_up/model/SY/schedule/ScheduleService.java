@@ -7,5 +7,6 @@ public interface ScheduleService {
 
 	List<Map> getSchedule();
 	List<Map> getTagList();
+	void addSchedule(Map<String, String> map);
 
 }

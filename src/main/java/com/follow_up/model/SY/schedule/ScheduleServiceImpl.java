@@ -24,4 +24,12 @@ public class ScheduleServiceImpl implements ScheduleService{
 		return mapper.getTagList();
 	}
 
+	@Override
+	public void addSchedule(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		mapper.addSchedule(map);
+		return;
+		
+	}
+
 }

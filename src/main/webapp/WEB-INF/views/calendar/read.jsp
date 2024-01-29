@@ -135,23 +135,12 @@ html, body {
     }
     console.log(Taglist);
    	function modalOn(){
-   		var list;
     	  $("#scheduleModal").modal("show");
     	  $("#scheduleForm").submit(function (e) {
     	      e.preventDefault();
-
-    	      // 시작시간과 종료시간 가져오기
-    	      var startTime = $("#startTime").val();
-    	      var endTime = $("#endTime").val();
-    	      var Stitle = $("#title").val();
-    	      var Scontent = $("#content").val();
-				list = {start:convertToDatetime(startTime),end:convertToDatetime(endTime),title:Stitle,content:Scontent,display:"list-item"}
-    	      console.log(list);
-    	      // 팝업 닫기
     	      $("#scheduleModal").modal("hide");
+
     	    });
-    	  
-    	  return list;
     	}
     
 
@@ -188,9 +177,22 @@ html, body {
 						console.log(obj);
 					},
 					select : function(arg) {
-						
-						calendar.addEvent(modalOn())
+						modalOn();
+						// 시작시간과 종료시간 가져오기
+			    	      var startTime = convertToDatetime($("#startTime").val());
+			    	      var endTime = convertToDatetime($("#endTime").val());
+			    	      var Stitle = $("#title").val();
+			    	      var Scontent = $("#content").val();
+
 						// 캘린더에서 드래그로 이벤트를 생성할 수 있다.
+						if (Stitle) {
+							calendar.addEvent({
+								title : Stitle,
+								start : startTime,
+								end : endTime,
+								display: 'list-item'
+							})
+						}
 						
 						calendar.unselect()
 					},
