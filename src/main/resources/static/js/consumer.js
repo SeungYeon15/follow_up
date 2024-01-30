@@ -15,7 +15,7 @@ function showList() {
 			for (var i = 0; i < list.length; i++) {
 				str += "<ul class='list-group'>";
 				str += "<li class='list-group-item' data-rnum='" + list[i].rnum + "'>";
-				str += "<strong class='float-start'>" + list[i].id + "</strong>";
+				str += "<strong class='float-start'>" + list[i].userId + "</strong>";
 				str += "<small class='float-end'>" + list[i].rdate + "</small><br><p>";
 				str += replaceAll(list[i].rcontent, '\n', '<br>') + "</p></li></ul>";
 			}
@@ -68,7 +68,7 @@ modalRegisterBtn.on('click', function(e) {
 
 	let reply = {
 		rcontent: modalInputContent.val(),
-		id: id,
+		userId: userId,
 		bnum: bnum
 	};
 	add(reply)

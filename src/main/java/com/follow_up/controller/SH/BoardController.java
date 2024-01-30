@@ -101,6 +101,26 @@ public class BoardController {
 		map.put("nPage", nPage);
 
 		model.addAllAttributes(map);
+		
+		// 다음 bnum 가져오기
+		BoardDTO nextBnum = service.nextBnum(bnum);
+		if(nextBnum!=null) {
+		    model.addAttribute("nextBnum", nextBnum.getBnum());
+		    model.addAttribute("nextBtitle", nextBnum.getBtitle());
+		}else {
+		    model.addAttribute("nextBnum", null);
+		    model.addAttribute("nextBtitle", null);
+		}
+		
+		// 이전 bnum 가져오기
+		BoardDTO prevBnum = service.prevBnum(bnum);
+		if(prevBnum!=null) {
+		    model.addAttribute("prevBnum", prevBnum.getBnum());
+		    model.addAttribute("prevBtitle", prevBnum.getBtitle());
+		}else {
+		    model.addAttribute("prevBnum", null);
+		    model.addAttribute("prevBtitle", null);
+		}
 
 		return "/board/read";
 	}

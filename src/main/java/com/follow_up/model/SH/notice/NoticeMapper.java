@@ -22,5 +22,9 @@ public interface NoticeMapper {
 	int delete(int nnum);
 
 	int update(NoticeDTO dto);
+
+	NoticeDTO nextNnum(int nnum);
+
+	NoticeDTO prevNnum(int nnum);
 		
 }

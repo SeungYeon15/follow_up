@@ -36,7 +36,7 @@
 	<div class="container">
 		<h2>New Post</h2>
 		<form action="create" method="post" enctype="multipart/form-data">
-			<input type="hidden" name='nname' value="admin"><!--value="${sessionScope.id}"-->
+			<input type="hidden" name='userId' value="admin"><!--value="${sessionScope.id}"-->
 			<div class="mb-3 mt-3">
 				<input type="text" class="form-control" id="ntitle"
 					placeholder="Enter title" name="ntitle">

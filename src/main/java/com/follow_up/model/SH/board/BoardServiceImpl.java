@@ -60,4 +60,16 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.update(dto);
 	}
 
+	@Override
+	public BoardDTO nextBnum(int bnum) {
+		// TODO Auto-generated method stub
+		return mapper.nextBnum(bnum);
+	}
+
+	@Override
+	public BoardDTO prevBnum(int bnum) {
+		// TODO Auto-generated method stub
+		return mapper.prevBnum(bnum);
+	}
+
 }

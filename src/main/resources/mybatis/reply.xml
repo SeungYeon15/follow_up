@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="list" parameterType="Map"
 		resultType="com.follow_up.model.SH.board.ReplyDTO">
-		select rnum, rcontent, rdate, id, bnum
+		select rnum, rcontent, rdate, userId, bnum
 		from reply
 		where bnum = #{bnum}
 		order by rnum desc
@@ -28,8 +28,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<insert id="create" parameterType="com.follow_up.model.SH.board.ReplyDTO">
-		insert into reply(rcontent, rdate, id, bnum)
-		values(#{rcontent}, sysdate(), #{id}, #{bnum});
+		insert into reply(rcontent, rdate, userId, bnum)
+		values(#{rcontent}, sysdate(), #{userId}, #{bnum});
 	</insert>
 
 	<update id="update" parameterType="com.follow_up.model.SH.board.ReplyDTO">
@@ -42,10 +42,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from reply
 		where rnum = #{rnum}
 	</delete>
-
-<!-- 	<delete id="delete_fk" parameterType="int">
-		delete from reply
-		where noticeno = #{noticeno}
-	</delete> -->
 
 </mapper>
