@@ -56,7 +56,7 @@
 
 		<div id="noticeTable" class="table-responsive">
 			<form action="./list">
-				<input type="hidden" name='nname' value="admin">
+				<input type="hidden" name='userId' value="admin">
 				<!--value="${sessionScope.id}"-->
 				<div class="row">
 					<div class='col-3'>

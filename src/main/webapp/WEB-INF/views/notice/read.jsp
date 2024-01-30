@@ -41,12 +41,31 @@
 		url += "&word=${param.word}";
 		url += "&nnum=${dto.nnum}";
 		location.href = url;
+
+		function prev() {
+			let url = "read";
+			url += "?bnum=${prevNnum}";
+			url += "&nowPage=${param.nowPage}";
+			url += "&col=${param.col}";
+			url += "&word=${param.word}";
+			location.href = url;
+		}
+
+		function next() {
+			let url = "read";
+			url += "?bnum=${nextNnum}";
+			url += "&nowPage=${param.nowPage}";
+			url += "&col=${param.col}";
+			url += "&word=${param.word}";
+			location.href = url;
+		}
+
 	}
 </script>
 
 </head>
 <body>
-	<input type="hidden" name='nname' value="">
+	<input type="hidden" name='userId' value="">
 	<!--value="${sessionScope.id}"-->
 	<header class="header">
 		<!-- <h1>Dua Lipa</h1> -->
@@ -63,7 +82,7 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td style="text-align: right;">${dto.nname}| ${dto.ndate} |
+					<td style="text-align: right;">${dto.userId}|${dto.ndate}|
 						${dto.nview}</td>
 				</tr>
 			</tbody>
@@ -77,16 +96,33 @@
 				<tr>
 				</tr>
 			</thead>
-			<tr>
-				<td onclick="prev('${dto.nnum}')"
-					style="text-align: left; vertical-align: middle;"><b>prev∧</b>
-					${dto.ntitle}</td>
-			</tr>
-			<tr>
-				<td onclick="prev('${dto.nnum}')"
-					style="text-align: left; vertical-align: center;"><b>next∨</b>
-					${dto.ntitle}</td>
-			</tr>
+			<tbody>
+				<tr>
+					<c:choose>
+						<c:when test="${prevNnum != null}">
+							<td onclick="prev()"
+								style="text-align: left; vertical-align: middle;"><b>prev∧</b>
+								${prevNtitle}</td>
+						</c:when>
+						<c:otherwise>
+							<td style="text-align: left; vertical-align: center;"><b>prev∨</b>
+								-</td>
+						</c:otherwise>
+					</c:choose>
+				</tr>
+				<tr>
+					<c:choose>
+						<c:when test="${nextNnum != null}">
+							<td onclick="next()"
+								style="text-align: left; vertical-align: center;"><b>next∨</b>
+								${nextNtitle}</td>
+						</c:when>
+						<c:otherwise>
+							<td style="text-align: left; vertical-align: center;"><b>next∨</b>
+								-</td>
+						</c:otherwise>
+					</c:choose>
+				</tr>
 			</tbody>
 		</table>
 		<div class="button-style" style="text-align: right;">
@@ -94,7 +130,7 @@
 			<%-- <c:if
 							test="${not empty sessionScope.id && sessionScope.grade == 'A'}"> --%>
 			<%-- <c:when
-					test="${user.nname == 'admin' || not empty user.nname}"> --%>
+					test="${user.userId == 'admin' || not empty user.userId}"> --%>
 
 			<button class="btn btn-outline-dark btn-sm"
 				onclick="location='create'">Post</button>

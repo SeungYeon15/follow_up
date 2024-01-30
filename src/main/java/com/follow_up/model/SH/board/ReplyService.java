@@ -13,7 +13,7 @@ public interface ReplyService {
 
 	ReplyDTO read(int rnum);
 	
-	ReplyDTO create(ReplyDTO vo);
+	int create(ReplyDTO vo);
 	
 	int update(ReplyDTO vo);
 

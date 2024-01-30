@@ -11,6 +11,6 @@ public class NoticeDTO {
 	private String ncontent;
 	private String npasswd;
 	private int nview;
-	private String nname;
+	private String userId;
 
 }

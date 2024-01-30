@@ -64,14 +64,12 @@ public class ReplyController {
 	@PostMapping("/board/reply/create")
 	public ResponseEntity<String> create(@RequestBody ReplyDTO vo) {
 		log.info("ReplyDTO1: " + vo.getRcontent());
-		log.info("ReplyDTO1: " + vo.getId());
+		log.info("ReplyDTO1: " + vo.getUserId());
 		log.info("ReplyDTO1: " + vo.getBnum());
 
 		vo.setRcontent(vo.getRcontent().replaceAll("\n\r", "<br>"));
 
-		vo = service.create(vo);
-		int flag = vo.getRnum();
-//		int flag = service.create(vo);
+		int flag = service.create(vo);
 
 		log.info("Reply INSERT flag: " + flag);
 

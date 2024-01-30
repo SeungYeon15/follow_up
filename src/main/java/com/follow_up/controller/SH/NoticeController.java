@@ -25,7 +25,7 @@ public class NoticeController {
 	@Autowired
 	@Qualifier("com.follow_up.model.SH.notice.NoticeServiceImpl")
 	private NoticeService service;
-	
+
 	// 공지사항 목록
 	@RequestMapping("/notice/list")
 	public String list(HttpServletRequest request) {
@@ -80,6 +80,26 @@ public class NoticeController {
 		dto.setNcontent(content);
 		model.addAttribute("dto", dto);
 
+		// 다음 nnum 가져오기
+		NoticeDTO nextNnum = service.nextNnum(nnum);
+		if (nextNnum != null) {
+			model.addAttribute("nextNnum", nextNnum.getNnum());
+			model.addAttribute("nextNtitle", nextNnum.getNtitle());
+		} else {
+			model.addAttribute("nextNnum", null);
+			model.addAttribute("nextNtitle", null);
+		}
+
+		// 이전 nnum 가져오기
+		NoticeDTO prevNnum = service.prevNnum(nnum);
+		if (prevNnum != null) {
+			model.addAttribute("prevNnum", prevNnum.getNnum());
+			model.addAttribute("prevNtitle", prevNnum.getNtitle());
+		} else {
+			model.addAttribute("prevNnum", null);
+			model.addAttribute("prevNtitle", null);
+		}
+
 		return "/notice/read";
 	}
 
@@ -105,7 +125,7 @@ public class NoticeController {
 			return "error";
 		}
 	}
-	
+
 	// 공지사항 삭제
 	@GetMapping("/notice/delete")
 	public String delete(Model model) {

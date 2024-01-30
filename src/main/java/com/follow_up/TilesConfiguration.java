@@ -12,6 +12,7 @@ public class TilesConfiguration {
       final TilesConfigurer configurer = new TilesConfigurer();
       //해당 경로에 tiles.xml 파일을 넣음
       configurer.setDefinitions(new String[]{"classpath:/templates/tiles-home.xml",
+    		  								 "classpath:/templates/tiles-company.xml",
 				 							 "classpath:/templates/tiles-board.xml",
 				 							 "classpath:/templates/tiles-notice.xml"
       										});

@@ -31,7 +31,7 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
-	public ReplyDTO create(ReplyDTO vo) {
+	public int create(ReplyDTO vo) {
 		// TODO Auto-generated method stub
 		return mapper.create(vo);
 	}

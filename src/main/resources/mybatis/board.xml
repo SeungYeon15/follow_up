@@ -63,6 +63,28 @@
 		WHERE bnum = #{bnum}
 	</select>
 
+	<!-- 다음글 -->
+	<select id="nextBnum" parameterType="int"
+		resultType="com.follow_up.model.SH.board.BoardDTO">
+		SELECT bnum, btitle
+		FROM board
+		WHERE bnum > #{bnum}
+		ORDER BY
+		bnum
+		ASC LIMIT 1;
+	</select>
+	
+	<!-- 이전글 -->
+	<select id="prevBnum" parameterType="int"
+		resultType="com.follow_up.model.SH.board.BoardDTO">
+		SELECT bnum, btitle
+		FROM board
+		WHERE #{bnum} > bnum
+		ORDER BY
+		bnum
+		ASC LIMIT 1;
+	</select>
+
 	<!-- 조회수 증가 -->
 	<update id="upViewcnt" parameterType="int">
 		UPDATE board

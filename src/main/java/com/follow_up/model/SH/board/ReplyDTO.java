@@ -7,7 +7,7 @@ public class ReplyDTO {
 	private int rnum;
 	private String rcontent;
 	private String rdate;
-	private String id;
+	private String userId;
 	private int bnum;
 
 }

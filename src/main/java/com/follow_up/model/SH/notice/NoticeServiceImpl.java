@@ -59,5 +59,17 @@ public class NoticeServiceImpl implements NoticeService {
 		return mapper.update(dto);
 	}
 
+	@Override
+	public NoticeDTO nextNnum(int nnum) {
+		// TODO Auto-generated method stub
+		return mapper.nextNnum(nnum);
+	}
+
+	@Override
+	public NoticeDTO prevNnum(int nnum) {
+		// TODO Auto-generated method stub
+		return mapper.prevNnum(nnum);
+	}
+
 	
 }

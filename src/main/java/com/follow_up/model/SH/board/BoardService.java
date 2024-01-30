@@ -19,5 +19,9 @@ public interface BoardService {
 	int delete(int bnum);
 
 	int update(BoardDTO dto);
+
+	BoardDTO nextBnum(int bnum);
+
+	BoardDTO prevBnum(int bnum);
 	
 }
