@@ -93,4 +93,9 @@
         select count(imgId) from imageCollection
         where imgId= #{imgId};
     </select>
+
+    <delete id="deleteImage" parameterType="int">
+        delete from image
+        where imgId =#{imgId};
+    </delete>
 </mapper>

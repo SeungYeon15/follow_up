@@ -31,4 +31,6 @@ public interface ImageService {
     void uncollectionImage(Map map);
 
     int collectionCount(int imgId);
+
+    void deleteImage(int imgId);
 }

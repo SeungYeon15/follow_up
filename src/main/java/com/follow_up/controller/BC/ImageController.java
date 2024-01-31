@@ -2,6 +2,7 @@ package com.follow_up.controller.BC;
 
 import com.follow_up.model.BC.image.ImageDTO;
 import com.follow_up.model.BC.image.ImageService;
+import com.follow_up.model.BC.image.TestUserDTO;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
@@ -118,14 +119,24 @@ public class ImageController {
         return imageService.collectionCount(imgId);
     }
 
+    @GetMapping("/api/images/delete/{imgId}")
+    public ResponseEntity<Void> deleteImage(@PathVariable int imgId){
+        imageService.deleteImage(imgId);
+        return ResponseEntity.ok().build();
+    }
+
+
     @GetMapping("/api/images/pagemove")
-    public ImageDTO pagemove(){
+    public TestUserDTO pagemove(){
         System.out.println("경로테스트");
 //        여기서 세션 값을 이용해서, 권한
 //        만약 세션에 저장되어있는 값들을 저장해서 리턴 을어캐시미
-        ImageDTO imageDTO = new ImageDTO();
-        imageDTO.setTitle("테스트");
-        return imageDTO;
+        TestUserDTO testUserDTO = new TestUserDTO();
+        testUserDTO.setUserId(1);
+        testUserDTO.setUserFile("https://images.unsplash.com/photo-1523413651479-597eb2da0ad6");
+        testUserDTO.setUserGrade("A");
+        testUserDTO.setUserName("병찬");
+        return testUserDTO;
 //        return null;
     }
 

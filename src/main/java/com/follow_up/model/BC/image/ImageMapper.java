@@ -24,5 +24,5 @@ public interface ImageMapper {
 
     int collectionCount(int imgId);
 
-
+    void deleteImage(int imgId);
 }
