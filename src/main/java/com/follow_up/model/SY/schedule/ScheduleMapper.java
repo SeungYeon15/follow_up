@@ -6,7 +6,7 @@ import java.util.Map;
 public interface ScheduleMapper {
 
 	List<Map> getSchedule();
-	List<Map> getTagList();
-	void addSchedule(Map<String, String> map);
+	List<ScheduleTagDTO> getTagList();
+	int addSchedule(ScheduleDTO sdto);
 
 }

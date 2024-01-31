@@ -19,17 +19,16 @@ public class ScheduleServiceImpl implements ScheduleService{
 	}
 
 	@Override
-	public List<Map> getTagList() {
+	public List<ScheduleTagDTO> getTagList() {
 		// TODO Auto-generated method stub
 		return mapper.getTagList();
 	}
 
 	@Override
-	public void addSchedule(Map<String, String> map) {
+	public int addSchedule(ScheduleDTO sdto) {
 		// TODO Auto-generated method stub
-		mapper.addSchedule(map);
-		return;
-		
+		return mapper.addSchedule(sdto);
 	}
+
 
 }
