@@ -75,4 +75,9 @@ public class ImageServiceImpl implements ImageService {
         return mapper.collectionCount(imgId);
     }
 
+    @Override
+    public void deleteImage(int imgId) {
+        mapper.deleteImage(imgId);
+    }
+
 }
