@@ -20,9 +20,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT tagName, tagColor FROM scheduleTag;
 	</select>
 	
-	<insert id="addSchedule" parameterType="Map">
-		insert schedule(scheduleStartTime,scheduleEndTime,scheduleTitle,scheduleContent,tagName) values (#{start},#{end},#{Stitle},#{Scontent},#{tag});
+	<insert id="addSchedule" parameterType="com.follow_up.model.SY.schedule.ScheduleDTO">
+		INSERT INTO schedule(scheduleStartTime, scheduleEndTime,
+		scheduleTitle, scheduleContent, tagName)
+		VALUES(#{scheduleStartTime}, #{scheduleEndTime}, #{scheduleTitle}, #{scheduleContent}, #{tagName})
 	</insert>
-
 
 </mapper>
