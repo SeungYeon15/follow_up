@@ -34,4 +34,63 @@
 
     </select>
 
+    <update id="viewCount" parameterType="int">
+        update image
+        set viewCount = viewCount +1
+        where imgId = #{imgId};
+
+    </update>
+
+
+    <select id="getDistinctTags" resultType="String">
+        select distinct tag from image
+    </select>
+
+    <select id="getLikedImagesById" parameterType="int" resultType="int">
+        select imgId from imageLike
+        where userId= #{userId}
+    </select>
+
+    <insert id="likeImage" parameterType="Map">
+        insert into imageLike (imgId, userId)
+        values(#{imgId},#{userId})
+    </insert>
+
+    <delete id="unlikeImage" parameterType="Map">
+        delete from imageLike
+        where userId=#{userId} and imgId=#{imgId}
+    </delete>
+
+    <update id="downloadCount" parameterType="int">
+        update image
+        set downloadCount = downloadCount +1
+        where imgId = #{imgId}
+    </update>
+
+    <select id="likeCount" parameterType="int">
+        select count(imgId) from imageLike
+        where imgId= #{imgId}
+    </select>
+
+
+    <select id="getCollectionedImagesById" parameterType="int" resultType="int">
+        select imgId from imageCollection
+        where userId= #{userId}
+    </select>
+
+    <insert id="collectionImage" parameterType="Map">
+        insert into imageCollection (imgId, userId)
+        values(#{imgId},#{userId})
+    </insert>
+
+    <delete id="uncollectionImage" parameterType="Map">
+        delete from imageCollection
+        where userId=#{userId} and imgId=#{imgId}
+    </delete>
+
+
+    <select id="collectionCount" parameterType="int">
+        select count(imgId) from imageCollection
+        where imgId= #{imgId};
+    </select>
 </mapper>

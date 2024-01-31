@@ -23,5 +23,56 @@ public class ImageServiceImpl implements ImageService {
         return mapper.getImageById(imgId);
     }
 
+    @Override
+    public void viewCount(int imgId) {
+        mapper.viewCount(imgId);
+    }
 
+    @Override
+    public List<String> getDistinctTags() {
+        return mapper.getDistinctTags();
+    }
+
+    @Override
+    public List<Integer> getLikedImagesById(int userId) {
+        return mapper.getLikedImagesById(userId);
+    }
+
+    @Override
+    public void likeImage(Map map) {
+        mapper.likeImage(map);
+    }
+
+    @Override
+    public void unlikeImage(Map map) {
+        mapper.unlikeImage(map);
+    }
+
+    @Override
+    public void downloadCount(int imgId) { mapper.downloadCount(imgId); }
+
+    @Override
+    public int likeCount(int imgId) {
+        return mapper.likeCount(imgId);
+    }
+
+    @Override
+    public List<Integer> getCollectionedImagesById(int userId) {
+        return mapper.getCollectionedImagesById(userId);
+    }
+
+    @Override
+    public void collectionImage(Map map) {
+        mapper.collectionImage(map);
+    }
+
+    @Override
+    public void uncollectionImage(Map map) {
+        mapper.uncollectionImage(map);
+    }
+
+    @Override
+    public int collectionCount(int imgId) {
+        return mapper.collectionCount(imgId);
+    }
 }
