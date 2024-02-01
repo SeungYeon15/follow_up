@@ -1,6 +1,7 @@
 .row {
     margin: 0px;
-    border-bottom: 0.1px solid white;
+    border-top: 0.1px solid black;
+    border-bottom: 0.1px solid black;
     background: rgb(255,205,227);
 	background: radial-gradient(circle, rgba(255,205,227,1) 0%, rgba(223,165,194,1) 0%, rgba(243,239,255,1) 0%, rgba(223,238,255,1) 100%);
 }
@@ -50,10 +51,11 @@ body {
 .hvr-float:hover,
 .hvr-float:focus,
 .hvr-float:active,
+.hvr-float>a,
 .my_img:hover {
     -webkit-transform: translateY(-8px);
     transform: translateY(-8px);
-    color: white;
+    color:white;
     text-shadow: 5px 5px 5px gray;
     z-index: 3;
 }
@@ -64,13 +66,13 @@ body {
 }
 
 .mar > span {
-    color: white;
+    color: rgb(0, 0, 0);
     padding: 10px 20px;
     margin: 5px;
 }
 
 .rounded-pill {
-    background-color: rgb(238, 174, 202);
+    background-color: rgb(248, 218, 231);
     /* opacity: 0.5; */
 }
 
@@ -88,4 +90,13 @@ body {
 
 img {
     right: 0;
+}
+
+a {
+  text-decoration-line: none;
+  color: gray;
+/*   text-decoration-line: underline; */
+/*   text-decoration-line: overline; */
+/*   text-decoration-line: line-through; */
+/*   text-decoration-line: underline line-through overline; */
 }

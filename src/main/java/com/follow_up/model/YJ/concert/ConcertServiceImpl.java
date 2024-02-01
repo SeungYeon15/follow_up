@@ -17,5 +17,11 @@ public class ConcertServiceImpl implements ConcertService{
 		// TODO Auto-generated method stub
 		return mapper.list();
 	}
+	
+	@Override
+	public ConcertDTO detail(int conid) {
+		// TODO Auto-generated method stub
+		return mapper.detail(conid);
+	}
 
 }

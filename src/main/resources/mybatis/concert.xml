@@ -9,6 +9,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="list" parameterType="Map" resultType="com.follow_up.model.YJ.concert.ConcertDTO">
 		SELECT conid, name, date, image FROM follow_up.concert;
 	</select>
+	
+	<select id="detail" parameterType="int" resultType="com.follow_up.model.YJ.concert.ConcertDTO">
+		SELECT * FROM follow_up.concert WHERE conid=#{conid};
+	</select>
 
 
 </mapper>

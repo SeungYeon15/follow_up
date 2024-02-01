@@ -26,6 +26,15 @@
             rel="stylesheet"
         />
         <title>행사 및 콘서트 일정</title>
+        <script>
+			function read(conid){
+				let url = "/concert/detail";
+				url += "?conid=" + conid;
+				
+				location.href=url;
+				
+			}
+		</script>
         <link rel="stylesheet" href="/css/concert.css" />
     </head>
     <body>
@@ -38,7 +47,8 @@
 		        	<c:forEach var="dto" items="${list}" varStatus="status">
 			            <div class="row pov" id="ele_${dto.conid}">
 			                <div class="col hvr-float">
-			                    ${dto.name}
+			                    
+			                    <a href="javascript:read('${dto.conid}')">${dto.name}</a>
 			                    <i class="bi bi-arrow-up-right"></i>
 			                    <div class="mar">
 			                        <span class="badge">${dto.date}</span>
