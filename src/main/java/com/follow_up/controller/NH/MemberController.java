@@ -220,6 +220,16 @@ public class MemberController {
 		return map;
 
 	}
+	
+	@GetMapping("/member/mypage")
+	public String mypage() {
+
+		return "/member/mypage";
+	}
+		
+	
+	
+	
 //
 //	@PostMapping("/member/create")
 //	public String create(MemberDTO dto) {

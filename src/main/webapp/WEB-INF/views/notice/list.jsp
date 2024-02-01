@@ -57,7 +57,6 @@
 
 		<div id="noticeTable" class="table-responsive">
 			<form action="./list">
-				<%-- <c:set var="userId" value="admin" scope="request" /> --%>
 				<input type="hidden" name='userId' value="admin">
 				<!--value="${sessionScope.id}"-->
 				<div class="row">
@@ -84,15 +83,12 @@
 							</button>
 						</div>
 					</div>
-					<%-- <c:if
-							test="${not empty sessionScope.id && sessionScope.grade == 'A'}"> --%>
 					<div class='col'>
-						<%-- <c:if test="${userId == 'admin'}"> --%>
+						<%-- <c:if test="${userId == 'admin'}"> "${sessionScope.id}"--%>
 							<button type="button" class="btn btn-dark"
 								onclick="location.href='./create'">Post</button>
 						<%-- </c:if> --%>
 					</div>
-					<%-- </c:if> --%>
 				</div>
 			</form>
 			<table class="table table-hover">
