@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -32,7 +33,7 @@ public class BoardController {
 
 	// 게시판 목록
 	@RequestMapping("/board/list")
-	public String list(HttpServletRequest request) {
+	public String list(HttpServletRequest request, HttpSession session) {
 		// 검색
 		String col = Utility.checkNull(request.getParameter("col"));
 		String word = Utility.checkNull(request.getParameter("word"));
@@ -48,7 +49,6 @@ public class BoardController {
 		}
 		int recordPerPage = 5;
 
-		// DB에서 가져오는 순서
 		int sno = ((nowPage - 1) * recordPerPage);
 		int eno = nowPage * recordPerPage;
 
@@ -79,19 +79,18 @@ public class BoardController {
 	// 게시판 조회
 	@GetMapping("/board/read")
 	public String read(int bnum, Model model, HttpServletRequest request) {
-		service.upViewcnt(bnum); // 조회수 증가
-		BoardDTO dto = service.read(bnum);// 데이터 한건 조회
+		service.upViewcnt(bnum); // 조회수
+		BoardDTO dto = service.read(bnum);// 데이터 조회
 		String bcontent = dto.getBcontent().replaceAll("\r\n", "<br>");
 		dto.setBcontent(bcontent);
 		model.addAttribute("dto", dto);
 
-		/* 댓글 */
+		// 댓글
 		int nPage = 1;
 		if (request.getParameter("nPage") != null) {
 			nPage = Integer.parseInt(request.getParameter("nPage"));
 		}
 		int recordPerPage = 5;
-
 		int sno = (nPage - 1) * recordPerPage;
 		int eno = recordPerPage;
 
@@ -101,25 +100,25 @@ public class BoardController {
 		map.put("nPage", nPage);
 
 		model.addAllAttributes(map);
-		
+
 		// 다음 bnum 가져오기
 		BoardDTO nextBnum = service.nextBnum(bnum);
-		if(nextBnum!=null) {
-		    model.addAttribute("nextBnum", nextBnum.getBnum());
-		    model.addAttribute("nextBtitle", nextBnum.getBtitle());
-		}else {
-		    model.addAttribute("nextBnum", null);
-		    model.addAttribute("nextBtitle", null);
+		if (nextBnum != null) {
+			model.addAttribute("nextBnum", nextBnum.getBnum());
+			model.addAttribute("nextBtitle", nextBnum.getBtitle());
+		} else {
+			model.addAttribute("nextBnum", null);
+			model.addAttribute("nextBtitle", null);
 		}
-		
+
 		// 이전 bnum 가져오기
 		BoardDTO prevBnum = service.prevBnum(bnum);
-		if(prevBnum!=null) {
-		    model.addAttribute("prevBnum", prevBnum.getBnum());
-		    model.addAttribute("prevBtitle", prevBnum.getBtitle());
-		}else {
-		    model.addAttribute("prevBnum", null);
-		    model.addAttribute("prevBtitle", null);
+		if (prevBnum != null) {
+			model.addAttribute("prevBnum", prevBnum.getBnum());
+			model.addAttribute("prevBtitle", prevBnum.getBtitle());
+		} else {
+			model.addAttribute("prevBnum", null);
+			model.addAttribute("prevBtitle", null);
 		}
 
 		return "/board/read";
@@ -135,7 +134,6 @@ public class BoardController {
 	@PostMapping("/board/create")
 	public String create(BoardDTO dto) {
 		Boolean flag = false;
-
 		int cnt = service.create(dto);
 
 		if (cnt > 0)
@@ -152,7 +150,6 @@ public class BoardController {
 	@GetMapping("/board/delete")
 	public String delete(Model model) {
 		boolean flag = true;
-
 		model.addAttribute("flag", flag);
 
 		return "/board/delete";
@@ -161,7 +158,7 @@ public class BoardController {
 	@PostMapping("/board/delete")
 	public String delete(@RequestParam Map<String, String> map, RedirectAttributes redirect) {
 		boolean pflag = false;
-		int cnt = service.passCheck(map);
+		int cnt = service.passCheck(map); // 비밀번호 확인
 		if (cnt > 0) {
 			pflag = true;
 		}

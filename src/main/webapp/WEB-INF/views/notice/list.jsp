@@ -49,13 +49,15 @@
 
 		<div class="table-btn" role="group" aria-label="Button group"
 			style="text-align: left;">
-			<button type="button" class="btn btn-dark btn-sm" onclick="location.href='/notice/list';">Notice</button>
+			<button type="button" class="btn btn-dark btn-sm"
+				onclick="location.href='/notice/list';">Notice</button>
 			<button type="button" class="btn btn-outline-dark btn-sm"
 				onclick="location.href='/board/list';">Community</button>
 		</div>
 
 		<div id="noticeTable" class="table-responsive">
 			<form action="./list">
+				<%-- <c:set var="userId" value="admin" scope="request" /> --%>
 				<input type="hidden" name='userId' value="admin">
 				<!--value="${sessionScope.id}"-->
 				<div class="row">
@@ -85,8 +87,10 @@
 					<%-- <c:if
 							test="${not empty sessionScope.id && sessionScope.grade == 'A'}"> --%>
 					<div class='col'>
-						<button type="button" class="btn btn-dark"
-							onclick="location.href='./create'">Post</button>
+						<%-- <c:if test="${userId == 'admin'}"> --%>
+							<button type="button" class="btn btn-dark"
+								onclick="location.href='./create'">Post</button>
+						<%-- </c:if> --%>
 					</div>
 					<%-- </c:if> --%>
 				</div>
@@ -115,11 +119,7 @@
 									<td><c:if
 											test="${util:newImg(fn:substring(dto.ndate,0,10)) }">
 											<img src="../images/new.gif">
-										</c:if> ${dto.ntitle} <%-- <c:set var="rcount"
-											value="${util:rcount(dto.nnum,rmapper)}" /> <c:if
-											test="${rcount >0 }">
-											<span class="badge rounded-pill bg-secondary">${rcount}</span>
-										</c:if> --%></td>
+										</c:if> ${dto.ntitle}</td>
 									<td>${dto.ndate}</td>
 									<td>${dto.nview}</td>
 								</tr>

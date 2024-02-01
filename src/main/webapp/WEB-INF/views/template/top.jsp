@@ -25,7 +25,7 @@
 				<li><a href="#">CONCERT</a></li>
 				<li><a href="#">GALLERY</a></li>
 				<li><a href="/company">AGENCY</a></li>
-				<li><a href="/board/list">BOARD</a></li>
+				<li><a href="/notice/list">BOARD</a></li>
 			</ul>
 		</nav>
 	</div>
