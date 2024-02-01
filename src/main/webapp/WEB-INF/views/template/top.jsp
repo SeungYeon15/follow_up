@@ -22,7 +22,7 @@
 		<nav class="overlay-menu">
 			<ul>
 				<li><a href="/">ABOUT DUA LIPA</a></li>
-				<li><a href="#">ALBUM/VIDEO</a></li>
+				<li><a href="/music">ALBUM/VIDEO</a></li>
 				<li><a href="/schedule">SCHEDULE</a></li>
 				<li><a href="#">CONCERT</a></li>
 				<li><a href="#">GALLERY</a></li>
