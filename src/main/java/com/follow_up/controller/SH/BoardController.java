@@ -16,15 +16,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.follow_up.model.SH.Board.BoardDTO;
-import com.follow_up.model.SH.Board.BoardService;
-import com.follow_up.model.SH.Board.ReplyMapper;
+import com.follow_up.model.SH.board.BoardDTO;
+import com.follow_up.model.SH.board.BoardService;
+import com.follow_up.model.SH.board.ReplyMapper;
 import com.follow_up.utility.Utility;
 
 @Controller
 public class BoardController {
 	@Autowired
-	@Qualifier("com.follow_up.model.SH.Board.BoardServiceImpl")
+	@Qualifier("com.follow_up.model.SH.board.BoardServiceImpl")
 	private BoardService service;
 
 	@Autowired
@@ -101,6 +101,26 @@ public class BoardController {
 		map.put("nPage", nPage);
 
 		model.addAllAttributes(map);
+		
+		// 다음 bnum 가져오기
+		BoardDTO nextBnum = service.nextBnum(bnum);
+		if(nextBnum!=null) {
+		    model.addAttribute("nextBnum", nextBnum.getBnum());
+		    model.addAttribute("nextBtitle", nextBnum.getBtitle());
+		}else {
+		    model.addAttribute("nextBnum", null);
+		    model.addAttribute("nextBtitle", null);
+		}
+		
+		// 이전 bnum 가져오기
+		BoardDTO prevBnum = service.prevBnum(bnum);
+		if(prevBnum!=null) {
+		    model.addAttribute("prevBnum", prevBnum.getBnum());
+		    model.addAttribute("prevBtitle", prevBnum.getBtitle());
+		}else {
+		    model.addAttribute("prevBnum", null);
+		    model.addAttribute("prevBtitle", null);
+		}
 
 		return "/board/read";
 	}

@@ -11,4 +11,26 @@ public interface ImageService {
     ImageDTO getImageById(int imgId);
 
     void viewCount(int imgId);
+
+    List<String> getDistinctTags();
+
+    List<Integer> getLikedImagesById(int userId);
+
+    void likeImage(Map map);
+
+    void unlikeImage(Map map);
+
+    void downloadCount(int imgId);
+
+    int likeCount(int imgId);
+
+    List<Integer> getCollectionedImagesById(int userId);
+
+    void collectionImage(Map map);
+
+    void uncollectionImage(Map map);
+
+    int collectionCount(int imgId);
+
+    void deleteImage(int imgId);
 }

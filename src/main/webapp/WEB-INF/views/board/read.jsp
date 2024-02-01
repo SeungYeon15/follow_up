@@ -14,40 +14,12 @@
 
 <meta charset="UTF-8">
 <title>Board Read</title>
-<script>
-	function list() {
-		let url = "list";
-		url += "?nowPage=${param.nowPage}";
-		url += "&col=${param.col}";
-		url += "&word=${param.word}";
 
-		location.href = url;
-	}
-
-	function board_update() {
-		let url = "update";
-		url += "?nowPage=${param.nowPage}";
-		url += "&col=${param.col}";
-		url += "&word=${param.word}";
-		url += "&bnum=${dto.bnum}";
-
-		location.href = url;
-	}
-
-	function del() {
-		let url = "delete";
-		url += "?nowPage=${param.nowPage}";
-		url += "&col=${param.col}";
-		url += "&word=${param.word}";
-		url += "&bnum=${dto.bnum}";
-		location.href = url;
-	}
-</script>
 
 </head>
 <body>
-	<input type="hidden" name='userId' value="">
-	<!--value="${sessionScope.id}"-->
+	<input type="hidden" name='userId' value="admin">
+	<!--value="${sessionScope.userId}"-->
 	<header class="header">
 		<!-- <h1>Dua Lipa</h1> -->
 	</header>
@@ -63,7 +35,7 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td style="text-align: right;">${dto.userId}| ${dto.bdate} |
+					<td style="text-align: right;">${dto.userId}|${dto.bdate}|
 						${dto.bview}</td>
 				</tr>
 			</tbody>
@@ -77,22 +49,39 @@
 				<tr>
 				</tr>
 			</thead>
-			<tr>
-				<td onclick="prev('${dto.bnum}')"
-					style="text-align: left; vertical-align: middle;"><b>prev∧</b>
-					${dto.btitle}</td>
-			</tr>
-			<tr>
-				<td onclick="prev('${dto.bnum}')"
-					style="text-align: left; vertical-align: center;"><b>next∨</b>
-					${dto.btitle}</td>
-			</tr>
+			<tbody>
+				<tr>
+					<c:choose>
+						<c:when test="${prevBnum != null}">
+							<td onclick="prev()"
+								style="text-align: left; vertical-align: middle;"><b>prev∧</b>
+								${prevBtitle}</td>
+						</c:when>
+						<c:otherwise>
+							<td style="text-align: left; vertical-align: center;"><b>prev∨</b>
+								-</td>
+						</c:otherwise>
+					</c:choose>
+				</tr>
+				<tr>
+					<c:choose>
+						<c:when test="${nextBnum != null}">
+							<td onclick="next()"
+								style="text-align: left; vertical-align: center;"><b>next∨</b>
+								${nextBtitle}</td>
+						</c:when>
+						<c:otherwise>
+							<td style="text-align: left; vertical-align: center;"><b>next∨</b>
+								-</td>
+						</c:otherwise>
+					</c:choose>
+				</tr>
 			</tbody>
 		</table>
 		<div class="button-style">
 			<%-- <c:choose> --%>
 			<%-- <c:if
-							test="${not empty sessionScope.id && sessionScope.grade == 'A'}"> --%>
+							test="${not empty sessionScope.userId && sessionScope.grade == 'A'}"> --%>
 			<%-- <c:when
 					test="${user.userId == 'admin' || not empty user.userId}"> --%>
 
@@ -137,6 +126,52 @@
 	</div>
 
 	<script>
+		function list() {
+			let url = "list";
+			url += "?nowPage=${param.nowPage}";
+			url += "&col=${param.col}";
+			url += "&word=${param.word}";
+
+			location.href = url;
+		}
+
+		function board_update() {
+			let url = "update";
+			url += "?nowPage=${param.nowPage}";
+			url += "&col=${param.col}";
+			url += "&word=${param.word}";
+			url += "&bnum=${dto.bnum}";
+
+			location.href = url;
+		}
+
+		function del() {
+			let url = "delete";
+			url += "?nowPage=${param.nowPage}";
+			url += "&col=${param.col}";
+			url += "&word=${param.word}";
+			url += "&bnum=${dto.bnum}";
+			location.href = url;
+		}
+
+		function prev() {
+			let url = "read";
+			url += "?bnum=${prevBnum}";
+			url += "&nowPage=${param.nowPage}";
+			url += "&col=${param.col}";
+			url += "&word=${param.word}";
+			location.href = url;
+		}
+
+		function next() {
+			let url = "read";
+			url += "?bnum=${nextBnum}";
+			url += "&nowPage=${param.nowPage}";
+			url += "&col=${param.col}";
+			url += "&word=${param.word}";
+			location.href = url;
+		}
+
 		let bnum = "${dto.bnum}";
 		let sno = "${sno}";
 		let eno = "${eno}";
@@ -144,10 +179,9 @@
 		let nowPage = "${param.nowPage}";
 		let colx = "${param.col}";
 		let wordx = "${param.word}";
-		let id = "user1"/* "${sessionScope.id}" */;
-		console.log("id: " + id);
+		let userId = "admin"/* "${sessionScope.userId}" */;
+		console.log("userId: " + userId);
 	</script>
-
 	<script src="/js/producer.js" defer></script>
 	<script src="/js/consumer.js" defer></script>
 
