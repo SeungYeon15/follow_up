@@ -18,6 +18,19 @@
 			class="bottom"></span>
 	</div>
 	<div class="overlay" id="overlay">
+		<%-- <c:choose>
+            <c:when test="${not empty sessionScope.userId}">
+                <!-- 로그인 되었을 때 -->
+                <div class="user-info">
+                    <a href="/member/logout" class="logout-link">LOGOUT</a><br>
+                    Hello! ${sessionScope.userId}
+                </div>
+           </c:when>
+            <c:otherwise> --%>
+                <!-- 로그인 되지 않았을 때 -->
+                <a href="/member/login" class="login-link">LOGIN</a>
+             <%-- </c:otherwise>
+        </c:choose> --%>
 		<nav class="overlay-menu">
 			<ul>
 				<li><a href="#">ALBUM/VIDEO</a></li>
