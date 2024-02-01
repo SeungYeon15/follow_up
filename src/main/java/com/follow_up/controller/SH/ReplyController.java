@@ -46,9 +46,7 @@ public class ReplyController {
 	public ResponseEntity<String> getPage(int nPage, int nowPage, int bnum, String col, String word) {
 		int total = service.total(bnum);
 		String url = "read";
-
-		int recordPerPage = 4; // 한페이지당 출력할 레코드 갯수
-
+		int recordPerPage = 4;
 		String paging = Utility.paging(total, nowPage, recordPerPage, col, word, url, nPage, bnum);
 
 		return new ResponseEntity<>(paging, HttpStatus.OK);
@@ -68,7 +66,6 @@ public class ReplyController {
 		log.info("ReplyDTO1: " + vo.getBnum());
 
 		vo.setRcontent(vo.getRcontent().replaceAll("\n\r", "<br>"));
-
 		int flag = service.create(vo);
 
 		log.info("Reply INSERT flag: " + flag);
@@ -90,6 +87,7 @@ public class ReplyController {
 		log.info("remove: " + rnum);
 		service.delete(rnum);
 		int cnt = 1;
+		
 		return cnt == 1 ? new ResponseEntity<>("success", HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}

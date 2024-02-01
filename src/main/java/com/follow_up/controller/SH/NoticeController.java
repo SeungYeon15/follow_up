@@ -44,7 +44,6 @@ public class NoticeController {
 		}
 		int recordPerPage = 5;
 
-		// DB에서 가져오는 순서
 		int sno = ((nowPage - 1) * recordPerPage);
 		int eno = nowPage * recordPerPage;
 
@@ -74,8 +73,8 @@ public class NoticeController {
 	// 공지사항 조회
 	@GetMapping("/notice/read")
 	public String read(int nnum, Model model, HttpServletRequest request) {
-		service.upViewcnt(nnum); // 조회수 증가
-		NoticeDTO dto = service.read(nnum);// 데이터 한건 조회
+		service.upViewcnt(nnum); // 조회수
+		NoticeDTO dto = service.read(nnum);// 데이터 조회
 		String content = dto.getNcontent().replaceAll("\r\n", "<br>");
 		dto.setNcontent(content);
 		model.addAttribute("dto", dto);
@@ -113,7 +112,6 @@ public class NoticeController {
 	@PostMapping("/notice/create")
 	public String create(NoticeDTO dto) {
 		Boolean flag = false;
-
 		int cnt = service.create(dto);
 
 		if (cnt > 0)
@@ -130,7 +128,6 @@ public class NoticeController {
 	@GetMapping("/notice/delete")
 	public String delete(Model model) {
 		boolean flag = true;
-
 		model.addAttribute("flag", flag);
 
 		return "/notice/delete";
@@ -139,7 +136,7 @@ public class NoticeController {
 	@PostMapping("/notice/delete")
 	public String delete(@RequestParam Map<String, String> map, RedirectAttributes redirect) {
 		boolean pflag = false;
-		int cnt = service.passCheck(map);
+		int cnt = service.passCheck(map); // 비밀번호 확인
 		if (cnt > 0) {
 			pflag = true;
 		}

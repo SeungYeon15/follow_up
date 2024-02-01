@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class ReplyDTO {
+	
 	private int rnum;
 	private String rcontent;
 	private String rdate;

@@ -18,7 +18,30 @@
 <link rel="stylesheet" href="/css/board.css">
 
 <script type="text/javascript">
+	/* window.onload = function() {
+		// userId 값을 세션에서 가져옴 (JSP EL 사용)
+		let userId = "" // "${sessionScope.userId}";
+
+		// userId 값이 없을 경우 (로그인하지 않은 경우)
+		if (!userId) {
+			// 사용자에게 알림
+			alert('로그인 먼저 해주세요');
+
+			// 로그인 페이지로 리다이렉트
+			let url = '/user/login';
+			url += '?returnUrl=' + encodeURIComponent(window.location.href); // 현재 페이지 주소를 returnUrl 파라미터로 추가
+			location.href = url;
+		}
+	} */
+
 	function read(bnum) {
+		/* if ('${sessionScope.id}' == '') {
+			alert('먼저 로그인을 하세요');
+			let url = '/member/login';
+			url += '?contentsno=${dto.contentsno}';
+			location.href = url;
+			 return;
+		}*/
 		let url = "read";
 		url += "?bnum=" + bnum;
 		url += "&nowPage=${nowPage}";

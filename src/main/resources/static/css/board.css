@@ -70,8 +70,8 @@ body {
 }
 
 .btn-outline-secondary {
-  height: calc(1.5em + 0.75rem + 2px); /* 입력 필드와 동일한 높이로 설정 */
-  vertical-align: top; /* 상단 정렬 */
+  height: calc(1.5em + 0.75rem + 2px);
+  vertical-align: top;
 }
 
 .table{

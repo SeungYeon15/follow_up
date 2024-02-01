@@ -12,10 +12,5 @@ public class BoardDTO {
 	private String bpasswd;
 	private int bview;
 	private String bdate;
-	
-//	private String filename;
-//	private int filesize;
-//	private MultipartFile filenameMF;
 
-//	private List<MemberDTO> list;
 }

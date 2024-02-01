@@ -14,7 +14,62 @@
 
 <meta charset="UTF-8">
 <title>Board Read</title>
+<script type="text/javascript">
+	let loginId = "user1" // "${sessionScope.userId}";
 
+	function list() {
+		let url = "list";
+		url += "?nowPage=${param.nowPage}";
+		url += "&col=${param.col}";
+		url += "&word=${param.word}";
+
+		location.href = url;
+	}
+
+	function board_update() {
+		if ('${dto.bnum}' !== loginId) {
+			alert('수정 권한이 없습니다.');
+		} else {
+			let url = "update";
+			url += "?nowPage=${param.nowPage}";
+			url += "&col=${param.col}";
+			url += "&word=${param.word}";
+			url += "&bnum=${dto.bnum}";
+			location.href = url;
+		}
+	}
+
+	function del() {
+		if ('${dto.bnum}' !== loginId) {
+			alert('삭제 권한이 없습니다.');
+		} else if (confirm("삭제하시겠습니까?")) {
+			let url = "delete";
+			url += "?nowPage=${param.nowPage}";
+			url += "&col=${param.col}";
+			url += "&word=${param.word}";
+			url += "&bnum=${dto.bnum}";
+			location.href = url;
+		}
+	}
+
+	function prev() {
+		let url = "read";
+		url += "?bnum=${prevBnum}";
+		url += "&nowPage=${param.nowPage}";
+		url += "&col=${param.col}";
+		url += "&word=${param.word}";
+		location.href = url;
+	}
+
+	function next() {
+		let url = "read";
+		url += "?bnum=${nextBnum}";
+		url += "&nowPage=${param.nowPage}";
+		url += "&col=${param.col}";
+		url += "&word=${param.word}";
+		location.href = url;
+	}
+</script>
 
 </head>
 <body>
@@ -79,23 +134,11 @@
 			</tbody>
 		</table>
 		<div class="button-style">
-			<%-- <c:choose> --%>
-			<%-- <c:if
-							test="${not empty sessionScope.userId && sessionScope.grade == 'A'}"> --%>
-			<%-- <c:when
-					test="${user.userId == 'admin' || not empty user.userId}"> --%>
-
 			<button class="btn btn-outline-dark btn-sm"
 				onclick="location='create'">Post</button>
 			<button class="btn btn-outline-dark btn-sm" onclick="board_update()">Edit</button>
 			<button class="btn btn-outline-dark btn-sm" onclick="del()">Delete</button>
 			<button class="btn btn-outline-dark btn-sm" onclick="list()">Back</button>
-			<%-- </c:when>
-				<c:otherwise>
-					<button class="btn btn-outline-dark btn-sm"
-						onclick="list()">Back</button>
-				</c:otherwise>
-			</c:choose> --%>
 		</div>
 		<table class="table">
 			<thead>
@@ -126,52 +169,6 @@
 	</div>
 
 	<script>
-		function list() {
-			let url = "list";
-			url += "?nowPage=${param.nowPage}";
-			url += "&col=${param.col}";
-			url += "&word=${param.word}";
-
-			location.href = url;
-		}
-
-		function board_update() {
-			let url = "update";
-			url += "?nowPage=${param.nowPage}";
-			url += "&col=${param.col}";
-			url += "&word=${param.word}";
-			url += "&bnum=${dto.bnum}";
-
-			location.href = url;
-		}
-
-		function del() {
-			let url = "delete";
-			url += "?nowPage=${param.nowPage}";
-			url += "&col=${param.col}";
-			url += "&word=${param.word}";
-			url += "&bnum=${dto.bnum}";
-			location.href = url;
-		}
-
-		function prev() {
-			let url = "read";
-			url += "?bnum=${prevBnum}";
-			url += "&nowPage=${param.nowPage}";
-			url += "&col=${param.col}";
-			url += "&word=${param.word}";
-			location.href = url;
-		}
-
-		function next() {
-			let url = "read";
-			url += "?bnum=${nextBnum}";
-			url += "&nowPage=${param.nowPage}";
-			url += "&col=${param.col}";
-			url += "&word=${param.word}";
-			location.href = url;
-		}
-
 		let bnum = "${dto.bnum}";
 		let sno = "${sno}";
 		let eno = "${eno}";

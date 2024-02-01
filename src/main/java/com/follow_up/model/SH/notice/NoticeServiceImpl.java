@@ -70,6 +70,5 @@ public class NoticeServiceImpl implements NoticeService {
 		// TODO Auto-generated method stub
 		return mapper.prevNnum(nnum);
 	}
-
 	
 }
