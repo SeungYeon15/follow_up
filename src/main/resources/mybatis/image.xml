@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.follow_up.model.BC.image.ImageMapper">
+    <select id="searchImages" parameterType="Map"
+            resultType="com.follow_up.model.BC.image.ImageDTO">
+        select imgId, title , tag, imgDescription, imgUrl,imgType, registerDate
+        from image
+
+        <where>
+            <choose>
+                <when test="col=='title'">
+                    title like concat('%', #{word} ,'%')
+                </when>
+                <when test="col=='tag'">
+                    tag like concat('%', #{word} ,'%')
+                </when>
+            </choose>
+        </where>
+        order by imgId desc
+        limit 0, 20
+    </select>
+
+
+
+    <select id="getImageById" parameterType="int"
+            resultType="com.follow_up.model.BC.image.ImageDTO">
+        SELECT *
+        FROM image
+        where imgId = #{imgId};
+
+    </select>
+
+    <update id="viewCount" parameterType="int">
+        update image
+        set viewCount = viewCount +1
+        where imgId = #{imgId};
+
+    </update>
+
+
+    <select id="getDistinctTags" resultType="String">
+        select distinct tag from image
+    </select>
+
+    <select id="getLikedImagesById" parameterType="int" resultType="int">
+        select imgId from imageLike
+        where userId= #{userId}
+    </select>
+
+    <insert id="likeImage" parameterType="Map">
+        insert into imageLike (imgId, userId)
+        values(#{imgId},#{userId})
+    </insert>
+
+    <delete id="unlikeImage" parameterType="Map">
+        delete from imageLike
+        where userId=#{userId} and imgId=#{imgId}
+    </delete>
+
+    <update id="downloadCount" parameterType="int">
+        update image
+        set downloadCount = downloadCount +1
+        where imgId = #{imgId}
+    </update>
+
+    <select id="likeCount" parameterType="int">
+        select count(imgId) from imageLike
+        where imgId= #{imgId}
+    </select>
+
+
+    <select id="getCollectionedImagesById" parameterType="int" resultType="int">
+        select imgId from imageCollection
+        where userId= #{userId}
+    </select>
+
+    <insert id="collectionImage" parameterType="Map">
+        insert into imageCollection (imgId, userId)
+        values(#{imgId},#{userId})
+    </insert>
+
+    <delete id="uncollectionImage" parameterType="Map">
+        delete from imageCollection
+        where userId=#{userId} and imgId=#{imgId}
+    </delete>
+
+
+    <select id="collectionCount" parameterType="int">
+        select count(imgId) from imageCollection
+        where imgId= #{imgId};
+    </select>
+
+    <delete id="deleteImage" parameterType="int">
+        delete from image
+        where imgId =#{imgId};
+    </delete>
+</mapper>

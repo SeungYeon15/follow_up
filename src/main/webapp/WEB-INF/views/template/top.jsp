@@ -1,7 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- <c:set var="root" value="${pageContext.request.contextPath }"/> --%>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,16 +18,31 @@
 			class="bottom"></span>
 	</div>
 	<div class="overlay" id="overlay">
+		<%-- <c:choose>
+            <c:when test="${not empty sessionScope.userId}">
+                <!-- 로그인 되었을 때 -->
+                <div class="user-info">
+                    <a href="/member/logout" class="logout-link">LOGOUT</a><br>
+                    Hello! ${sessionScope.userId}
+                </div>
+           </c:when>
+            <c:otherwise> --%>
+                <!-- 로그인 되지 않았을 때 -->
+                <a href="/member/login" class="login-link">LOGIN</a>
+             <%-- </c:otherwise>
+        </c:choose> --%>
 		<nav class="overlay-menu">
 			<ul>
-				<li><a href="/">ABOUT DUA LIPA</a></li>
-				<li><a href="#">ALBUM/VIDEO</a></li>
+				<li><a href="/music">ALBUM/VIDEO</a></li>
 				<li><a href="/schedule">SCHEDULE</a></li>
 				<li><a href="#">CONCERT</a></li>
 				<li><a href="#">GALLERY</a></li>
-				<li><a href="#">AGENCY</a></li>
-				<li><a href="#">COMMUNITY</a></li>
-				<li><a href="/board/list">NOTICE</a></li>
+				<li><a href="/company">AGENCY</a></li>
+				<li><a href="/board/list">BOARD</a></li>
+				<li><a href="/board/list">COMMUNITY</a></li>
+				<li><a href="/member/mypage">Mypage</a></li>
+				
+
 			</ul>
 		</nav>
 	</div>
@@ -44,3 +58,6 @@
 			location.href = "/";
 		});
 	</script>
+</body>
+</html>
+

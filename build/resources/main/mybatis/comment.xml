@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.follow_up.model.BC.comment.ImageCommentMapper">
+
+    <select id="getCommentsById" parameterType="int"
+            resultType="com.follow_up.model.BC.comment.ResponseDTO">
+        select u.userName 'fullName', u.userFile 'avatarUrl',  c.userId 'userId',  c.comId 'comId', c.contents 'text'
+        from user u JOIN  imageComment c on  u.userId = c.userId
+        where c.imgId = #{imgId}
+    </select>
+
+    <select id="getRepliesById" parameterType="String"
+            resultType="com.follow_up.model.BC.comment.ResponseDTO">
+        select u.userName 'fullName', u.userFile 'avatarUrl',  r.userId 'userId',  r.replyId 'comId', r.contents 'text'
+        from user u JOIN  imageReply r on  u.userId = r.userId
+        where r.comId = #{comId}
+    </select>
+
+    <insert id="saveComment" parameterType="com.follow_up.model.BC.comment.ImageCommentDTO">
+        insert into imageComment(userId ,comId, contents, imgId)
+        values(#{userId},#{comId},#{contents}, #{imgId});
+    </insert>
+
+    <insert id="saveReply" parameterType="com.follow_up.model.BC.comment.ImageReplyDTO">
+        insert into imageReply(replyId,comId,userId, contents)
+        values(#{replyId},#{comId},#{userId} ,#{contents});
+    </insert>
+
+    <delete id="deleteComment" parameterType="String">
+        delete from imageComment
+        where comId = #{comId}
+    </delete>
+
+    <delete id="deleteReply" parameterType="String">
+        delete from imageReply
+        where replyId = #{replyId}
+    </delete>
+
+    <update id="updateComment" parameterType="Map">
+        update imageComment
+        set contents = #{contents}
+        where comId = #{comId}
+    </update>
+
+    <update id="updateReply" parameterType="Map">
+        update imageReply
+        set contents = #{contents}
+        where replyId = #{replyId}
+    </update>
+
+
+</mapper>

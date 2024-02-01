@@ -16,15 +16,15 @@
 		</function-signature>
 	</function>
 	
-	<!-- <function>
-		<description>댓글 갯수</description>
-		<name>rcount</name>
-		<function-class>
-			com.follow_up.utility.Utility
-		</function-class>
-		<function-signature>
-			int rcount ( int, com.model.ReplyMapper )
-		</function-signature>
-	</function> -->
+	<function>  
+        <description>댓글수 보여주기</description> 
+        <name>rcount</name>
+        <function-class>
+            com.follow_up.utility.Utility
+        </function-class> 
+        <function-signature>
+            int rcount(int, com.follow_up.model.SH.board.ReplyMapper ) 
+        </function-signature> 
+    </function>
 
-</taglib> 
+</taglib>

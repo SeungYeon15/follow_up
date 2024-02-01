@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-
 <head>
 <title>follow up</title>
 <script src="https://unpkg.com/ionicons@7.0.0/dist/ionicons.js"></script>
@@ -10,8 +9,8 @@
 
 <link rel="stylesheet" href="/css/mainStyles.css">
 <link rel="stylesheet" href="/css/menu.css">
-</head>
 
+</head>
 <body>
 	<input type="radio" name="item" checked="checked" id="section1" />
 	<input type="radio" name="item" id="section2" />
@@ -40,8 +39,7 @@
 	</section>
 	<script
 		src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-
 	<script src="script.js"></script>
 </body>
-
 </html>
+
