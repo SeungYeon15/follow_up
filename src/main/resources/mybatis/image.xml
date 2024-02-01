@@ -98,4 +98,11 @@
         delete from image
         where imgId =#{imgId};
     </delete>
+
+    <insert id="upload"
+            parameterType="com.follow_up.model.BC.image.ImageDTO">
+        insert into image(
+            title , tag, imgDescription, imgUrl,imgType, registerDate)
+        values(#{title},#{tag},#{imgDescription},#{imgUrl},#{imgType},sysdate() );
+    </insert>
 </mapper>

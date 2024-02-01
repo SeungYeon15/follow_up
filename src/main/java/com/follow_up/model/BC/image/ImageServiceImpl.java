@@ -15,9 +15,6 @@ public class ImageServiceImpl implements ImageService {
     public List<ImageDTO> searchImages(Map map) {
         return mapper.searchImages(map);
     }
-
-
-
     @Override
     public ImageDTO getImageById(int imgId) {
         return mapper.getImageById(imgId);
@@ -78,6 +75,11 @@ public class ImageServiceImpl implements ImageService {
     @Override
     public void deleteImage(int imgId) {
         mapper.deleteImage(imgId);
+    }
+
+    @Override
+    public int upload(ImageDTO dto) {
+        return mapper.upload(dto);
     }
 
 }

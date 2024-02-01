@@ -1,8 +1,10 @@
 package com.follow_up.controller.BC;
 
+import com.follow_up.UploadImage;
 import com.follow_up.model.BC.image.ImageDTO;
 import com.follow_up.model.BC.image.ImageService;
 import com.follow_up.model.BC.image.TestUserDTO;
+import com.follow_up.utility.Utility;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
@@ -30,8 +32,8 @@ public class ImageController {
         Map map = new HashMap();
         map.put("col", col);
         map.put("word", word);
-        System.out.println("col::"+col);
-        System.out.println("word::"+word);
+//        System.out.println("col::"+col);
+//        System.out.println("word::"+word);
         return imageService.searchImages(map);
     }
 
@@ -119,9 +121,13 @@ public class ImageController {
         return imageService.collectionCount(imgId);
     }
 
-    @GetMapping("/api/images/delete/{imgId}")
-    public ResponseEntity<Void> deleteImage(@PathVariable int imgId){
+    @GetMapping("/api/images/delete/{imgId}/{oldfile}")
+    public ResponseEntity<Void> deleteImage(@PathVariable int imgId , @PathVariable String oldfile){
         imageService.deleteImage(imgId);
+//      파일까지 지워주기
+        if(oldfile !=null && !oldfile.equals("default.jpg")) {
+            Utility.deleteFile(UploadImage.getUploadDir(), oldfile);
+        }
         return ResponseEntity.ok().build();
     }
 
@@ -139,5 +145,29 @@ public class ImageController {
         return testUserDTO;
 //        return null;
     }
+
+    @PostMapping("/api/images/upload")
+    public ResponseEntity<String> uploadImage(ImageDTO dto) {
+
+        //1.dto Multipartfile, storage경로에 순수파일로, rename을 해서 저장
+        System.out.println("dto테스트::"+dto.toString());
+        long size = dto.getFilenameMF().getSize();
+
+        System.out.println(size);
+        if(size >0 ) {
+            String filename = Utility.saveFileSpring(dto.getFilenameMF(), UploadImage.getUploadDir());
+//          지금은 파일 이름이지만 , 링크로 바꿔주기?
+            dto.setImgUrl("http://localhost:8000/images/storage/"+filename);
+
+        }else {
+            dto.setImgUrl("http://localhost:8000/images/storage/default.jpg");
+        }
+
+        int cnt = imageService.upload(dto);
+        if(cnt>0)   return ResponseEntity.ok("Images upload successfully");
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error upload comment");
+    }
+
+
 
 }
