@@ -86,8 +86,8 @@ margin{
 </head>
 <body>
 	
-		<div class="container" style="margin-left: 200px;">	
-		<h2><i class="fa-solid fa-user" style="margin-right: -220px;"></i> 회원가입 <small>(<span id="need">*</span>필수입력사항)</small></h2>
+		<div class="" style="margin-left: 15vw; padding-top:200px;">	
+		<h2><i class="fa-solid fa-user" "></i> 회원가입 <small>(<span id="need">*</span>필수입력사항)</small></h2>
 		<form action="create" method="post" name='frm'
 			enctype="multipart/form-data" onsubmit="return inCheck(this)"
 			style='width: 80%'>
