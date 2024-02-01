@@ -33,4 +33,6 @@ public interface ImageService {
     int collectionCount(int imgId);
 
     void deleteImage(int imgId);
+
+    int upload(ImageDTO dto);
 }

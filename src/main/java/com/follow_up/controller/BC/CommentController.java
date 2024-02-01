@@ -148,7 +148,6 @@ public class CommentController {
                 //오류 따로 처리해주기
                 throw new Exception();
             }
-
             return ResponseEntity.ok("Reply update successfully");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error update comment");

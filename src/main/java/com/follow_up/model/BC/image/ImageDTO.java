@@ -28,5 +28,5 @@ public class ImageDTO {
     private int likeCount;
     private int downloadCount;
 
-    private MultipartFile fnameMF;
+    private MultipartFile filenameMF;
 }
