@@ -21,12 +21,16 @@
 		<nav class="overlay-menu">
 			<ul>
 
+
 				<li><a href="/music">ALBUM/VIDEO</a></li>
 				<li><a href="/schedule">SCHEDULE</a></li>
 				<li><a href="#">CONCERT</a></li>
 				<li><a href="#">GALLERY</a></li>
 				<li><a href="/company">AGENCY</a></li>
 				<li><a href="/board/list">BOARD</a></li>
+				<li><a href="/member/login">Login/Join</a></li>
+				
+
 			</ul>
 		</nav>
 	</div>
@@ -44,3 +48,4 @@
 	</script>
 </body>
 </html>
+

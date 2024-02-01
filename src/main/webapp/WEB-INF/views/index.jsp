@@ -9,7 +9,7 @@
 
 <link rel="stylesheet" href="/css/mainStyles.css">
 <link rel="stylesheet" href="/css/menu.css">
-</link>
+
 </head>
 <body>
 	<input type="radio" name="item" checked="checked" id="section1" />
@@ -42,3 +42,4 @@
 	<script src="script.js"></script>
 </body>
 </html>
+
