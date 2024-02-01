@@ -66,7 +66,7 @@
 </head>
 <body>
 	<input type="hidden" name='userId' value="">
-	<!--value="${sessionScope.id}"-->
+	<!--value="${sessionScope.userId}"-->
 	<header class="header">
 		<!-- <h1>Dua Lipa</h1> -->
 	</header>
@@ -126,12 +126,8 @@
 			</tbody>
 		</table>
 		<div class="button-style" style="text-align: right;">
-			<%-- <c:choose> --%>
-			<%-- <c:if
-							test="${not empty sessionScope.id && sessionScope.grade == 'A'}"> --%>
-			<%-- <c:when
-					test="${user.userId == 'admin' || not empty user.userId}"> --%>
-
+			<%-- <c:choose>
+			<c:when test="${sessionScope.userId == 'admin'}"> --%>
 			<button class="btn btn-outline-dark btn-sm"
 				onclick="location='create'">Post</button>
 			<button class="btn btn-outline-dark btn-sm" onclick="notice_update()">Edit</button>
