@@ -188,4 +188,21 @@ z-index:500;
     opacity: 1;
     left: 0;
   }
+}  
+
+/* 로그인 링크 스타일링 */
+.login-link, .user-info {
+	color: white;
+	border : none;
+	position: absolute;
+	top: 5%;
+	left: 5%;
+	text-decoration: none;
+	font-size: 20px;
+}
+
+.logout-link {
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
 }
