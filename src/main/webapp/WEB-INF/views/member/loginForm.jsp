@@ -113,7 +113,7 @@
 	border-radius: 20px; /* 둥근 테두리 설정 */
 	cursor: pointer;
 	transition: background-color 0.3s ease, transform 0.3s ease;
-	width: 60%;
+	width: 40%;
 	text-align: center;
 	font-size: 16px;
 	border: 1px solid #86A5FF;
@@ -140,7 +140,7 @@
 	border-radius: 20px; /* 둥근 테두리 설정 */
 	cursor: pointer;
 	transition: background-color 0.3s ease, transform 0.3s ease;
-	width: 60%;
+	width: 40%;
 	text-align: center;
 	font-size: 16px;
 	margin-top: 12px;
@@ -197,7 +197,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin-top: 10px;
+	margin-top: 20px;
 	font-family: 'Noto Sans KR', sans-serif;
 	margin-right: 23px;
 }
@@ -208,7 +208,7 @@
 	border-radius: 10px; /* 둥근 테두리 설정 */
 	font-size: 14px;
 	outline: none; /* 포커스 효과 제거 */
-	width:100%;
+	width:80%;
 }
 
 .input input::placeholder {
@@ -220,7 +220,7 @@
 .userName{
 	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 14px;
-
+	margin-left:100px;
 }
 
 .last-1 {
@@ -246,8 +246,9 @@
 	margin-left: 500px;
 }
 .form-check {
+	margin-top:30px;
 	display:flex;
-	width:70%;
+	width:56%;
 }
 </style>
 
