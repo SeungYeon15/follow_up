@@ -39,7 +39,10 @@
 				<li><a href="#">GALLERY</a></li>
 				<li><a href="/company">AGENCY</a></li>
 				<li><a href="/board/list">BOARD</a></li>
-				<li><a href="/member/login">Login/Join</a></li>
+				<li><a href="/board/list">COMMUNITY</a></li>
+				<li><a href="/member/mypage">Mypage</a></li>
+				
+
 			</ul>
 		</nav>
 	</div>

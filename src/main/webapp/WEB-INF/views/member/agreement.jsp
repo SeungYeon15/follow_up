@@ -31,7 +31,7 @@
   </style>
 </head>
 <body> 
-<div class="container mt-3 center-form">
+<div class=" mt-3 center-form" style ="padding-top:70px; margin-right:100px;"	>
 <h2 class="">약관동의</h2>
 <form  
       action="createForm"

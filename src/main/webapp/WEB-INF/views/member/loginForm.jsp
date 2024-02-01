@@ -97,9 +97,10 @@
 }
 
 .social-login {
-	padding-top: 20px;
-	margin-right: 200px;
-	margin-left: 520px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction:column
 }
 
 .google-login {
@@ -179,19 +180,18 @@
 }
 
 .login-form {
-	margin-left: 550px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction:column
 }
 
-.first-input {
+.information-input {
 	font-family: 'Noto Sans KR', sans-serif;
-	margin-right: 520px;
+	width:70%;
+	margin-bottom:15px;
 }
 
-.userName2 {
-	font-family: 'Noto Sans KR', sans-serif;
-	font-size: 14px;
-	margin-right: 350px;
-}
 
 .input {
 	display: flex;
@@ -208,24 +208,19 @@
 	border-radius: 10px; /* 둥근 테두리 설정 */
 	font-size: 14px;
 	outline: none; /* 포커스 효과 제거 */
-	width: 1000px; /* 원하는 넓이 설정 */
+	width:100%;
 }
 
 .input input::placeholder {
 	color: #999;
 }
 
-.third-input {
-	font-family: 'Noto Sans KR', sans-serif;
-	margin-right: 520px;
-	margin-top: 30px;
-	margin-bottom: 30px;
-}
 
-.userName1 {
+
+.userName{
 	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 14px;
-	margin-right: 350px;
+
 }
 
 .last-1 {
@@ -250,15 +245,20 @@
 .find {
 	margin-left: 500px;
 }
+.form-check {
+	display:flex;
+	width:70%;
+}
 </style>
 
 </head>
 <body>
+
 	<div class="modal-header">
 		<p class="modal-title">Sign up to download unlimited full
 			resolution smedia</p>
 	</div>
-
+	<div style ="display:flex; flex-direction:column; justify-content:center; padding : 0 300px;" >
 
 	<h2 class='login-text'>로그인</h2>
 	<div class="social-login">
@@ -286,16 +286,16 @@
 
 
 	<form action="/member/login" method="post" class="login-form">
-		<div class="first-input">
-			<div class="userName2">*사용자 이메일</div>
+		<div class="information-input">
+			<div class="userName">*사용자 이메일</div>
 			<div class="input">
 				<input type="text" name="Email" id="Email" required="required"
 					placeholder="Enter your username" value='${c_id_val}' />
 			</div>
 		</div>
 
-		<div class="third-input">
-			<div class="userName1">*비밀번호</div>
+		<div class="information-input">
+			<div class="userName">*비밀번호</div>
 			<div class="input">
 				<input type="password" class="form-control" id="pwd"
 					placeholder="Enter password" name="passwd" required="required" />
@@ -353,6 +353,6 @@
 		
 		 			
 
-
+</div>
 </body>
 </html>
