@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class ConcertDTO {
-	private String conid;
+	private int conid;
 	private String name;
 	private String date;
 	private String week;

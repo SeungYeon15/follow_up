@@ -25,7 +25,14 @@ public class ConcertController {
 	public String Concert(Model model) {
 		List<ConcertDTO> list = mapper.list();
 		model.addAttribute("list", list);
-		return "/concert/list";
+		return "/list";
+	}
+	
+	@GetMapping("/concert/detail")
+	public String detail(int conid, Model model) {
+		ConcertDTO dto = mapper.detail(conid);
+		model.addAttribute("dto", dto);
+		return "/detail";
 	}
 	
 }

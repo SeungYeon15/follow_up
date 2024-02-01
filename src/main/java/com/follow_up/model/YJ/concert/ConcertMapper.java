@@ -7,4 +7,6 @@ public interface ConcertMapper {
 
 	List<ConcertDTO> list();
 
+	ConcertDTO detail(int conid);
+
 }

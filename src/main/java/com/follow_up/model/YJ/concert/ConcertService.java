@@ -6,5 +6,6 @@ import java.util.Map;
 public interface ConcertService {
 
 	List<ConcertDTO> list();
-
+	
+	ConcertDTO detail(int conid);
 }
