@@ -1,10 +1,11 @@
 package com.follow_up;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesView;
 import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
- 
+
 @Configuration
 public class TilesConfiguration {
   @Bean
@@ -15,6 +16,7 @@ public class TilesConfiguration {
 				 							"classpath:/templates/tiles-schedule.xml",
     		  								 "classpath:/templates/tiles-company.xml",
 				 							 "classpath:/templates/tiles-board.xml",
+				 							"classpath:/templates/tiles-music.xml",
 				 							 "classpath:/templates/tiles-notice.xml"
       										});
       configurer.setCheckRefresh(true);
@@ -27,4 +29,5 @@ public class TilesConfiguration {
       tilesViewResolver.setViewClass(TilesView.class);
       return tilesViewResolver;
   }
+
 }
