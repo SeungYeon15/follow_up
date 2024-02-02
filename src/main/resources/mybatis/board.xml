@@ -82,7 +82,7 @@
 		WHERE #{bnum} > bnum
 		ORDER BY
 		bnum
-		ASC LIMIT 1;
+		DESC LIMIT 1;
 	</select>
 
 	<!-- 조회수 증가 -->

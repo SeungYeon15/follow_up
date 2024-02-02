@@ -41,7 +41,6 @@
 	</div>
 
 	<div id="next-section" class="info-section">
-		<!-- <img src="../images/warner-music-banner.jpg" alt="Concert crowd"> -->
 		<div class="info-content">
 			<h2 mt-3>
 				About <a href="https://www.wmg.com" class="company_link">Warner
