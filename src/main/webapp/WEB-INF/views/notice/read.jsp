@@ -41,25 +41,24 @@
 		url += "&word=${param.word}";
 		url += "&nnum=${dto.nnum}";
 		location.href = url;
+	}
+	
+	function prev() {
+		let url = "read";
+		url += "?nnum=${prevNnum}";
+		url += "&nowPage=${param.nowPage}";
+		url += "&col=${param.col}";
+		url += "&word=${param.word}";
+		location.href = url;
+	}
 
-		function prev() {
-			let url = "read";
-			url += "?bnum=${prevNnum}";
-			url += "&nowPage=${param.nowPage}";
-			url += "&col=${param.col}";
-			url += "&word=${param.word}";
-			location.href = url;
-		}
-
-		function next() {
-			let url = "read";
-			url += "?bnum=${nextNnum}";
-			url += "&nowPage=${param.nowPage}";
-			url += "&col=${param.col}";
-			url += "&word=${param.word}";
-			location.href = url;
-		}
-
+	function next() {
+		let url = "read";
+		url += "?nnum=${nextNnum}";
+		url += "&nowPage=${param.nowPage}";
+		url += "&col=${param.col}";
+		url += "&word=${param.word}";
+		location.href = url;
 	}
 </script>
 
