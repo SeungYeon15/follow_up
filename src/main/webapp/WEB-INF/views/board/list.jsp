@@ -18,9 +18,9 @@
 <link rel="stylesheet" href="/css/board.css">
 
 <script type="text/javascript">
-	/* window.onload = function() {
+	window.onload = function() {
 		// userId 값을 세션에서 가져옴 (JSP EL 사용)
-		let userId = "" // "${sessionScope.userId}";
+		let userId = "${sessionScope.userId}" // "";
 
 		// userId 값이 없을 경우 (로그인하지 않은 경우)
 		if (!userId) {
@@ -32,7 +32,7 @@
 			url += '?returnUrl=' + encodeURIComponent(window.location.href); // 현재 페이지 주소를 returnUrl 파라미터로 추가
 			location.href = url;
 		}
-	} */
+	}
 
 	function read(bnum) {
 		let url = "read";
@@ -61,8 +61,8 @@
 				onclick="location.href='/board/list';">Community</button>
 		</div>
 		<form action="./list">
-			<input type="hidden" name='userId' value="admin">
-			<!--value="${sessionScope.id}"-->
+			<input type="hidden" name='userId' value="${sessionScope.userId}">
+			<!--value="admin"-->
 			<div class="row">
 				<div class='col-3'>
 					<select class="form-select" name="col">
@@ -89,13 +89,10 @@
 						</button>
 					</div>
 				</div>
-				<%-- <c:if
-							test="${not empty sessionScope.id && sessionScope.grade == 'A'}"> --%>
 				<div class='col'>
 					<button type="button" class="btn btn-dark"
 						onclick="location.href='./create'">Post</button>
 				</div>
-				<%-- </c:if> --%>
 			</div>
 		</form>
 		<table class="table table-hover">
