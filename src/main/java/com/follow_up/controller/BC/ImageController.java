@@ -139,13 +139,13 @@ public class ImageController {
 //        여기서 세션 값을 이용해서, 권한
 //        만약 세션에 저장되어있는 값들을 저장해서 리턴 을어캐시미
         System.out.println("pagemovedy요청 들어옴");
-        int id= 0 ;
+        int id= 0;
         try{
             id = (Integer) session.getAttribute("userId");
             System.out.println("유져id" + id);
         }
         catch (Exception e){
-            System.out.println("유져id 오류." + id);
+            System.out.println("유져id 오류." + e);
             return null;
         }
 
