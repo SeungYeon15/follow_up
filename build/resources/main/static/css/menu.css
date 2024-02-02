@@ -1,14 +1,14 @@
-
 .logo {
   position: absolute;
   text-transform: uppercase;
   font-size: 20px;
   margin: 1.2em;
   left: 2%;
-  top: 0%;
+  top: 2.7%;
   font-weight: 900;
   color: #5c5c5c;
   font-family: "Cinzel";
+  z-index:400;
 }
 .container {
   position: absolute;
@@ -49,13 +49,11 @@
 .container a:active:after {
   width: 100%;
 }
-
 h1 {
   position: relative;
   text-align: center;
   font-family: "Varela Round", serif;
 }
-
 .button_container {
   position: fixed;
   z-index:900;
@@ -99,7 +97,6 @@ h1 {
 .button_container span:nth-of-type(3) {
   top: 22px;
 }
-
 .overlay {
 z-index:500;
   position: fixed;
@@ -149,10 +146,12 @@ z-index:500;
   position: relative;
   height: 100%;
 }
+.overlay ul{display: grid; grid-template-columns: 1fr 1fr;}
+
 .overlay ul li {
   display: block;
   height: 25%;
-  height: calc(100% / 4);
+  height: calc(100% / 6);
   min-height: 50px;
   position: relative;
   opacity: 0;
@@ -167,7 +166,7 @@ z-index:500;
 .overlay ul li a:hover:after,
 .overlay ul li a:focus:after,
 .overlay ul li a:active:after {
-  width: 100%;
+  width: 35%;
 }
 .overlay ul li a:after {
   content: "";
@@ -180,7 +179,6 @@ z-index:500;
   background: #fff;
   transition: 0.35s;
 }
-
 @keyframes fadeInRight {
   0% {
     opacity: 0;
@@ -190,4 +188,21 @@ z-index:500;
     opacity: 1;
     left: 0;
   }
+}  
+
+/* 로그인 링크 스타일링 */
+.login-link, .user-info {
+	color: white;
+	border : none;
+	position: absolute;
+	top: 5%;
+	left: 5%;
+	text-decoration: none;
+	font-size: 20px;
+}
+
+.logout-link {
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
 }

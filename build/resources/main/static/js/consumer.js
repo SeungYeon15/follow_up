@@ -111,8 +111,8 @@ modalRegisterBtn.on('click', function(e) {
 $(".chat").on("click", "li", function(e) {
 	let rnum = $(this).data("rnum");
 
-	/*	let lid = $(this).data("userid");
-		console.log("lid: " + lid);*/
+	let lid = $(this).data("userid");
+	console.log("lid: " + lid);
 
 	get(rnum)
 		.then(reply => {
@@ -120,16 +120,17 @@ $(".chat").on("click", "li", function(e) {
 			modal.data("rnum", reply.rnum);
 			modal.find("button[id !='modalCloseBtn']").hide();
 
-			/*			if (userId == lid) {
-							modalModBtn.show();
-							modalRemoveBtn.show();
-						}*/
+			if (userId == lid) {
+				modalModBtn.show();
+				modalRemoveBtn.show();
+			}
 			modalModBtn.show();
 			modalRemoveBtn.show();
 
 			modal.modal("show");
 		});
 });
+
 //댓글 수정
 modalModBtn.on("click", function(e) {
 	let reply = { rnum: modal.data("rnum"), rcontent: modalInputContent.val() };
