@@ -15,7 +15,7 @@
 <meta charset="UTF-8">
 <title>Board Read</title>
 <script type="text/javascript">
-	let loginId = "user1" // "${sessionScope.userId}";
+	let loginId = "${sessionScope.userId}" // "user1";
 
 	function list() {
 		let url = "list";
@@ -27,7 +27,7 @@
 	}
 
 	function board_update() {
-		if ('${dto.bnum}' !== loginId) {
+		if ('${dto.bname}' !== loginId) {
 			alert('수정 권한이 없습니다.');
 		} else {
 			let url = "update";
@@ -73,8 +73,8 @@
 
 </head>
 <body>
-	<input type="hidden" name='userId' value="admin">
-	<!--value="${sessionScope.userId}"-->
+	<input type="hidden" name='userId' value="${sessionScope.userId}">
+	<!--value="admin"-->
 	<header class="header">
 		<!-- <h1>Dua Lipa</h1> -->
 	</header>
@@ -176,7 +176,7 @@
 		let nowPage = "${param.nowPage}";
 		let colx = "${param.col}";
 		let wordx = "${param.word}";
-		let userId = "admin"/* "${sessionScope.userId}" */;
+		let userId = "${sessionScope.userId}"/* "admin" */;
 		console.log("userId: " + userId);
 	</script>
 	<script src="/js/producer.js" defer></script>
