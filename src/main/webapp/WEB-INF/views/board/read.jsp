@@ -15,7 +15,7 @@
 <meta charset="UTF-8">
 <title>Board Read</title>
 <script type="text/javascript">
-	let loginId = "${sessionScope.userId}" // "user1";
+	let loginId = "${sessionScope.userName}" // "user1";
 
 	function list() {
 		let url = "list";
@@ -73,7 +73,7 @@
 
 </head>
 <body>
-	<input type="hidden" name='userId' value="${sessionScope.userId}">
+	<input type="hidden" name='userId' value="${sessionScope.userName}">
 	<!--value="admin"-->
 	<header class="header">
 		<!-- <h1>Dua Lipa</h1> -->
@@ -176,7 +176,7 @@
 		let nowPage = "${param.nowPage}";
 		let colx = "${param.col}";
 		let wordx = "${param.word}";
-		let userId = "${sessionScope.userId}"/* "admin" */;
+		let userId = "${sessionScope.userName}"/* "admin" */;
 		console.log("userId: " + userId);
 	</script>
 	<script src="/js/producer.js" defer></script>

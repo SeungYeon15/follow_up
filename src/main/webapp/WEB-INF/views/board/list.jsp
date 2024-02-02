@@ -20,7 +20,7 @@
 <script type="text/javascript">
 	window.onload = function() {
 		// userId 값을 세션에서 가져옴 (JSP EL 사용)
-		let userId = "${sessionScope.userId}" // "";
+		let userId = "${sessionScope.userName}" // "";
 
 		// userId 값이 없을 경우 (로그인하지 않은 경우)
 		if (!userId) {
@@ -61,7 +61,7 @@
 				onclick="location.href='/board/list';">Community</button>
 		</div>
 		<form action="./list">
-			<input type="hidden" name='userId' value="${sessionScope.userId}">
+			<input type="hidden" name='userId' value="${sessionScope.userName}">
 			<!--value="admin"-->
 			<div class="row">
 				<div class='col-3'>
