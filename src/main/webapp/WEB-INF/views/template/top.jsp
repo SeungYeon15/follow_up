@@ -40,7 +40,7 @@
 				<li><a href="/company">AGENCY</a></li>
 				<li><a href="/notice/list">BOARD</a></li>
 				<li><a href="/board/list">COMMUNITY</a></li>
-				<li><a href="/member/mypage">Mypage</a></li>
+				<li><a href="/member/mypage">MYPAGE</a></li>
 				
 
 			</ul>
