@@ -82,4 +82,9 @@ public class ImageServiceImpl implements ImageService {
         return mapper.upload(dto);
     }
 
+    @Override
+    public TestUserDTO getUserById(int id) {
+        return mapper.getUserById(id);
+    }
+
 }

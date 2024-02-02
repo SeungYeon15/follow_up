@@ -35,4 +35,6 @@ public interface ImageService {
     void deleteImage(int imgId);
 
     int upload(ImageDTO dto);
+
+    TestUserDTO getUserById(int id);
 }

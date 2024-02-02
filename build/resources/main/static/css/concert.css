@@ -1,0 +1,103 @@
+.row {
+    margin: 0px;
+    border-bottom: 0.1px solid white;
+    background: rgb(238, 174, 202);
+    background: radial-gradient(
+        circle,
+        rgba(238, 174, 202, 1) 0%,
+        rgba(223, 165, 194, 1) 0%,
+        rgba(62, 44, 108, 1) 0%,
+        rgba(0, 10, 22, 1) 100%
+    );
+}
+
+body {
+    margin: 100px 100px;
+    overflow-x: hidden;
+    background: rgb(238, 174, 202);
+    background: radial-gradient(
+        circle,
+        rgba(238, 174, 202, 1) 0%,
+        rgba(223, 165, 194, 1) 0%,
+        rgba(62, 44, 108, 1) 0%,
+        rgba(0, 10, 22, 1) 100%
+    );
+}
+
+.my_img {
+    border-radius: 5%;
+    opacity: 0;
+    /* margin: 100px; */
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+}
+.hvr-float:hover + .my_img {
+    opacity: 1;
+    -webkit-transform: scale(1.2, 1.2);
+    transform: scale(1.2, 1.2);
+}
+
+/* Float */
+.hvr-float {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+    transition: all 0.5s;
+
+    font-family: "Anton", sans-serif;
+    padding: 100px;
+    font-size: 100px;
+    color: gray;
+}
+.hvr-float:hover,
+.hvr-float:focus,
+.hvr-float:active,
+.my_img:hover {
+    -webkit-transform: translateY(-8px);
+    transform: translateY(-8px);
+    color: white;
+    text-shadow: 5px 5px 5px gray;
+    z-index: 3;
+}
+
+.mar {
+    font-family: "Roboto", sans-serif;
+    font-size: 25px;
+}
+
+.mar > span {
+    color: white;
+    padding: 10px 20px;
+    margin: 5px;
+}
+
+.rounded-pill {
+    background-color: rgb(238, 174, 202);
+    /* opacity: 0.5; */
+}
+
+.pov {
+    position: relative;
+}
+.my_img {
+    position: absolute;
+
+    width: 600px !important;
+    height: 400px;
+    /* margin-left: 1000px; */
+    z-index: 2;
+}
+
+img {
+    right: 0;
+}

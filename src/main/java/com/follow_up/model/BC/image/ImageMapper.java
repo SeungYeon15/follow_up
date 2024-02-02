@@ -26,4 +26,5 @@ public interface ImageMapper {
 
     void deleteImage(int imgId);
     int upload(ImageDTO dto);
+    TestUserDTO getUserById(int id);
 }
