@@ -19,4 +19,8 @@ public interface MemberMapper {
         
         int duplicatedEmail(String email);
         
+        int updateFile(Map map);
+        
+    	MemberDTO getUserById(int id);
+
 }

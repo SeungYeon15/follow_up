@@ -14,10 +14,11 @@
 <link rel="stylesheet"
 	href="/webjars/font-awesome/5.15.4/css/all.min.css">
 <link rel="stylesheet" href="${root}/css/mypage.css">
+
 <script type="text/javascript">
 	function updateFile() {
 		let url = "/member/updateFile";
-		url += "?fname=${dto.fname}";
+		url += "?fname=${dto.userFile}";
 		location.href = url;
 	}
 </script>
@@ -27,39 +28,27 @@
 <body>
 
 	<div class="Topbar">
-		
-
 		<nav class="navbar input-box">
 			<div class="container-fluid">
 				<form class="d-flex">
 					<input class="form-control me-2 size" type="search"
 						placeholder="검색" aria-label="Search">
-					<button class="btn btn-outline-success" type="submit">Search</button>
+					<button class="btn btn-outline-success" type="submit " style="margin-left:20px">Search</button>
 				</form>
 			</div>
 		</nav>
 
 
-		<div class="inner-7">
-			<img src="/images/member.images/teal.svg" class="custom-button4" alt="" />
-		</div>
+		<div class="col-sm-3" style="margin-top:300px; margin-right:1000px;">
+  <h4><i class="bi bi-people-fill"></i> 나의 정보</h4>
+  <img class="img-rounded" src="/member/storage/${dto.userFile}" style="width:280px">
+  <p><a href = "javascript:updateFile()">사진수정</a></p>
+  <p>ID:${dto.userEmail}, 성명:${dto.userName}</p>
+  </div>
 	</div>
 
 	<div class="Midbar">
-		<script type="text/javascript">
-			function updateFile() {
-				let url = "/member/updateFile";
-				url += "?fname=${dto.fname}";
-				location.href = url;
-			}
-		</script>
 
-		<div class="secont-section">
-			<button class="message">
-				<FontAwesomeIcon icon={faComments} />
-			</button>
-			<PositionedMenu />
-		</div>
 
 		<div class="third-section">
 			<p class="third-1">여기는 볼게 없다.</p>
