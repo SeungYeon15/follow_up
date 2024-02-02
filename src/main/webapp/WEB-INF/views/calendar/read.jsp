@@ -41,11 +41,12 @@
 }
 
 :root {
-	--fc-border-color: #e7e7e76e;
+	--fc-border-color: #d3d2d2;
 	--fc-daygrid-event-dot-width: 10px;
 }
 
 html, body {
+background-color:#f2ebe5;
 	overflow: hidden;
 	font-size: 14px;
 	font-family: "Pretendard-Regular";
