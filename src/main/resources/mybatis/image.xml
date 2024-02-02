@@ -105,4 +105,9 @@
             title , tag, imgDescription, imgUrl,imgType, registerDate)
         values(#{title},#{tag},#{imgDescription},#{imgUrl},#{imgType},sysdate() );
     </insert>
+
+    <select id="getUserById" parameterType="int">
+        select userId,userFile, userName,userGrade from user
+        where userId =#{int};
+    </select>
 </mapper>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+ 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.follow_up.model.NH.member.MemberMapper">
+	<select id="getGrade" parameterType="String" resultType="Map">
+		select
+		userGrade, userName ,userId
+		from user
+		where userEmail = #{Email}
+	</select>
+
+	<select id="loginCheck" parameterType="Map" resultType="int">
+		select
+		count(*) from user
+		where userEmail = #{Email}
+		and userPasswd = #{passwd}
+	</select>
+	
+	<select id="getfind_emailcheck" parameterType="Map" resultType="String">
+		select
+		userEmail from user
+		where userName = #{name}
+	</select>
+	<select id="getfind_pwdcheck" parameterType="Map" resultType="String">
+		select
+		userPasswd from user
+		where userEmail = #{email}
+	</select>
+	
+	<select id="duplicatedEmail" parameterType="String"
+		resultType="int">
+		SELECT COUNT(userEmail)
+		FROM user
+		WHERE userEmail= #{email}
+	</select>
+	
+	<insert id="create" parameterType="com.follow_up.model.NH.member.MemberDTO">
+		INSERT INTO user( userPasswd,userFile, userRegisterDate, userName, userEmail)
+		VALUES( #{userPasswd}, #{userFile}, sysdate(), #{userName}, #{userEmail})
+	</insert>
+</mapper>
+	
+

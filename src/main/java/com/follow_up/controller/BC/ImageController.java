@@ -9,6 +9,7 @@ import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpHeaders;
@@ -133,17 +134,26 @@ public class ImageController {
 
 
     @GetMapping("/api/images/pagemove")
-    public TestUserDTO pagemove(){
-        System.out.println("경로테스트");
+    public TestUserDTO pagemove(HttpSession session){
+        System.out.println("경로");
 //        여기서 세션 값을 이용해서, 권한
 //        만약 세션에 저장되어있는 값들을 저장해서 리턴 을어캐시미
-        TestUserDTO testUserDTO = new TestUserDTO();
-        testUserDTO.setUserId(1);
-        testUserDTO.setUserFile("https://images.unsplash.com/photo-1523413651479-597eb2da0ad6");
-        testUserDTO.setUserGrade("A");
-        testUserDTO.setUserName("병찬");
-        return testUserDTO;
-//        return null;
+
+        int id=0;
+        try{
+            id = (Integer) session.getAttribute("id");
+        }
+        catch (Exception e){
+            return null;
+        }
+
+        return imageService.getUserById(id);
+//        TestUserDTO testUserDTO = new TestUserDTO();
+//        testUserDTO.setUserId(1);
+//        testUserDTO.setUserFile("https://images.unsplash.com/photo-1523413651479-597eb2da0ad6");
+//        testUserDTO.setUserGrade("A");
+//        testUserDTO.setUserName("병찬");
+//        return testUserDTO;
     }
 
     @PostMapping("/api/images/upload")
@@ -157,15 +167,15 @@ public class ImageController {
         if(size >0 ) {
             String filename = Utility.saveFileSpring(dto.getFilenameMF(), UploadImage.getUploadDir());
 //          지금은 파일 이름이지만 , 링크로 바꿔주기?
-            dto.setImgUrl("http://localhost:8000/images/storage/"+filename);
+            dto.setImgUrl("/images/storage/"+filename);
 
         }else {
-            dto.setImgUrl("http://localhost:8000/images/storage/default.jpg");
+            dto.setImgUrl("/images/storage/default.jpg");
         }
 
         int cnt = imageService.upload(dto);
         if(cnt>0)   return ResponseEntity.ok("Images upload successfully");
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error upload comment");
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error upload Images");
     }
 
 
