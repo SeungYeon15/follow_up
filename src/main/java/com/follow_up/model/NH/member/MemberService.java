@@ -12,4 +12,6 @@ public interface MemberService {
 	Map<String,String> getGrade(String id);
 	int duplicatedEmail(String email);
 	int create(MemberDTO dto);
+	int updateFile(Map map);
+	MemberDTO getUserById(int id);
 }

@@ -10,10 +10,10 @@ import lombok.*;
 
 public class MemberDTO{
 
-	public String getUserId() {
+	public int getUserId() {
 		return userId;
 	}
-	public void setUserId(String userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 	public String getUserPasswd() {
@@ -53,10 +53,10 @@ public class MemberDTO{
 		this.userGrade = userGrade;
 	}
 	public MultipartFile getFnameMF() {
-		return fnameMF;
+		return FnameMF;
 	}
-	public void setFnameMF(MultipartFile fnameMF) {
-		this.fnameMF = fnameMF;
+	public void setFnameMF(MultipartFile FnameMF) {
+		this.FnameMF = FnameMF;
 	}
 	
 	@Override
@@ -70,13 +70,13 @@ public class MemberDTO{
 				+ super.toString() + "]";
 	}
 	
-	private String userId;
+	private int userId;
 	private String userPasswd   ;
 	private String userFile  ;
 	private String userRegisterDate  ;
     private String userName    ;
     private String userEmail    ;
     private String userGrade;
-    private MultipartFile fnameMF;
+    private MultipartFile FnameMF;
 
 }

@@ -14,8 +14,8 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
         registry.addResourceHandler("/contents/storage/**")
                         .addResourceLocations("file:///" + UploadCon.getUploadDir());
  
-//        registry.addResourceHandler("/member/storage/**")
-//                 .addResourceLocations("file:///" + UploadMem.getUploadDir());
+        registry.addResourceHandler("/member/storage/**")
+                 .addResourceLocations("file:///" + UploadMem.getUploadDir());
     }
  
 }

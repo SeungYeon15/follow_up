@@ -49,4 +49,16 @@ public class MemberServiceImpl implements MemberService {
 		return mapper.create(dto);
 	}
 	
+	@Override
+	  public int updateFile(Map map) {
+	    // TODO Auto-generated method stub
+	    return mapper.updateFile(map);
+	  }
+	
+
+	@Override
+	public MemberDTO getUserById(int id) {
+		// TODO Auto-generated method stub
+		return mapper.getUserById(id);
+	}
 }

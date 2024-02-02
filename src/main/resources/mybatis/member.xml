@@ -41,6 +41,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		INSERT INTO user( userPasswd,userFile, userRegisterDate, userName, userEmail)
 		VALUES( #{userPasswd}, #{userFile}, sysdate(), #{userName}, #{userEmail})
 	</insert>
+	<select id="getUserById" parameterType="int" resultType="com.follow_up.model.NH.member.MemberDTO">
+		select * from user 
+		where userId = #{id}
+	</select>	
+	
 </mapper>
 	
 

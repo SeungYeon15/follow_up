@@ -147,6 +147,22 @@ public class MemberController {
 			return map;
 	}
 	
+	@GetMapping(value = "/member/emailcheck", produces = "application/json;charset=utf-8")
+	@ResponseBody
+	public Map<String, String> emailcheck(String email) {
+		int cnt = service.duplicatedEmail(email);
+		Map<String, String> map = new HashMap<String, String>();
+
+		if (cnt > 0) {
+			map.put("str", email + "는 중복되어서 사용할 수 없습니다.");
+		} else {
+			map.put("str", email + "는 중복아님, 사용가능합니다.");
+		}
+
+		return map;
+
+	}
+	
 	@PostMapping("/member/find_pwd")
 	@ResponseBody
 	public Map<String,String> find_pwd (HttpServletRequest request) {
@@ -188,46 +204,74 @@ public class MemberController {
 		//
 		//}
 		String fname = Utility.saveFileSpring(dto.getFnameMF(), UploadMem.getUploadDir());
+		
 		long fsize = dto.getFnameMF().getSize();
-
-		if (fsize == 0)
+		System.out.println(fsize);
+		if (fsize == 0) {
 			fname = "member.jpg";
+		}
+			
 
 		dto.setUserFile(fname);
 
 		int cnt = service.create(dto);
 
 		if (cnt > 0) {
-			return "redirect:/";
+			return "redirect:/member/mypage";
 		} else {
 			return "error";
 		}
 
 	}// create() end
 	
-	@GetMapping(value = "/member/emailcheck", produces = "application/json;charset=utf-8")
-	@ResponseBody
-	public Map<String, String> emailcheck(String email) {
-		int cnt = service.duplicatedEmail(email);
-		Map<String, String> map = new HashMap<String, String>();
-
-		if (cnt > 0) {
-			map.put("str", email + "는 중복되어서 사용할 수 없습니다.");
-		} else {
-			map.put("str", email + "는 중복아님, 사용가능합니다.");
-		}
-
-		return map;
-
-	}
 	
-	@GetMapping("/member/mypage")
-	public String mypage() {
-
-		return "/member/mypage";
-	}
 		
+	@GetMapping("/member/mypage")
+	public String mypage(HttpSession session, Model model) {
+	   int id = (int)session.getAttribute("userId");
+	 
+	   try {
+           MemberDTO dto = service.getUserById(id);
+           System.out.println(dto.toString());
+           model.addAttribute("dto", dto);
+
+           return "/member/mypage";
+       } catch (Exception e) {
+           // 예외 처리 로직 추가
+           e.printStackTrace(); // 실제로는 로깅이나 적절한 예외 처리를 수행해야 합니다.
+           return "redirect:./login/"; // 에러 페이지로 리다이렉트 또는 해당하는 에러 페이지로 이동하도록 처리
+       }
+   }
 	
+	
+	
+	
+//	@PostMapping("/member/updateFile")
+//	public String updateFile(MultipartFile fname, String oldfile, String id) {
+//		
+//		if(oldfile != null && oldfile.equals("member.jpg")) {
+//			Utility.deleteFile(UploadMem.getUploadDir(), oldfile);
+//		}
+//		
+//		String filename = Utility.saveFileSpring(fname, UploadMem.getUploadDir());
+//		
+//		Map map = new HashMap();
+//		map.put("id", id);
+//		map.put("fname", filename);
+//		
+//		int cnt = service.updateFile(map);
+//		
+//		if(cnt>0) {
+//			return "redirect:/member/mypage";
+//		}else {
+//			return "error";
+//		}
+//	}
+	
+	@GetMapping("/member/updateFile")
+	public String updateFile() {
+		return "/member/updateFile";
+	}
 	
 	
 //
