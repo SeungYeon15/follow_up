@@ -17,7 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 
-import org.springframework.web.bind.annotation.CrossOrigin;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,15 +26,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
-
-@CrossOrigin(origins = {
-        "http://localhost:8000",
-        "http://18.217.50.87:8000",
-        "http://localhost:3000",
-        "https://localhost:3000",
-        "https://127.0.0.1:3000",
-        "http://18.217.50.87:3000"
-})
 @RestController
 public class ImageController {
     @Autowired
