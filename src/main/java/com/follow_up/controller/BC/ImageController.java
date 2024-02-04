@@ -24,7 +24,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {
+        "http://localhost:8000",
+        "http://18.217.50.87:8000",
+        "http://localhost:3000",
+        "https://localhost:3000",
+        "https://127.0.0.1:3000",
+        "http://18.217.50.87:3000"
+})
 @RestController
 public class ImageController {
     @Autowired
