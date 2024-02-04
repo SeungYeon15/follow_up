@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.follow_up.model.SH.notice.NoticeMapper">
+	<!-- 공지사항 목록 -->
+	<select id="list" parameterType="Map"
+		resultType="com.follow_up.model.SH.notice.NoticeDTO">
+		SELECT nnum, ntitle, ncontent, userId, npasswd, nview, ndate
+		FROM notice
+		<where>
+			<choose>
+				<when test="col=='userId'">
+					userId like CONCAT('%',#{word},'%')
+				</when>
+				<when test="col=='ntitle'">
+					ntitle like CONCAT('%',#{word},'%')
+				</when>
+				<when test="col=='ncontent'">
+					ncontent like CONCAT('%',#{word},'%')
+				</when>
+				<when test="col=='ntitle_ncontent'">
+					ntitle like CONCAT('%',#{word},'%')
+					or
+					ncontent like
+					CONCAT('%',#{word},'%')
+				</when>
+			</choose>
+		</where>
+		ORDER BY nnum DESC
+		limit #{sno} , #{cnt}
+	</select>
+
+	<!-- total -->
+	<select id="total" resultType="int" parameterType="Map">
+		select count(*) from notice
+		<where>
+			<choose>
+				<when test="col=='userId'">
+					userId like CONCAT('%',#{word},'%')
+				</when>
+				<when test="col=='ntitle'">
+					ntitle like CONCAT('%',#{word},'%')
+				</when>
+				<when test="col=='ncontent'">
+					ncontent like CONCAT('%',#{word},'%')
+				</when>
+				<when test="col=='ntitle_ncontent'">
+					ntitle like CONCAT('%',#{word},'%')
+					or
+					ncontent like
+					CONCAT('%',#{word},'%')
+				</when>
+			</choose>
+		</where>
+	</select>
+
+	<!-- 공지사항 조회 -->
+	<select id="read" parameterType="int"
+		resultType="com.follow_up.model.SH.notice.NoticeDTO">
+		SELECT nnum, ntitle, ncontent, userId, npasswd, nview, ndate
+		FROM notice
+		WHERE nnum = #{nnum}
+	</select>
+
+	<!-- 다음글 -->
+	<select id="nextNnum" parameterType="int"
+		resultType="com.follow_up.model.SH.notice.NoticeDTO">
+		SELECT nnum, ntitle
+		FROM notice
+		WHERE nnum > #{nnum}
+		ORDER BY
+		nnum
+		ASC LIMIT 1;
+	</select>
+	
+	<!-- 이전글 -->
+	<select id="prevNnum" parameterType="int"
+		resultType="com.follow_up.model.SH.notice.NoticeDTO">
+		SELECT nnum, ntitle
+		FROM notice
+		WHERE #{nnum} > nnum
+		ORDER BY
+		nnum
+		DESC LIMIT 1;
+	</select>
+
+	<!-- 조회수 증가 -->
+	<update id="upViewcnt" parameterType="int">
+		UPDATE notice
+		SET nview = nview + 1
+		WHERE nnum = #{nnum}
+	</update>
+
+	<!-- 공지사항 등록 -->
+	<insert id="create"
+		parameterType="com.follow_up.model.SH.notice.NoticeDTO">
+		INSERT INTO notice(ntitle, ncontent, userId, npasswd,
+		nview, ndate)
+		VALUES(#{ntitle}, #{ncontent}, #{userId}, #{npasswd}, 0,
+		NOW())
+	</insert>
+
+	<!-- 패스워드 확인 -->
+	<select id="passCheck" parameterType="Map" resultType="int">
+		SELECT
+		COUNT(nnum) as cnt
+		FROM notice
+		WHERE nnum=#{nnum}
+		AND npasswd=#{npasswd}
+	</select>
+
+	<!-- 공지사항 삭제 -->
+	<delete id="delete" parameterType="int">
+		DELETE
+		FROM notice
+		WHERE
+		nnum=#{nnum}
+	</delete>
+
+	<!-- 공지사항 수정 -->
+	<update id="update"
+		parameterType="com.follow_up.model.SH.notice.NoticeDTO">
+		UPDATE notice
+		<set>
+			ntitle = #{ntitle} , ncontent = #{ncontent},
+		</set>
+		WHERE nnum=#{nnum}
+	</update>
+</mapper>
