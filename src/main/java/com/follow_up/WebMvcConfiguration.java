@@ -31,11 +31,16 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
 
 
     @Override
-    public void addCorsMappings(CorsRegistry registry) {
+    public void addCorsMappings(CorsRegistry registry){
         registry.addMapping("/**")
-                .allowedOrigins("http://18.217.50.87:3000")
-                .allowedMethods("OPTIONS", "GET", "POST", "PUT", "DELETE")
-                .allowCredentials(true)
+                .allowedOrigins("http://localhost:8000", "http://18.217.50.87:8000",
+                        "http://localhost:3000",
+                        "https://localhost:3000",
+                        "https://127.0.0.1:3000",
+                        "http://18.217.50.87:3000"
+                )
+                .allowedMethods("GET", "POST", "PUT", "DELETE")
                 .maxAge(3600);
+
     }
 }
