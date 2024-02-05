@@ -226,86 +226,102 @@ public class MemberController {
 	
 	
 		
+//	@GetMapping("/member/mypage")
+//	public String mypage(HttpSession session, Model model) {
+//	   int id = (int)session.getAttribute("userId");
+//	 
+//	   try {
+//           MemberDTO dto = service.getUserById(id);
+//           System.out.println(dto.toString());
+//           model.addAttribute("dto", dto);
+//
+//           return "/member/mypage";
+//       } catch (Exception e) {
+//           // 예외 처리 로직 추가
+//           e.printStackTrace(); // 실제로는 로깅이나 적절한 예외 처리를 수행해야 합니다.
+//           return "redirect:/member/login"; 
+//       }
+//   }
+   
 	@GetMapping("/member/mypage")
 	public String mypage(HttpSession session, Model model) {
-	   int id = (int)session.getAttribute("userId");
-	 
-	   try {
-           MemberDTO dto = service.getUserById(id);
-           System.out.println(dto.toString());
-           model.addAttribute("dto", dto);
+	   Integer userId = (Integer)session.getAttribute("userId");
 
-           return "/member/mypage";
-       } catch (Exception e) {
-           // 예외 처리 로직 추가
-           e.printStackTrace(); // 실제로는 로깅이나 적절한 예외 처리를 수행해야 합니다.
-           return "redirect:./login/"; // 에러 페이지로 리다이렉트 또는 해당하는 에러 페이지로 이동하도록 처리
-       }
-   }
+	   try {
+	       if (userId == null) {
+	           // 로그인되지 않은 사용자 처리
+	           return "redirect:/member/login";
+	       }
+
+	       MemberDTO dto = service.getUserById(userId);
+	       System.out.println(dto.toString());
+	       model.addAttribute("dto", dto);
+
+	       return "/member/mypage";
+	   } catch (Exception e) {
+	       // 예외 처리 로직 추가
+	       e.printStackTrace(); // 실제로는 로깅이나 적절한 예외 처리를 수행해야 합니다.
+	       return "redirect:/member/login"; 
+	   }
+	}
+
 	
-	
-	
-	
-//	@PostMapping("/member/updateFile")
-//	public String updateFile(MultipartFile fname, String oldfile, String id) {
-//		
-//		if(oldfile != null && oldfile.equals("member.jpg")) {
-//			Utility.deleteFile(UploadMem.getUploadDir(), oldfile);
-//		}
-//		
-//		String filename = Utility.saveFileSpring(fname, UploadMem.getUploadDir());
-//		
-//		Map map = new HashMap();
-//		map.put("id", id);
-//		map.put("fname", filename);
-//		
-//		int cnt = service.updateFile(map);
-//		
-//		if(cnt>0) {
-//			return "redirect:/member/mypage";
-//		}else {
-//			return "error";
-//		}
-//	}
+	@PostMapping("/member/updateFile")
+	public String updateFile(MultipartFile fname, String oldfile, int id) {
+		
+		if(oldfile != null && oldfile.equals("member.jpg")) {
+			Utility.deleteFile(UploadMem.getUploadDir(), oldfile);
+		}
+		
+		String filename = Utility.saveFileSpring(fname, UploadMem.getUploadDir());
+		
+		Map map = new HashMap();
+		map.put("id", id);
+		map.put("file", filename);
+		
+		int cnt = service.updateFile(map);
+		
+		if(cnt>0) {
+			return "redirect:/member/mypage";
+		}else {
+			return "error";
+		}
+	}
 	
 	@GetMapping("/member/updateFile")
 	public String updateFile() {
 		return "/member/updateFile";
 	}
 	
+	@GetMapping("/member/update/{id}")
+	public String update(@PathVariable int id,  Model model) {
+
+		MemberDTO dto = service.read(id);
+
+		model.addAttribute("dto", dto);
+
+		return "/member/update";
+
+	}
 	
-//
-//	@PostMapping("/member/create")
-//	public String create(MemberDTO dto) {
-//		//아이디 중복확인 한다. (service....)
-//		int cnt2 = service.duplicatedId(dto.getUserId());
-//		int cnt1 = service.duplicatedEmail(dto.getUserEmail());
-//		
-//		if(cnt2>0 || cnt1>0) {
-//			
-//			return "error2";
-//		}
-//		
-//		//이메일 중복확인 한다. 
-//		//if(cnt1>0 || cnt2>0){
-//		//
-//		//}
-//		String fname = Utility.saveFileSpring(dto.getFnameMF(), UploadMem.getUploadDir());
-//		long fsize = dto.getFnameMF().getSize();
-//
-//		if (fsize == 0)
-//			fname = "member.jpg";
-//
-//		dto.setFname(fname);
-//
-//		int cnt = service.create(dto);
-//
-//		if (cnt > 0) {
-//			return "redirect:/";
-//		} else {
-//			return "error";
-//		}
-//
-//	}// create() end
+	
+	@PostMapping("/member/update")
+    public String update(MemberDTO dto, Model model, HttpSession session){
+
+        int cnt  = service.update(dto);
+
+
+        if(cnt>0) {
+//            if(session.getAttribute("grade").equals("A")) {
+//                return "redirect:/admin/member/list";
+//            }
+            return "redirect:/";
+        }
+        return "error";
+
+    }
+	
+	
+	
 	
 }// class end
