@@ -45,7 +45,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from user 
 		where userId = #{id}
 	</select>	
-	
+	<update id="updateFile" parameterType="Map">
+		update user
+		set
+		userFile = #{file}
+		where userId = #{id}
+	</update>
+	<select id="read" parameterType="int"
+		resultType="com.follow_up.model.NH.member.MemberDTO">
+		select *
+		from user
+		where userId = #{id}
+	</select>
+	<update id="update" parameterType="com.follow_up.model.NH.member.MemberDTO">
+		update user
+		set
+		userEmail = #{email},
+		userPasswd = #{passwd},
+		where userId = #{id}
+	</update> 
 </mapper>
 	
 

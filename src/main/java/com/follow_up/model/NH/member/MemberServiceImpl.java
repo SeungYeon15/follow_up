@@ -61,4 +61,16 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return mapper.getUserById(id);
 	}
+	
+	@Override
+	public MemberDTO read(int id) {
+		// TODO Auto-generated method stub
+		return mapper.read(id);
+	}
+	
+	@Override
+	public int update(MemberDTO dto) {
+		// TODO Auto-generated method stub
+		return mapper.update(dto);
+	}
 }

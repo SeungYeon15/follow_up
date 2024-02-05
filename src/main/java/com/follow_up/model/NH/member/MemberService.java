@@ -14,4 +14,6 @@ public interface MemberService {
 	int create(MemberDTO dto);
 	int updateFile(Map map);
 	MemberDTO getUserById(int id);
+	MemberDTO read(int id);
+	int update(MemberDTO dto);
 }

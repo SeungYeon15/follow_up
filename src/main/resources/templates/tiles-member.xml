@@ -30,6 +30,11 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/member/updateFileForm.jsp" />
 	</definition>
+	<definition name="/member/update" extends="main">
+		<put-attribute name="title" value="정보수정"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/member/updateForm.jsp" />
+	</definition>
 
 
 

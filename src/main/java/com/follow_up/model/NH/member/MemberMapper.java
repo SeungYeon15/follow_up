@@ -22,5 +22,11 @@ public interface MemberMapper {
         int updateFile(Map map);
         
     	MemberDTO getUserById(int id);
+    	
+    	MemberDTO read(int id);
+    	
+    	int update(MemberDTO dto);
+    	
+    	
 
 }
