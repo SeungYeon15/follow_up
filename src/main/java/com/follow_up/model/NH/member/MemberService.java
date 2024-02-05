@@ -16,4 +16,5 @@ public interface MemberService {
 	MemberDTO getUserById(int id);
 	MemberDTO read(int id);
 	int update(MemberDTO dto);
+	List<MemberDTO> list();
 }

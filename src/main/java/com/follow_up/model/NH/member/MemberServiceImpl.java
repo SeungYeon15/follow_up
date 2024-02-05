@@ -73,4 +73,9 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return mapper.update(dto);
 	}
+	@Override
+	public List<MemberDTO> list() {
+		// TODO Auto-generated method stub
+		return mapper.list();
+	}
 }

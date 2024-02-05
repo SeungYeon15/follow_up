@@ -64,6 +64,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		userPasswd = #{userPasswd}
 		where userId = #{userId}
 	</update> 
+	<select id="list" resultType="com.follow_up.model.NH.member.MemberDTO">
+		SELECT userId, userName,  userEmail, userRegisterDate, userFile
+		FROM
+		user		
+	</select>
 </mapper>
 	
 

@@ -27,6 +27,6 @@ public interface MemberMapper {
     	
     	int update(MemberDTO dto);
     	
-    	
+    	List<MemberDTO> list();
 
 }
