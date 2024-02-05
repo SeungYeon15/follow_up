@@ -64,7 +64,7 @@
 
 </head>
 <body>
-	<input type="hidden" name='userId' value="">
+	<input type="hidden" name='userId' value="${sessionScope.userName}">
 	<!--value="${sessionScope.userId}"-->
 	<header class="header">
 		<!-- <h1>Dua Lipa</h1> -->
@@ -81,7 +81,7 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td style="text-align: right;">${dto.userId}|${dto.ndate}|
+					<td style="text-align: right;">${dto.userId} | ${dto.ndate} |
 						${dto.nview}</td>
 				</tr>
 			</tbody>
@@ -125,19 +125,19 @@
 			</tbody>
 		</table>
 		<div class="button-style" style="text-align: right;">
-			<%-- <c:choose>
-			<c:when test="${sessionScope.userId == 'admin'}"> --%>
+			<c:choose>
+			<c:when test="${sessionScope.userName == 'admin'}">
 			<button class="btn btn-outline-dark btn-sm"
 				onclick="location='create'">Post</button>
 			<button class="btn btn-outline-dark btn-sm" onclick="notice_update()">Edit</button>
 			<button class="btn btn-outline-dark btn-sm" onclick="del()">Delete</button>
 			<button class="btn btn-outline-dark btn-sm" onclick="list()">Back</button>
-			<%-- </c:when>
+			</c:when>
 				<c:otherwise>
 					<button class="btn btn-outline-dark btn-sm"
 						onclick="list()">Back</button>
 				</c:otherwise>
-			</c:choose> --%>
+			</c:choose>
 		</div>
 	</div>
 </body>
