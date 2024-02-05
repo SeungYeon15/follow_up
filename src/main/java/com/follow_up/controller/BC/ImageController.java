@@ -139,7 +139,7 @@ public class ImageController {
     @GetMapping("/api/images/pagemoveTest")
     public TestUserDTO pagemoveTest(HttpSession session){
         TestUserDTO testUserDTO = new TestUserDTO();
-        testUserDTO.setUserId(1);
+        testUserDTO.setUserId(2);
         testUserDTO.setUserFile("logo.jpg");
         testUserDTO.setUserGrade("A");
         testUserDTO.setUserName("김병찬");
