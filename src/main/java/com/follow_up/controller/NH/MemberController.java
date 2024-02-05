@@ -306,20 +306,23 @@ public class MemberController {
 	
 	
 	@PostMapping("/member/update")
-    public String update(MemberDTO dto, Model model, HttpSession session){
-
-        int cnt  = service.update(dto);
-
-
-        if(cnt>0) {
-//            if(session.getAttribute("grade").equals("A")) {
-//                return "redirect:/admin/member/list";
-//            }
-            return "redirect:/";
-        }
-        return "error";
-
-    }
+	public String update(MemberDTO dto, int userId, Model model, HttpSession session) {
+        System.out.println(dto.toString());
+		int cnt = service.update(dto);
+		
+		String url = "redirect:/";
+//		if(session.getAttribute("grade").equals("A")) {
+//			url = "redirect:/admin/member/list";
+//		}
+		
+		if (cnt > 0) {
+			return url;
+		}else {
+			return "error";
+		}
+			
+		
+	}
 	
 	
 	

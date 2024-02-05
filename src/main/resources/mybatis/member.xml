@@ -60,9 +60,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="update" parameterType="com.follow_up.model.NH.member.MemberDTO">
 		update user
 		set
-		userEmail = #{email},
-		userPasswd = #{passwd},
-		where userId = #{id}
+		userEmail = #{userEmail},
+		userPasswd = #{userPasswd}
+		where userId = #{userId}
 	</update> 
 </mapper>
 	
