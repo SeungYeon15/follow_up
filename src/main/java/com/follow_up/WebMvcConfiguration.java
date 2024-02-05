@@ -38,6 +38,7 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
                         "http://18.217.50.87:3000"
                 )
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
+                .exposedHeaders("Access-Control-Allow-Origin")
                 .maxAge(3600);
 
     }
