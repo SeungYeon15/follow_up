@@ -104,7 +104,7 @@
 								${prevNtitle}</td>
 						</c:when>
 						<c:otherwise>
-							<td style="text-align: left; vertical-align: center;"><b>prev∨</b>
+							<td style="text-align: left; vertical-align: center;"><b>prev∧</b>
 								-</td>
 						</c:otherwise>
 					</c:choose>
