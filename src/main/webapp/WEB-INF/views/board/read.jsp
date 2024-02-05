@@ -73,7 +73,7 @@
 
 </head>
 <body>
-	<input type="hidden" name='userId' value="${sessionScope.userName}">
+	<input type="hidden" name='loginId' value="${sessionScope.userName}">
 	<!--value="admin"-->
 	<header class="header">
 		<!-- <h1>Dua Lipa</h1> -->
@@ -176,8 +176,8 @@
 		let nowPage = "${param.nowPage}";
 		let colx = "${param.col}";
 		let wordx = "${param.word}";
-		let userId = "${sessionScope.userName}"/* "admin" */;
-		console.log("userId: " + userId);
+		let loginId = "${sessionScope.userName}"/* "admin" */;
+		console.log("loginId: " + loginId);
 	</script>
 	<script src="/js/producer.js" defer></script>
 	<script src="/js/consumer.js" defer></script>
