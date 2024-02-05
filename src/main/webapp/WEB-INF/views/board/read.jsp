@@ -27,7 +27,7 @@
 	}
 
 	function board_update() {
-		if ('${dto.bname}' !== loginId) {
+		if ('${dto.bnum}' !== loginId) {
 			alert('수정 권한이 없습니다.');
 		} else {
 			let url = "update";
@@ -90,7 +90,7 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td style="text-align: right;">${dto.userId}|${dto.bdate}|
+					<td style="text-align: right;">${dto.userId} | ${dto.bdate} |
 						${dto.bview}</td>
 				</tr>
 			</tbody>
@@ -176,7 +176,7 @@
 		let nowPage = "${param.nowPage}";
 		let colx = "${param.col}";
 		let wordx = "${param.word}";
-		let loginId = "${sessionScope.userName}"/* "admin" */;
+		/* let loginId = "${sessionScope.userName}""admin" */;
 		console.log("loginId: " + loginId);
 	</script>
 	<script src="/js/producer.js" defer></script>
