@@ -139,17 +139,11 @@ public class ImageController {
 
     @GetMapping("/api/images/pagemoveTest")
     public TestUserDTO pagemoveTest(HttpSession session){
-        System.out.println("테스트 경로");
-//        여기서 세션 값을 이용해서, 권한
-//        만약 세션에 저장되어있는 값들을 저장해서 리턴 을어캐시미
-        System.out.println("pagemovedyTest요청 들어옴");
-
         TestUserDTO testUserDTO = new TestUserDTO();
         testUserDTO.setUserId(1);
-        testUserDTO.setUserFile("https://images.unsplash.com/photo-1523413651479-597eb2da0ad6");
+        testUserDTO.setUserFile("logo.jpg");
         testUserDTO.setUserGrade("A");
-        
-        testUserDTO.setUserName("테스트병찬");
+        testUserDTO.setUserName("김병찬");
         return testUserDTO;
     }
 
