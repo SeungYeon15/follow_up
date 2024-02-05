@@ -55,22 +55,7 @@ let modalRemoveBtn = $("#modalRemoveBtn");
 let modalRegisterBtn = $("#modalRegisterBtn");
 
 $("#addReplyBtn").on('click', function(e) {
-	/*if (userId == '') {
-		if (confirm("댓글을 쓰려면 로그인을 해야 합니다.")) {
-			let url = "/user/login";
-			url += "?bnum=" + bnum;
-			url += "&nowPage=" + nowPage;
-			url += "&nPage=" + nPage;
-			url += "&col=" + colx;
-			url += "&word=" + wordx;
-			//alert(url);
-			location.href = url;
-		} else {
-			return;
-		}
-	}
-*/
-
+	
 	modalInputContent.val("");
 
 	modal.find("button[id !='modalCloseBtn']").hide();
@@ -113,6 +98,7 @@ $(".chat").on("click", "li", function(e) {
 
 	let lid = $(this).data("userid");
 	console.log("lid: " + lid);
+	console.log("loginId: " + loginId);
 
 	get(rnum)
 		.then(reply => {
@@ -120,12 +106,10 @@ $(".chat").on("click", "li", function(e) {
 			modal.data("rnum", reply.rnum);
 			modal.find("button[id !='modalCloseBtn']").hide();
 
-			if (userId == lid) {
+			if (loginId == lid) {
 				modalModBtn.show();
 				modalRemoveBtn.show();
 			}
-			modalModBtn.show();
-			modalRemoveBtn.show();
 
 			modal.modal("show");
 		});

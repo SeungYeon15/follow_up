@@ -20,7 +20,7 @@
 <script type="text/javascript">
 	window.onload = function() {
 		// loginId 값을 세션에서 가져옴 (JSP EL 사용)
-		let loginId = "${sessionScope.userName}" // "";
+		let loginId = "${sessionScope.userName}"
 
 		// loginId 값이 없을 경우 (로그인하지 않은 경우)
 		if (!loginId) {
