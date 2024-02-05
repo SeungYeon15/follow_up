@@ -137,30 +137,39 @@ public class ImageController {
     }
 
 
-    @GetMapping("/api/images/pagemove")
-    public TestUserDTO pagemove(HttpSession session){
-        System.out.println("경로");
+    @GetMapping("/api/images/pagemoveTest")
+    public TestUserDTO pagemoveTest(HttpSession session){
+        System.out.println("테스트 경로");
 //        여기서 세션 값을 이용해서, 권한
 //        만약 세션에 저장되어있는 값들을 저장해서 리턴 을어캐시미
-        System.out.println("pagemovedy요청 들어옴");
-//        int id= 0;
-//        try{
-//            id = (Integer) session.getAttribute("userId");
-//            System.out.println("유져id" + id);
-//        }
-//        catch (Exception e){
-//            System.out.println("유져id 오류." + e);
-//            return null;
-//        }
-//
-//        return imageService.getUserById(id);
+        System.out.println("pagemovedyTest요청 들어옴");
+
         TestUserDTO testUserDTO = new TestUserDTO();
         testUserDTO.setUserId(1);
         testUserDTO.setUserFile("https://images.unsplash.com/photo-1523413651479-597eb2da0ad6");
         testUserDTO.setUserGrade("A");
         
-        testUserDTO.setUserName("병찬");
+        testUserDTO.setUserName("테스트병찬");
         return testUserDTO;
+    }
+
+
+    @GetMapping("/api/images/pagemove")
+    public TestUserDTO pagemove(HttpSession session){
+        System.out.println("경로");
+        System.out.println("pagemovedy요청 들어옴");
+        int id= 0;
+        try{
+            id = (Integer) session.getAttribute("userId");
+            System.out.println("유져id" + id);
+        }
+        catch (Exception e){
+            System.out.println("유져id 오류." + e);
+            return null;
+        }
+
+        return imageService.getUserById(id);
+
     }
 
     @PostMapping("/api/images/upload")
