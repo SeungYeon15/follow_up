@@ -57,8 +57,8 @@
 
 		<div id="noticeTable" class="table-responsive">
 			<form action="./list">
-				<input type="hidden" name='userId' value="admin">
-				<!--value="${sessionScope.id}"-->
+				<input type="hidden" name='userId' value="${sessionScope.userName}">
+				<!--value="admin"-->
 				<div class="row">
 					<div class='col-3'>
 						<select class="form-select" name="col">
@@ -84,10 +84,10 @@
 						</div>
 					</div>
 					<div class='col'>
-						<%-- <c:if test="${userId == 'admin'}"> "${sessionScope.id}"--%>
+						<c:if test="${sessionScope.userName == 'admin'}"> <%-- "${sessionScope.id}"--%>
 							<button type="button" class="btn btn-dark"
 								onclick="location.href='./create'">Post</button>
-						<%-- </c:if> --%>
+						</c:if>
 					</div>
 				</div>
 			</form>
