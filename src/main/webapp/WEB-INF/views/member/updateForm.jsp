@@ -19,40 +19,28 @@
     .btn-group { margin-top: 20px; }
   </style>
   <script type="text/javascript">
-  function emailCheck(dto.userEmail){
-    //alert(email);
-    if(dto.userEmail==''){
-      alert("email를 입력하세요");
-      document.frm.email.focus();
-    }else{
-      var url = "emailcheck";
-      url += "?email="+email;
-      
-      $.get(url, function(data, textStatus) {
-        
-        $("#emailcheck").text(data.str);
-        
-      })
-    }
+  function emailCheck(email) {
+      if (email === '') {
+          alert("email를 입력하세요");
+          document.frm.email.focus();
+      } else {
+          var url = "/member/emailcheck";
+          url += "?email=" + email;
+
+          $.get(url, function (data, textStatus) {
+              $("#emailcheck").text(data.str);
+          })
+      }
   }
  
 function inCheck(f){
   
-  if(f.tel.value.length==0){
-    alert("전화번호를 입력하세요");
-    f.tel.focus();
-    return false;
-  }
-  if(f.email.value.length==0){
+  if(f.userEmail.value.length==0){
     alert("이메일을 입력하세요");
     f.email.focus();
     return false;
   }
-  if(f.job.selectedIndex == 0){
-    alert("직업을 선택하세요");
-    f.job.focus();
-    return false;
-  }
+  
 }
  
 </script>
@@ -61,19 +49,19 @@ function inCheck(f){
   <div class="container" style="margin-left: 360px; margin-bottom: 100px;">
     <h3 class="form-title">정보 수정 <small>(<span id="need">*</span> 필수입력사항)</small></h3>
     <form action="/member/update" method="post" name='frm' onsubmit="return inCheck(this)" class="form-group">
-      <input type="hidden" name="id" value="${dto.userId}">
+      <input type="hidden" name="userId" value="${dto.userId}">
       <div class="input-group">
         <div class="input-group-text">이름</div>
         <div class="form-control">${dto.userName}</div>
       </div>
       <div class="input-group">
         <div class="input-group-text"><span id="need">*</span>비밀번호</div>
-        <input type="password" class="form-control" id="email" value="${dto.userPasswd}" name="passwd">
+        <input type="password" class="form-control" id="passwd" value="${dto.userPasswd}" name="userPasswd">
       </div>
       <div class="input-group">
         <div class="input-group-text"><span id="need">*</span>이메일</div>
-        <input type="email" class="form-control" id="email" value="${dto.userEmail}" >
-        <button type="button" class="btn btn-outline-dark" onclick="emailCheck(document.frm.email.value)">Email 변경</button>
+        <input type="email" class="form-control" id="email" value="${dto.userEmail}" name ="userEmail">
+        <button type="button" class="btn btn-outline-dark" onclick="emailCheck(document.frm.userEmail.value)">Email 변경</button>
         <div id="emailcheck"></div>
       </div>
       <div class="btn-group">
