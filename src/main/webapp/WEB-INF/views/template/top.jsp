@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%-- <c:set var="root" value="${pageContext.request.contextPath }"/> --%>
+<c:set var="root" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,30 +19,43 @@
 	</div>
 	<div class="overlay" id="overlay">
 		<c:choose>
-            <c:when test="${not empty sessionScope.userId}">
-                <!-- 로그인 되었을 때 -->
-                <div class="user-info">
-                    <a href="/member/logout" class="logout-link">LOGOUT</a><br>
-                    Hello! ${sessionScope.userName}
-                </div>
-           </c:when>
-            <c:otherwise> 
-                <!-- 로그인 되지 않았을 때 -->
-                <a href="/member/login" class="login-link">LOGIN</a>
-             </c:otherwise>
-        </c:choose> 
+			<c:when
+				test="${not empty sessionScope.userId && sessionScope.userGrade == 'A'}">
+				<!-- 로그인 되었을 때 -->
+				<div class="user-info">
+					<a href="/member/logout" class="logout-link">LOGOUT</a><br>
+					관리자 페이지입니다.
+				</div>
+			</c:when>
+			<c:when test="${not empty sessionScope.userId}">
+				<!-- 로그인 되었을 때 -->
+				<div class="user-info">
+					<a href="/member/logout" class="logout-link">LOGOUT</a><br>
+					Hello! ${sessionScope.userName}
+				</div>
+			</c:when>
+
+			<c:otherwise>
+				<!-- 로그인 되지 않았을 때 -->
+				<a href="/member/login" class="login-link">LOGIN</a>
+			</c:otherwise>
+		</c:choose>
 		<nav class="overlay-menu">
 			<ul>
 				<li><a href="/music">ALBUM/VIDEO</a></li>
 				<li><a href="/schedule">SCHEDULE</a></li>
 				<li><a href="#">CONCERT</a></li>
-				<li><a href="#">GALLERY</a></li>
+				<li><a href="http://18.217.50.87:3000/">GALLERY</a></li>
 				<li><a href="/company">AGENCY</a></li>
 				<li><a href="/notice/list">BOARD</a></li>
 				<li><a href="/board/list">COMMUNITY</a></li>
 				<li><a href="/member/mypage">MYPAGE</a></li>
-				
-
+				<c:choose>
+				<c:when test="${not empty sessionScope.userId && sessionScope.userGrade == 'A'}">
+					<li><a href="/admin/member/list">회원목록</a></li>
+					<li><a href="#">관리자T</a></li>	
+				</c:when>
+				</c:choose>
 			</ul>
 		</nav>
 	</div>
