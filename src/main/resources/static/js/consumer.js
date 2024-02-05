@@ -76,7 +76,7 @@ modalRegisterBtn.on('click', function(e) {
 
 	let reply = {
 		rcontent: modalInputContent.val(),
-		userId: userId,
+		userId: loginId,
 		bnum: bnum
 	};
 	add(reply)

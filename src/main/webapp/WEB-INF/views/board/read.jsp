@@ -27,7 +27,7 @@
 	}
 
 	function board_update() {
-		if ('${dto.bnum}' !== loginId) {
+		if ('${dto.userId}' !== loginId) {
 			alert('수정 권한이 없습니다.');
 		} else {
 			let url = "update";
@@ -40,7 +40,7 @@
 	}
 
 	function del() {
-		if ('${dto.bnum}' !== loginId) {
+		if ('${dto.userId}' !== loginId) {
 			alert('삭제 권한이 없습니다.');
 		} else if (confirm("삭제하시겠습니까?")) {
 			let url = "delete";
@@ -176,7 +176,7 @@
 		let nowPage = "${param.nowPage}";
 		let colx = "${param.col}";
 		let wordx = "${param.word}";
-		/* let loginId = "${sessionScope.userName}""admin" */;
+		/* let loginId = "user1""admin" */;
 		console.log("loginId: " + loginId);
 	</script>
 	<script src="/js/producer.js" defer></script>
