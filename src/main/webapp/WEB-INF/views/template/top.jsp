@@ -52,8 +52,8 @@
 				<li><a href="/member/mypage">MYPAGE</a></li>
 				<c:choose>
 				<c:when test="${not empty sessionScope.userId && sessionScope.userGrade == 'A'}">
-					<li><a href="#">회원목록</a></li>
-					<li><a href="#">관리자T</a></li>	
+					<li><a href="/admin/member/list">LIST</a></li>
+					
 				</c:when>
 				</c:choose>
 			</ul>
