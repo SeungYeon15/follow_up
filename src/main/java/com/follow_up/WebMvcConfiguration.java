@@ -40,7 +40,8 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
                         "http://18.217.50.87:3000"
                 )
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
-                .exposedHeaders("Access-Control-Allow-Origin")
+                .allowedHeaders("*") // 어떤 헤더들을 허용할 것인지
+                .allowCredentials(true) // 쿠키 요청을 허용한다(다른 도메인 서버에 인증하는 경우에만 사용)
                 .maxAge(3600);
 
     }
