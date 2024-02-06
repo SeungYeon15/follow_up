@@ -87,7 +87,7 @@
 		</nav>
 
 
-	<div style="text-align: center; padding: 30px; margin-top:900px;background-color: #f8f9fa; margin-right:1450px;">
+	<div style="text-align: center; padding: 30px; margin-top:900px;background-color: #f8f9fa; margin-right;px;">
     <h4 style="font-size: 28px; margin-bottom: 20px; color: #007bff;">
         <i class="bi bi-people-fill"></i> 나의 정보
     </h4>
