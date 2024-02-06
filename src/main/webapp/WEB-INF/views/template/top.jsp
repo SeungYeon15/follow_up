@@ -44,7 +44,7 @@
 			<ul>
 				<li><a href="/music">ALBUM/VIDEO</a></li>
 				<li><a href="/schedule">SCHEDULE</a></li>
-				<li><a href="#">CONCERT</a></li>
+				<li><a href="/concert/list">CONCERT</a></li>
 				<li><a href="http://18.217.50.87:3000/">GALLERY</a></li>
 				<li><a href="/company">AGENCY</a></li>
 				<li><a href="/notice/list">BOARD</a></li>

@@ -4,12 +4,12 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
-  <definition name="/list" extends="main">
+  <definition name="/concert/list" extends="main">
     <put-attribute name="title" value="콘서트 목록"></put-attribute>
     <put-attribute name="body"
       value="/WEB-INF/views/concert/list.jsp" />
   </definition>
-  <definition name="/detail" extends="main">
+  <definition name="/concert/detail" extends="main">
     <put-attribute name="title" value="콘서트 상세보기"></put-attribute>
     <put-attribute name="body"
       value="/WEB-INF/views/concert/detail.jsp" />
