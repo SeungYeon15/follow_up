@@ -81,7 +81,7 @@ li::marker {
 	<div id='calendar-container'>
 		<div id='calendar'></div>
 	</div>
-	<input type="hidden" name='userId' value="${sessionScope.userName}">
+<%-- 	<input type="hidden" name='userId' value="${sessionScope.userName}"> --%>
 	<ul>
 		<c:forEach var="dto" items="${list }">
 			<li id="${dto.tagName }"
@@ -164,11 +164,11 @@ li::marker {
 //     }
 
    	function modalOn(start, end, calendar){
-   	    var $useridElement = $("input[name='userid']");
+  /*  	    var $useridElement = $("input[name='userid']");
    	    if ($useridElement.val() !== 'admin') {
    	        alert('관리자만 수정 가능합니다.');
    	return;
-   	    }
+   	    } */
     	  $("#scheduleModal").modal("show");
 			document.getElementById('startTime').value=start;
 			document.getElementById('endTime').value=end;
