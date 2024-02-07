@@ -114,7 +114,7 @@ li::marker {
 							<label for="tag">일정 태그:</label> <select id="tag" name="tag"
 								style="width: 100%;">
 								<c:forEach var="dto" items="${list }">
-									<option value='${dto.tagName}' style='color: #${dto.tagColor'>
+									<option value='${dto.tagName}' style='color: #${dto.tagColor}'>
 										${dto.tagName }</option>
 								</c:forEach>
 							</select>
