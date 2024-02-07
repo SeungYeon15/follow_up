@@ -85,7 +85,7 @@ li::marker {
 	<ul>
 		<c:forEach var="dto" items="${list }">
 			<li id="${dto.tagName }"
-				style='list-style: none; float: right; margin-right: 20px; color: #${dto.tagColor'><span
+				style='list-style: none; float: right; margin-right: 20px; color: #${dto.tagColor}'><span
 				style="color: #888;">${dto.tagName }</span></li>
 		</c:forEach>
 	</ul>
