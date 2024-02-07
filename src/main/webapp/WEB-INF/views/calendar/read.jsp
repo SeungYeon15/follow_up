@@ -46,7 +46,7 @@
 }
 
 html, body {
-background-color:#f2ebe5;
+	background-color: #f2ebe5;
 	overflow: hidden;
 	font-size: 14px;
 	font-family: "Pretendard-Regular";
@@ -56,12 +56,14 @@ background-color:#f2ebe5;
 .fc-header-toolbar {
 	padding-top: 4.5em;
 	padding-bottom: 0.4em;
-	font-size:16px; font-weight : bolder;
+	font-size: 16px;
+	font-weight: bolder;
 }
 
 li::marker {
-  content: '❤ ';
+	content: '❤ ';
 }
+
  
 #calendar {
 	padding-left: 4.5em;
@@ -79,11 +81,14 @@ li::marker {
 	<div id='calendar-container'>
 		<div id='calendar'></div>
 	</div>
+	<input type="hidden" name='userId' value="${sessionScope.userName}">
 	<ul>
-	<c:forEach var="dto" items="${list }">
-		<li id="${dto.tagName }" style='list-style:none; float:right; margin-right: 20px; color: #${dto.tagColor };  '><span style="color:#888; ">${dto.tagName }</span>
-			</li>
-	</c:forEach></ul>
+		<c:forEach var="dto" items="${list }">
+			<li id="${dto.tagName }"
+				style='list-style: none; float: right; margin-right: 20px; color: #${dto.tagColor'><span
+				style="color: #888;">${dto.tagName }</span></li>
+		</c:forEach>
+	</ul>
 	<div id="info" style="display: none"></div>
 	<div class="modal" id="scheduleModal" tabindex="-1" role="dialog">
 		<div class="modal-dialog" role="document">
@@ -109,7 +114,7 @@ li::marker {
 							<label for="tag">일정 태그:</label> <select id="tag" name="tag"
 								style="width: 100%;">
 								<c:forEach var="dto" items="${list }">
-									<option value='${dto.tagName}' style='color: #${dto.tagColor } '>
+									<option value='${dto.tagName}' style='color: #${dto.tagColor'>
 										${dto.tagName }</option>
 								</c:forEach>
 							</select>
@@ -159,7 +164,11 @@ li::marker {
 //     }
 
    	function modalOn(start, end, calendar){
-   	 
+   	    var $useridElement = $("input[name='userid']");
+   	    if ($useridElement.val() !== 'admin') {
+   	        alert('관리자만 수정 가능합니다.');
+   	return;
+   	    }
     	  $("#scheduleModal").modal("show");
 			document.getElementById('startTime').value=start;
 			document.getElementById('endTime').value=end;
